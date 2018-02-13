@@ -8,8 +8,7 @@
 </p>
 
 
-## Forgive me if the result of framework laravel made by me and my friends not good, forgive also if there is error in this script code ..
-## Yoo what's upp! :)
+## Forgive me if the result of framework laravel made by me and my friends not good, forgive also if there is error in this script code ..  Yoo what's upp! :)
 
 ## About Laravelss
 
