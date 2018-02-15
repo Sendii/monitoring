@@ -31,7 +31,7 @@ class CreatePengadaansTable extends Migration
         );
         DB::table('pengadaans')->insert(
             array(                
-                'namapengadaan' => 'Pengadaan QA&C',
+                'namapengadaan' => 'Pengadaan QA&QC',
             )
         );
     }

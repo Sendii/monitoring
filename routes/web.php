@@ -22,7 +22,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/inputPpbj', 'BppjController@addPpbj')->name('addPpbj');
 });
 
-Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
+Route::get('/calc', function() {
+	return view('ppbj.calc');
+});
+
+// Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
 // Route::get('admin_area', ['middleware' => 'admin', function () {
 // }]);
 Route::post('/', 'HomeController@contactme')->name('contactme');
@@ -50,5 +54,7 @@ Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
 Route::post('/savePegawai/', 'PegawaiController@savePegawai')->name('savePegawai');
 
 Route::get('/receivePpbj', 'BppjController@receivePpbj')->name('receivePpbj');
-Route::get('/assignmentPpbj/{id}', 'PegawaiController@editassignmentPpbj')->name('editassignmentPpbj');
-Route::post('/assignmentPpbj/', 'PegawaiController@updateassignmentPpbj')->name('updateassignmentPpbj');
+Route::get('/assignmentPpbj/{id}', 'PenugasanController@editassignmentPpbj')->name('editassignmentPpbj');
+Route::post('/assignmentPpbj/', 'PenugasanController@updateassignmentPpbj')->name('updateassignmentPpbj');
+
+Route::get('/monitoring', 'MonitoringController@allMonitoring')->name('allMonitoring');

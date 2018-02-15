@@ -43,8 +43,8 @@ class HomeController extends Controller
     }
 
     // ----------------URL REDIRECT TO ERROR404------------
-     public function pagenotfound()
-     {
-         return view('503');
-    }
+    //  public function pagenotfound()
+    //  {
+    //      return view('503');
+    // }
 }

@@ -67,8 +67,8 @@
                       @endforeach
                     </select>
                   </div>
-                  </div>
-                  <div class="form-group">
+                </div>
+                <div class="form-group">
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Banyak Barang</label>
@@ -89,7 +89,9 @@
                   <div class="col-sm-3">
                     <input type="text" name="hargabarang" value=" {{$ppbjassignmentEdit->harga_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Harga Barang" readonly>
                   </div>
-                </div>
+                </div><hr>
+
+                <!-- Penugasan dari Kasubag Ke Pegawai Utk Memonitoring ke Kepala Divisi -->
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Pemekerja</label>
                   <div class="col-sm-3">
@@ -102,14 +104,53 @@
                   </select>
                 </div>
               </div>
-              <div class="box-footer">
-                <button type="submit" name="simpan" class="btn btn-primary pull-right">>&nbsp;Tambahkan</button>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Tgl. Spph</label>
+                <div class="col-sm-3">
+                  <input type="date" name="p_tglspph" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum">
+                </div>
+                <label class="col-sm-2 control-label">No. Spph</label>
+                <div class="col-sm-2">
+                  <input type="text" name="p_nospph" value=" {{$prosespengadaan->no_spph or ''}} " class="form-control" id="inputPassword3" placeholder="No. Ppbj">
+                </div>
               </div>
             </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Tgl. Etp</label>
+              <div class="col-sm-3">
+                <input type="date" name="p_tgletp" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Tgl. Pengumuman</label>
+              <div class="col-sm-3">
+                <input type="date" name="p_tglpmn" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum">
+              </div>
+              <label class="col-sm-2 control-label">No. Pengumuman</label>
+              <div class="col-sm-3">
+                <input type="text" name="p_nopmn" class="form-control" id="inputPassword3" placeholder="No. Ppbj">
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Tgl. Kontrak</label>
+                <div class="col-sm-3">
+                  <input type="date" name="p_tglkon" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum">
+                </div>
+                <label class="col-sm-2 control-label">No. Kontrak</label>
+                    <div class="col-sm-3">
+                      <input type="text" name="p_nokon" class="form-control" id="inputPassword3" placeholder="No. Ppbj">
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" name="simpan" class="btn btn-primary pull-right">>&nbsp;Tambahkan</button>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+</section>
 </body>
 </html>

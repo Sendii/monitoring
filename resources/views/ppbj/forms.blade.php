@@ -73,35 +73,66 @@
                       </select>                      
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Banyak Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="banyakbarang" value=" {{$ppbjadd->banyak_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Banyak Barang">
+                   <div class="form-group">
+                                <label>jumlah kompetensi dasar</label>
+                                <input class="form-control" placeholder="Enter text" name="banyak_kd" type="number" onkeyup="banyakKD(this.value)" min="1" max="12" required="">
+                                <table class="table table-striped table-bordered table-hover" id="kd">
+                                    <thead>
+                                        <tr>
+                                           <th>Kompetensi Dasar</th>
+                                           <th>Harga</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                    <!  <tr><td><input class="form-control" type='text' placeholder="Kompetesi Dasar" name="kd[]"></td></tr>
+                                   </tbody>
+
+                                 </table>
+                               </div> 
+                               <div class="form-group">
+                                <label class="col-sm-2 control-label">Banyak Barang</label>
+                                <div class="col-sm-3">
+                                  <input type="text" name="banyakbarang" value=" {{$ppbjadd->banyak_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Banyak Barang">
+                                </div>
+                                <label class="col-sm-2 control-label">Nama Barang</label>
+                                <div class="col-sm-3">
+                                  <input type="text" name="namabarang" value=" {{$ppbjadd->nama_barang or ''}} " class="form-control" id="inputPassword3" placeholder="Nama Barang">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Jumlah Barang</label>
+                                <div class="col-sm-3">
+                                  <input type="text" name="jumlahbarang" value=" {{$ppbjadd->jumlah_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Jumlah Barang">
+                                </div>
+                                <label class="col-sm-2 control-label">Harga Barang</label>
+                                <div class="col-sm-3">
+                                  <input type="text" name="hargabarang" value=" {{$ppbjadd->harga_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Harga Barang">
+                                </div>
+                              </div>
+                              <div class="box-footer">
+                                <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-plus-square">&nbsp;</i>Tambahkan</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Control Sidebar -->
+                      </div>
                     </div>
-                    <label class="col-sm-2 control-label">Nama Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="namabarang" value=" {{$ppbjadd->nama_barang or ''}} " class="form-control" id="inputPassword3" placeholder="Nama Barang">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Jumlah Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="jumlahbarang" value=" {{$ppbjadd->jumlah_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Jumlah Barang">
-                    </div>
-                    <label class="col-sm-2 control-label">Harga Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="hargabarang" value=" {{$ppbjadd->harga_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Harga Barang">
-                    </div>
-                  </div>
-                  <div class="box-footer">
-                    <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-plus-square">&nbsp;</i>Tambahkan</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Control Sidebar -->
-          </div>
-        </div>
-      </section>
-    </body>
-    </html>
+                  </section>
+                </body>
+                </html>
+
+<!--     <script type="text/javascript">
+    function banyakKD(x){
+        var data = "";
+        for(var y =0;y<x;y++){
+            data += '<tr><td><input class="form-control" type="text" placeholder="Nama Kompetesi Dasar" name="kd[]"></td><td><input class="form-control" type="text" placeholder="Harga" name="kd[]"></td></tr>';
+            '<th></th>';
+        }
+
+        $("#kd  > tbody").empty();
+        $("#kd > tbody").append(data);
+    }
+</script>
+
+ -->
