@@ -27,7 +27,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Tgl Permintaan</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Tgl Dibutuhkan</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Jenis Pengadaan</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Banyak Barang,ga</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Banyak Barang</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Nama Barang</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Harga Barang</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Jumlah Barang</th>
@@ -38,6 +38,7 @@
 			@foreach($ppbjall as $key)
       <?php
       $unitkerja = \App\unitkerja::where('id_unit', '=', $key->id_unit)->value('aa');
+      $Pengadaan = \App\pengadaan::where('id_pengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
       ?>
                 <tbody>                
                 <tr role="row" class="odd">
@@ -59,12 +60,12 @@
       			        <td class="center">{{$key->no_ppbj}}</td>
       			        <td class="center">{{$key->tgl_permintaan_ppbj}}</td>
       			        <td class="center">{{$key->tgl_dibutuhkan_ppbj}}</td>
-      			        <td class="center">{{$key->jenis_pengadaan}}</td>
+      			        <td class="center">{{ $Pengadaan }}</td>
       			        <td class="center">{{$key->banyak_brg}}</td>
       			        <td class="center">{{$key->nama_barang}}</td>
       			        <td class="center">{{$key->harga_brg}}</td>
       			        <td class="center">{{$key->jumlah_brg}}</td>
-      			        <td class="center">{{$key->hargatotal_brg}}</td>
+      			        <td class="center">{{$key->total_brg}}</td>
                      <td><a href="{{route('editPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah</a></td>
                 </tr>
                 </tbody>
