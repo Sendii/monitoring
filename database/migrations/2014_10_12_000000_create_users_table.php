@@ -24,14 +24,6 @@ class CreateUsersTable extends Migration
         });
 
         DB::table('users')->insert(
-            array(                
-                'name' => 'Admin',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt('admin1'),    
-                'roleid' => 2,
-            )
-        );
-        DB::table('users')->insert(
             array(
             'name' => 'Kasubag',
                 'email' => 'kasubag@kasubag.com',
@@ -39,6 +31,33 @@ class CreateUsersTable extends Migration
                 'roleid' => 1, 
             )
         );
+
+        DB::table('users')->insert(
+            array(                
+                'name' => 'Admin',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('admin1'),    
+                'roleid' => 2,
+            )
+        );
+
+        DB::table('users')->insert(
+            array(                
+                'name' => 'Kepala Divisi',
+                'email' => 'kadiv@kadiv.com',
+                'password' => bcrypt('kadiv1'),    
+                'roleid' => 3,
+            )
+        );
+
+        DB::table('users')->insert(
+            array(                
+                'name' => 'User People',
+                'email' => 'user@user.com',
+                'password' => bcrypt('useer1'),    
+                'roleid' => 4,
+            )
+        );        
     }
 
     /**

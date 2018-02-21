@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-     Div-Sum
-    </title>
+  <title>
+   Div-Sum
+ </title>
 
-   <style type="text/css">
-       /* https://coolors.co/2c3e50-e74c3c-ffffff-3498db-95a3b3 */
+ <style type="text/css">
+ /* https://coolors.co/2c3e50-e74c3c-ffffff-3498db-95a3b3 */
 
 /* ========================
 Utilities
@@ -18,12 +18,12 @@ Utilities
 
 .cf::before,
 .cf::after {
-    content: "";
-    display: table; 
+  content: "";
+  display: table; 
 }
 
 .cf::after {
-    clear: both;
+  clear: both;
 }
 
 html {
@@ -85,14 +85,14 @@ Navigation
 ======================== */
 
 @keyframes show-header {
-    0% {
-        top: -4em;
-        opacity: 0;
-    }
-    100% {
-        top: 0;
-        opacity: 1;
-    }
+  0% {
+    top: -4em;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 nav {
@@ -162,9 +162,9 @@ Sections
 
 .splash {
   background: linear-gradient(rgba(44, 62, 80, 0.65), rgba(52, 152, 219, 0.65)),
-                url("http://pipnews.co.id/wp-content/uploads/2017/07/sucofindo-600x381.jpg") no-repeat fixed center;
-    background-size: cover;
-    color: #fff;
+  url("http://pipnews.co.id/wp-content/uploads/2017/07/sucofindo-600x381.jpg") no-repeat fixed center;
+  background-size: cover;
+  color: #fff;
 }
 
 .splash .container {
@@ -318,7 +318,7 @@ Media Queries
 ======================== */
 
 @media (min-width: 768px) {
-  
+
   nav .nav-toggle {
     display: none;
   }
@@ -398,94 +398,123 @@ Media Queries
   .contact form textarea {
     height: 12em;
   }
+
+  .form-control {
+    border-radius: 0;
+    box-shadow: red;
+    border-color: #d2d6de;
+    display: block;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    font-family: Roboto; 
+  }
   
 }
-   </style> 
+</style> 
 </head>
 <body>
-<nav class="container-fluid nav">
-  <div class="container cf">
-    <div class="brand">
-      <a href="#splash">Monitoring</a>
+  <nav class="container-fluid nav">
+    <div class="container cf">
+      <div class="brand">
+        <a href="#splash">Monitoring</a>
+      </div>
+      <i class="fa fa-bars nav-toggle"></i>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#about" class="smoothScroll" >Tentang Kami</a></li>
+        <li class="active"><a href="#skills" class="smoothScroll" >Deskripsi</a></li>
+        <li class="active"><a href="#portfolio" class="smoothScroll" >Portfolio</a></li>
+        <li class="active"><a href="#contact" class="smoothScroll" >Kontak</a></li>
+        @guest
+        <li class="active"><a href="/login" class="smoothScroll" >Login</a></li>
+        @else
+        <li class="active"><a href="/logout" class="smoothScroll" >Logout</a></li>
+        @endguest
+      </ul>
     </div>
-    <i class="fa fa-bars nav-toggle"></i>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#about" class="smoothScroll" >Tentang Kami</a></li>
-      <li class="active"><a href="#skills" class="smoothScroll" >Deskripsi</a></li>
-      <li class="active"><a href="#portfolio" class="smoothScroll" >Portfolio</a></li>
-      <li class="active"><a href="#contact" class="smoothScroll" >Kontak</a></li>
-      @guest
-      <li class="active"><a href="/login" class="smoothScroll" >Login</a></li>
-      @else
-      <li class="active"><a href="/logout" class="smoothScroll" >Logout</a></li>
-      @endguest
-    </ul>
-  </div>
-</nav>
+  </nav>
 
-<div class="container-fluid splash" id="splash">
-  <div class="container">
-    <img src=" {{asset('img/sucof.jpg')}} " alt="Portrait of Mr. Roboto" class="profile-image">
-    <h1 style="font-size : 75px;">Monitoring Divisi Umum</h1>
-    <span class="lead">Sucofindo. PT (Persero)</span>
-    <span class="continue"><a href="#about"><i class="fa fa-angle-down"></i></a></span>
-  </div>
-</div>
-
-<div class="container-fluid intro" id="about">
-  <div class="container">
-    <h2>Tentang</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias ratione impedit soluta amet quas saepe temporibus <a href="#">eum reprehenderit</a> voluptas! A nihil adipisci itaque quos quo dolorum consequuntur iusto facere quaerat, excepturi quod, necessitatibus aliquid quae est qui, aut in assumenda animi tempora debitis. Beatae, veritatis, delectus. Repellat dolore, molestias nam.</p>
-  </div>
-</div>
-
-<div class="container-fluid features" id="skills">
-  <div class="container cf">
-    <h2>Skills &amp; Experience</h2>
-    <div class="col-3">
-      <img src="https://s22.postimg.org/oi5es3fkx/icon_cloud.png" alt="">
-      <h3>Cloud Computing</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi maiores eum commodi soluta, blanditiis voluptates ea eos, cim! Neque.</p>
-    </div>
-    <div class="col-3">
-      <img src="https://s22.postimg.org/jxj8d5vvl/icon_coding.png" alt="">
-      <h3>Expert Coding</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi maiores eum commodi soluta, blanditiis voluptates ea eos, cim! Neque.</p>
-    </div>
-    <div class="col-3">
-      <img src="https://s22.postimg.org/citwksa01/icon_graph.png" alt="">
-      <h3>Data Analysis</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi maiores eum commodi soluta, blanditiis voluptates ea eos, cim! Neque.</p>
+  <div class="container-fluid splash" id="splash">
+    <div class="container">
+      <img src=" {{asset('img/sucof.jpg')}} " alt="Portrait of Mr. Roboto" class="profile-image">
+      <h1 style="font-size : 75px;">Monitoring Divisi Umum</h1>
+      <span class="lead">Sucofindo. PT (Persero)</span>
+      <span class="continue"><a href="#about"><i class="fa fa-angle-down"></i></a></span>
     </div>
   </div>
-</div>
 
-<div class="container-fluid portfolio" id="portfolio">
-  <div class="container cf">
-    <h2>Portfolio</h2>
-    <div class="gallery">
-      <div class="gallery-image"><img src="https://unsplash.it/800/450?image=250" alt=""></div>
-      <div class="gallery-image"><img src="https://unsplash.it/800/450?image=249" alt=""></div>
-      <div class="gallery-image"><img src="https://unsplash.it/800/450?image=248" alt=""></div>
-      <div class="gallery-image"><img src="https://unsplash.it/800/450?image=247" alt=""></div>
-      <div class="gallery-image"><img src="https://unsplash.it/800/450?image=239" alt=""></div>
-      <div class="gallery-image"><img src="https://unsplash.it/800/450?image=238" alt=""></div>
+  <div class="container-fluid intro" id="about">
+    <div class="container">
+      <h2>Tentang</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias ratione impedit soluta amet quas saepe temporibus <a href="#">eum reprehenderit</a> voluptas! A nihil adipisci itaque quos quo dolorum consequuntur iusto facere quaerat, excepturi quod, necessitatibus aliquid quae est qui, aut in assumenda animi tempora debitis. Beatae, veritatis, delectus. Repellat dolore, molestias nam.</p>
     </div>
   </div>
-</div>
 
-<div class="container-fluid contact" id="contact">
-  <div class="container">
-    <form method="POST" action=" {{route('contactme')}} " >
+  <div class="container-fluid features" id="skills">
+    <div class="container cf">
+      <h2>Skills &amp; Experience</h2>
+      <div class="col-3">
+        <img src="https://s22.postimg.org/oi5es3fkx/icon_cloud.png" alt="">
+        <h3>Cloud Computing</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi maiores eum commodi soluta, blanditiis voluptates ea eos, cim! Neque.</p>
+      </div>
+      <div class="col-3">
+        <img src="https://s22.postimg.org/jxj8d5vvl/icon_coding.png" alt="">
+        <h3>Expert Coding</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi maiores eum commodi soluta, blanditiis voluptates ea eos, cim! Neque.</p>
+      </div>
+      <div class="col-3">
+        <img src="https://s22.postimg.org/citwksa01/icon_graph.png" alt="">
+        <h3>Data Analysis</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi maiores eum commodi soluta, blanditiis voluptates ea eos, cim! Neque.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid portfolio" id="portfolio">
+    <div class="container cf">
+      <h2>Portfolio</h2>
+      <div class="gallery">
+        <div class="gallery-image"><img src="https://unsplash.it/800/450?image=250" alt=""></div>
+        <div class="gallery-image"><img src="https://unsplash.it/800/450?image=249" alt=""></div>
+        <div class="gallery-image"><img src="https://unsplash.it/800/450?image=248" alt=""></div>
+        <div class="gallery-image"><img src="https://unsplash.it/800/450?image=247" alt=""></div>
+        <div class="gallery-image"><img src="https://unsplash.it/800/450?image=239" alt=""></div>
+        <div class="gallery-image"><img src="https://unsplash.it/800/450?image=238" alt=""></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid contact" id="contact">
+    <div class="container">
+      <form method="POST" action=" {{route('contactme')}} " >
        {!! csrf_field() !!}
-      <h2>Kontak Kami</h2>
-      <input type="text" placeholder="Name" id="name" name="name" class="full-half">
-      <input type="email" placeholder="Email" id="email" name="email" class="full-half">
-      <input type="text" placeholder="Subject" id="subject" name="subject">
-      <textarea placeholder="Message" id="message" name="message"></textarea>
-      <input type="submit" value="Send">
-    </form>
-  </div>
+       <h2>Kontak Kami</h2>
+       <div class="form-group">
+        <label>Nama: </label>
+        <div class="col-md-4">
+         <input type="text" placeholder="Name" class="form-control" id="name" name="name" class="full-half">
+       </div>
+     </div>
+     <input type="email" placeholder="Email" class="form-control" id="email" name="email" class="full-half">
+     <input type="text" placeholder="Subject" class="form-control" id="subject" name="subject">
+     <textarea placeholder="Message" class="form-control" id="message" name="message"></textarea>
+     <div class="form-group">
+      <div class="col-md-6 col-md-offset-4">
+        {!! app('captcha')->display() !!}
+
+        @if ($errors->has('g-recaptcha-response'))
+        <span class="help-block">
+          <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+        </span>
+        @endif
+      </div>
+    </div><br>
+    <input type="submit" value="Send">
+  </form>
+</div>
 </div>
 
 <footer class="container-fluid footer">

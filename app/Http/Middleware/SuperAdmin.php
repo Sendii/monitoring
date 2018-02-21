@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;   
+use Auth;
 
-class User
+class SuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,13 +15,12 @@ class User
      * @return mixed
      */
     public function handle($request, Closure $next)
-
     //1=Kasubag, 2=ADMIN, 3=Kadiv 
     {
-        if (Auth::user() &&  Auth::user()->roleid == 1) {
+        if (Auth::user() &&  Auth::user()->roleid == 3) {
             return $next($request);
-     }
+        }
 
-    return redirect('/admin');
+        return redirect('/');
     }
 }

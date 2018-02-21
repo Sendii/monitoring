@@ -28,6 +28,10 @@ class HomeController extends Controller
 
     public function contactme(Request $r)
     {
+        $this->validate($r, [
+            'g-recaptcha-response' => 'required|captcha'
+            ]);
+        
         $data['contact'] = \App\contact::where('id_contact');
 
 

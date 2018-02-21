@@ -12,23 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 Route::get('admin', ['middleware' => 'admin', function() {
 	return view('home');
 }]);
 
 Route::middleware(['admin'])->group(function () {
-    Route::get('/inputPpbj', 'BppjController@addPpbj')->name('addPpbj');
+	Route::get('/inputPpbj', 'BppjController@addPpbj')->name('addPpbj');
 });
-
+Route::middleware(['kasubag'])->group(function () {
+	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
+	Route::get('/assignmentPpbj/{id}', 'PenugasanController@editassignmentPpbj')->name('editassignmentPpbj');
+	Route::post('/assignmentPpbj/', 'PenugasanController@updateassignmentPpbj')->name('updateassignmentPpbj');
+});
+Route::middleware(['kadiv'])->group(function () {
+	Route::get('/monitoring', 'MonitoringController@allMonitoring')->name('allMonitoring');
+});
 Route::get('/calc', function() {
 	return view('ppbj.calc');
 });
 
 Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
-// Route::get('admin_area', ['middleware' => 'admin', function () {
-// }]);
 Route::post('/', 'HomeController@contactme')->name('contactme');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -52,9 +57,3 @@ Route::post('/saveUnit/', 'UnitKerjaController@saveUnit')->name('saveUnit');
 Route::get('/inputPegawai', 'PegawaiController@addPegawai')->name('addPegawai');
 Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
 Route::post('/savePegawai/', 'PegawaiController@savePegawai')->name('savePegawai');
-
-Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
-Route::get('/assignmentPpbj/{id}', 'PenugasanController@editassignmentPpbj')->name('editassignmentPpbj');
-Route::post('/assignmentPpbj/', 'PenugasanController@updateassignmentPpbj')->name('updateassignmentPpbj');
-
-Route::get('/monitoring', 'MonitoringController@allMonitoring')->name('allMonitoring');

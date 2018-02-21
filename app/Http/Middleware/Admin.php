@@ -34,8 +34,9 @@ class Admin
      */
     public function handle($request, Closure $next, ...$guards)
     {
+        //1=Kasubag, 2=ADMIN, 3=Kadiv 
         $this->authenticate($guards);
-        if (Auth::user() &&  Auth::user()->roleid == 2 || 3) {
+        if (Auth::user() &&  Auth::user()->roleid == 2) {
             return $next($request);
         }
         return redirect('/');
