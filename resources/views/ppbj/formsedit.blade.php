@@ -54,7 +54,7 @@
                     <div class="col-sm-3">
                       <select name="jenispengadaan" class="form-control select2 select2-hidden-accessibles" style="width:100%;" tabindex="-1" aria-hidden="true">
                         @foreach($pengadaan as $key)
-                        <option selected value="{{$key->id_pengadaan}}">
+                        <option {{ $ppbjedit->id_pengadaan == $key->id_pengadaan ? 'selected' : '' }} value="{{$key->id_pengadaan}}">
                           {{$key->namapengadaan}}
                         </option>
                         @endforeach
@@ -64,45 +64,79 @@
                     <div class="col-sm-3">
                      <select name="id_unit" class="form-control select2 select2-hidden-accessibles" style="width:100%;" tabindex="-1" aria-hidden="true">
                       @foreach($unitkerja as $key)                      
-                        <option {{ $ppbjedit->id_unit == $key->id_unit ? 'selected' : '' }} value="{{$key->id_unit}}">
-                          {{$key->aa}}
-                        </option>
+                      <option {{ $ppbjedit->id_unit == $key->id_unit ? 'selected' : '' }} value="{{$key->id_unit}}">
+                        {{$key->aa}}
+                      </option>
                       @endforeach
                     </select>
                   </div>
-                  </div>
-<div class="form-group">
-                    <label class="col-sm-2 control-label">Banyak Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="banyakbarang" value=" {{$ppbjedit->banyak_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Banyak Barang">
-                    </div>
-                    <label class="col-sm-2 control-label">Nama Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="namabarang" value=" {{$ppbjedit->nama_barang or ''}} " class="form-control" id="inputPassword3" placeholder="Nama Barang">
-                    </div>
-                    <div class="form-group">
-
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Jumlah Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="jumlahbarang" value=" {{$ppbjedit->jumlah_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Jumlah Barang">
-                    </div>
-                    <label class="col-sm-2 control-label">Harga Barang</label>
-                    <div class="col-sm-3">
-                      <input type="text" name="hargabarang" value=" {{$ppbjedit->harga_brg or ''}} " class="form-control" id="inputPassword3" placeholder="Harga Barang">
-                    </div>
-                  </div>                    
                 </div>
-                <div class="box-footer">
-                  <button type="submit" name="simpan" class="btn btn-primary pull-right">>&nbsp;Tambahkan</button>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
+                  <div class="col-sm-3">
+                    <input type="text" name="row" value="{{$editbarang->banyak_brg or '' }}" class="form-control" placeholder="Masukan angka...">
+                  </div>
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Nama Barang/Jasa</th>
+                        <th>Jumlah Barang/Jasa</th>
+                        <th>Harga Satuan</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                       <td colspan="3"></td>
+                       <td>
+                        <input type="text" name="subtotal" class="form-control subtotal" placeholder="Total Semua" readonly>
+                      </td>                        </tfoot>
+                    </table>
+                    <script>
+                      $(document).ready(function(){
+                        $('input[name="row"]').on('input',function(){
+                          var row = $('input[name="row"]').val();
+                          var tag = '';
+                          for(i=1;i<=row;i++){
+                            tag += '<tr><td><input type="text" name="nama[]" class="form-control" placeholder="Nama Barang/Jasa"></td><td><input type="text" name="qty[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'"></td><td><input type="text" name="harga[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga'+i+'"></td><td><input type="text" name="total[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total'+i+'" readonly></td></tr>'; 
+                          }
+                          $('tbody').html( tag );
+                          subtotal();
+                        });
+                        function subtotal(){
+                          $('.qty, .harga').on('input',function(){
+                            var row = $('tbody tr').length,
+                            qty = '',
+                            harga = '',
+                            total = '',
+                            jumlah = '',
+                            subtotal = '';
+                            for(i=1;i<=row;i++){
+                              var qty = $('.qty'+i).val(),
+                              harga = $('.harga'+i).val(),
+                              total = qty * harga;
+                              $( '.total'+i ).val( total );
+                              var jumlah = $( '.total'+i ).val();
+                              subtotal = +subtotal + +jumlah;
+                            }
+                            $('.subtotal').val( subtotal );
+                          });
+                        }
+                      });
+
+                      $('#amount').mask('#,###.##',{reverse : true});
+                    </script>
+                  </div> 
+                  <div class="box-footer">
+                    <button type="submit" name="simpan" class="btn btn-primary pull-right">>&nbsp;Tambahkan</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </body>
-  </html>
+      </section>
+    </body>
+    </html>

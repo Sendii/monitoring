@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class PenugasanController extends Controller
 {
+    public function receivePpbj() {
+    $data['receiveallPpbj'] = pbbj::paginate(3);
+    $data['unitkerja'] = unitkerja::get();
+    return view('kasubag.all')->with($data);
+    }
+
      public function editassignmentPpbj($id) 
     {
     	$data['ppbjassignmentEdit'] = pbbj::find($id);
@@ -24,26 +30,6 @@ class PenugasanController extends Controller
 
     public function updateassignmentPpbj(Request $r)
     {
-        $edit = prosespengadaan::find($r->input('id'));
-        // $edit3 = $edit1==$edit2;
-
-
-        //EDIT PPBJ
-        // $edit->kodePj = $r->input('kodePj');
-        // $edit->no_regis_umum = $r->input('noregisumum');
-        // $edit->id_unit = $r->input('id_unit');
-        // $edit->id_pegawai = $r->input('id_pegawai');
-        // $edit->tgl_regis_umum = $r->input('tglregisumum');
-        // $edit->no_ppbj = $r->input('noppbj');
-        // $edit->tgl_permintaan_ppbj = $r->input('tglpermintaanppbj');
-        // $edit->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanppbj');
-        // $edit->jenis_pengadaan = $r->input('jenispengadaan');
-        // $edit->banyak_brg = $r->input('banyakbarang');
-        // $edit->nama_barang = $r->input('namabarang');
-        // $edit->harga_brg = $r->input('hargabarang');
-        // $edit->jumlah_brg = $r->input('jumlahbarang');
-        // $edit->hargatotal_brg = $r->input('hargabarang') * $r->input('jumlahbarang');
-
         //Penugasan
         $data['prosespengadaan'] = prosespengadaan::where('id');
 
@@ -58,6 +44,11 @@ class PenugasanController extends Controller
         $new->no_kon = $r->input('p_nokon');
 
         $new->save();
+
+        $edit = pbbj::find($r->input('id'));
+        $edit->id_pegawai = $r->input('id_pegawai');
+        $edit->save();
+
         return redirect()->route('receivePpbj');
     }
 }

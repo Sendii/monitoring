@@ -5,6 +5,7 @@ use \App\pbbj;
 use \App\unitkerja;
 use \App\pengadaan;
 use \App\barang;
+use Session;
 
 use Illuminate\Http\Request;
 
@@ -19,8 +20,13 @@ class BppjController extends Controller
     }
     
     public function allPpbj() {
-    	$data['ppbjall'] = pbbj::orderBy('id', 'desc')->paginate(3);
-    	return view('ppbj.all')->with($data);
+    	$data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(3);
+        $data['barangall'] = barang::get();
+
+        // return $data;
+
+
+        return view('ppbj.all')->with($data);
     }
 
     public function savePpbj(Request $r) 
@@ -43,37 +49,30 @@ class BppjController extends Controller
         $new->no_ppbj = $r->input('noppbj');
         $new->tgl_permintaan_ppbj = $r->input('tglpermintaanPpbj');
         $new->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanPpbj');
-        $new->id_pengadaan = $r->input('jenispengadaan');
+        $new->id_pengadaan = $r->input('jenispengadaan'); 
 
-        
+        $new->save();
 
-     //     $new2->banyak_brg = $r->input('row');
-     //    $new2->nama_barang = $r->get('nama');
-    	// $new2->jumlah_brg = $r->get('qty');
-     //    $new2->harga_brg = $r->get('harga');
-     //    $new2->total_brg = $r->input('total');
-    	// $new2->hargatotal_brg = $r->input('subtotal');
+        for ($i=0; $i < $r['row']; $i++)
+        {
+           $new2 = new barang;
+           $new2->id = $new->id;
+           $new2->banyak_brg = $r->input('row');
+           $new2->nama_barang= $r['nama'][$i];
+           $new2->jumlah_brg= $r['qty'][$i]; 
+           $new2->harga_brg= $r['harga'][$i]; 
+           $new2->total_brg= $r['total'][$i];  
+           $new2->hargatotal_brg= $r->input('subtotal'); 
+           $new2->save();
+       }  
 
-        for ($i=0; $i < count($r['row']); ++$i) {
-         $new2 = new barang;
-         $new2->banyak_brg = $r['row'][$i];
-         $new2->nama_barang= $r['nama'][$i];
-         $new2->jumlah_brg= $r['qty'][$i]; 
-         $new2->harga_brg= $r['harga'][$i]; 
-         $new2->total_brg= $r['total'][$i];  
-         $new2->hargatotal_brg= $r['subtotal'][$i]; 
+       Session::flash('successaddPpbj', 'Anda telah berhasil menambahkan Data.');
+       return redirect()->route('allPpbj');
+   }
 
-         print_r($_POST);
-         $new2->save();
-     }
-
-     $new->save();
-
-     return redirect()->route('allPpbj');
- }
-
- public function editPpbj($id) {
+   public function editPpbj($id) {
     $data['ppbjedit'] = pbbj::find($id);
+    $data['editbarang'] = barang::find($id);
     $data['unitkerja'] = unitkerja::get();
     $data['pengadaan'] = pengadaan::get();
         // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
@@ -90,13 +89,10 @@ public function updatePpbj(Request $r) {
     $edit->no_ppbj = $r->input('noppbj');
     $edit->tgl_permintaan_ppbj = $r->input('tglpermintaanppbj');
     $edit->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanppbj');
-    $edit->jenis_pengadaan = $r->input('jenispengadaan');
-    $edit->banyak_brg = $r->input('banyakbarang');
-    $edit->nama_barang = $r->input('namabarang');
-    $edit->harga_brg = $r->input('hargabarang');
-    $edit->jumlah_brg = $r->input('jumlahbarang');
-    $edit->hargatotal_brg = $r->input('hargabarang') * $r->input('jumlahbarang');
+
     $edit->save();
+
+    $edit2 = barang::find($r->input('id_barang'));
 
         // $bppj = \App\pbbj::find($r->input('id'));
         // $total = $r->input('hargabarang') + $r->input('jumlahbarang');
@@ -104,11 +100,5 @@ public function updatePpbj(Request $r) {
         // $bppj->save();
 
     return redirect()->route('allPpbj');
-}
-
-public function receivePpbj() {
-    $data['receiveallPpbj'] = pbbj::paginate(3);
-    $data['unitkerja'] = unitkerja::get();
-    return view('kasubag.all')->with($data);
-}
+    }
 }

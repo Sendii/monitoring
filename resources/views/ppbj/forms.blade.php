@@ -91,11 +91,10 @@
                       </tbody>
                       <tfoot>
                         <tr>
-                          <td colspan="3"></td>
-                          <td>
-                            <input type="text" name="subtotal" class="form-control subtotal" placeholder="Total Semua" readonly>
-                          </td>
-                        </tfoot>
+                         <td colspan="3"></td>
+                         <td>
+                          <input type="text" name="subtotal" class="form-control subtotal" placeholder="Total Semua" readonly>
+                        </td>                        </tfoot>
                       </table>
                       <script>
                         $(document).ready(function(){
@@ -103,7 +102,7 @@
                             var row = $('input[name="row"]').val();
                             var tag = '';
                             for(i=1;i<=row;i++){
-                              tag += '<tr><td><input type="text" name="nama" class="form-control" placeholder="Nama Barang/Jasa"></td><td><input type="text" name="qty" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'"></td><td><input type="text" name="harga" placeholder="Harga Satuan"  class="form-control harga harga'+i+'"></td><td><input type="text" name="total" placeholder="Total Harga"  class="form-control total total'+i+'" readonly></td></tr>'; 
+                              tag += '<tr><td><input type="text" name="nama[]" class="form-control" placeholder="Nama Barang/Jasa"></td><td><input type="text" name="qty[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'"></td><td><input type="text" name="harga[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga'+i+'"></td><td><input type="text" name="total[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total'+i+'" readonly></td></tr>'; 
                             }
                             $('tbody').html( tag );
                             subtotal();
@@ -128,6 +127,8 @@
                             });
                           }
                         });
+
+                        $('#amount').mask('#,###.##',{reverse : true});
                       </script>
                     </div> 
                 <!--  <div class="form-group">

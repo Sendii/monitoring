@@ -22,6 +22,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Kode PJ</label>
                     <div class="col-sm-2">
                       <input type="text" name="kodePj" value=" {{$ppbjassignmentEdit->kodePj or ''}} " class="form-control" placeholder="Kode PJ" readonly>
+                      <input type="hidden" name="id">
                     </div>
                     <label class="col-sm-2 control-label">No. Registrasi Umum</label>
                     <div class="col-sm-2">
@@ -95,7 +96,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Pemekerja</label>
                   <div class="col-sm-3">
-                   <select name="id_pegawai" class="form-control select2 select2-hidden-accessibles" style="width:100%;" tabindex="-1" aria-hidden="true">
+                   <select name="id_pegawai" class="form-control select2 select2-hidden-accessibles" style="width:100%;" tabindex="-1" aria-hidden="true" value="{{$ppbjassignmentEdit->id_pegawai}}" >
                     @foreach($pegawai as $key)                      
                     <option {{ $ppbjassignmentEdit->id_pegawai == $key->id_pegawai ? 'selected' : '' }} value="{{$key->id_pegawai}}">
                       {{$key->namapegawai}}
