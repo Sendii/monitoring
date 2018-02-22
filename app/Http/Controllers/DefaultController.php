@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class DefaultController extends Controller
 {
 	public function test() {
-		return view('monitoring');
+		return view('welcomee');
 	}
 }

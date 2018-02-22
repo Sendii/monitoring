@@ -23,11 +23,15 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
-        if ( Auth::user()->roleid==2 ) {// do your margic here
+        if ( Auth::user()->roleid==1 ) {// do your margic here
+            return redirect('receivePpbj');
+        }elseif (Auth::user()->roleid==2) {
             return redirect('admin');
+        }elseif (Auth::user()->roleid==3) {
+            return redirect('monitoring');
+        }else {
+            return redirect('/userpeople');            
         }
-
-        return redirect('/receivePpbj');
     }
 
     /**
@@ -35,7 +39,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = '/admin';
+    // protected $redirectTo = '/admin'
 
     /**
      * Create a new controller instance.

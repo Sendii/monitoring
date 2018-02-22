@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use \App\User;
 
 use Illuminate\Http\Request;
 
@@ -21,6 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function user()
+    {
+        return view('user.index');
+    }
+
     public function index()
     {
         return view('home');
@@ -47,8 +53,20 @@ class HomeController extends Controller
     }
 
     // ----------------URL REDIRECT TO ERROR404------------
-     public function pagenotfound()
-     {
-         return view('503');
+    //  public function pagenotfound()
+    //  {
+    //      return view('503');
+    // }
+
+    public function alluser(){
+        $data['user'] = User::paginate('4');
+
+        return view('user.all')->with($data);
+    }
+
+    public function edituser($id) {
+        $data['edituser'] = user::find($id);
+
+        return view('user.edit')->with($data);
     }
 }

@@ -32,12 +32,12 @@
                      </div>
                      <div class="row">
                         <div class="col-sm-12">
-                           <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                           <table class="table table-bordered table-responsive">
                               <thead>
                                  <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 2px;">No. </th>
+                                    <th class="center" style="width: 2px;">No. </th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 2px;">Kode PJ</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 2px;">No. RegisUmum</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 1px;">No. RegisUmum</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 5px;">Tgl. RegisUmum</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">No. Bppj</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Tgl Permintaan</th>
@@ -114,8 +114,8 @@
                                              <?php $total += $value->total_brg ?>
                                           </li>
                                           @endforeach
-                                          Total = <i>{{ $total }}</i>
-                                       </ul>
+                                       </ul><br>
+                                          Total: <i>{{ $total }}</i>
                                     </td>
                                     <td><a href="{{route('editPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah</a></td>
                                  </tr>

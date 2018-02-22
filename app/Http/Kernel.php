@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'kasubag' => \App\Http\Middleware\User::class,
         'kadiv' => \App\Http\Middleware\SuperAdmin::class,
-
+        'publicpeople' => \App\Http\Middleware\publicPeople::class,
+        'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
     ];
 }
