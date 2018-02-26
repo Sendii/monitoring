@@ -22,9 +22,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function user()
+    public function userpeople()
     {
-        return view('user.index');
+        return view('user.userpeople');
     }
 
     public function index()
@@ -68,5 +68,17 @@ class HomeController extends Controller
         $data['edituser'] = user::find($id);
 
         return view('user.edit')->with($data);
+    }
+
+    public function updateuser(Request $r) {
+        $edit = user::find($r->input('id'));
+
+        $edit->name = $r->input('nama');
+        $edit->email = $r->input('email');
+        $edit->password = $r->input('password');
+        $edit->akses = $r->input('hakakses');
+
+        $edit->save();
+        return redirect()->route('alluser');
     }
 }

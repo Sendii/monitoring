@@ -3,11 +3,8 @@
 <head>
 </head>
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
-  <section class="content" style="background-color: #ecf0f5;">
-    <div class="row">
       <div class="content-wrapper">
-        <div class="container-fluid spark-screen">
-          <div class="row"><br>
+        <div class="container-fluid spark-screen"><br>
             <div class="col-md-10">
               <!-- Horizontal Form -->
               <div class="box box-info">
@@ -94,6 +91,7 @@
                         <input type="text" name="subtotal" class="form-control subtotal" placeholder="Total Semua" readonly>
                       </td>                        </tfoot>
                     </table>
+                    @foreach($editbarang as $key)
                     <script>
                       $(document).ready(function(){
                         $('input[name="row"]').on('input',function(){
@@ -122,21 +120,18 @@
                               subtotal = +subtotal + +jumlah;
                             }
                             $('.subtotal').val( subtotal );
-                          });
+                            });
                         }
                       });
 
-                      $('#amount').mask('#,###.##',{reverse : true});
                     </script>
+                    @endforeach
                   </div> 
                   <div class="box-footer">
                     <button type="submit" name="simpan" class="btn btn-primary pull-right">>&nbsp;Tambahkan</button>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
-        </div>
-      </section>
     </body>
     </html>

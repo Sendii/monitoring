@@ -17,7 +17,7 @@ class SuperAdmin
     public function handle($request, Closure $next)
     //1=Kasubag, 2=ADMIN, 3=Kadiv 
     {
-        if (Auth::user() &&  Auth::user()->roleid == 3) {
+        if (Auth::user() &&  Auth::user()->akses == 'Kadiv') {
             return $next($request);
         }
 

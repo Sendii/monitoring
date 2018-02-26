@@ -72,10 +72,12 @@ class BppjController extends Controller
 
    public function editPpbj($id) {
     $data['ppbjedit'] = pbbj::find($id);
-    $data['editbarang'] = barang::find($id);
+    $data['editbarang'] = pbbj::with('Barang')->orderBy('id', 'desc')->find($id);
     $data['unitkerja'] = unitkerja::get();
     $data['pengadaan'] = pengadaan::get();
-        // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
+
+
+    // return $data['editbarang'];    
     return view('ppbj.edit')->with($data);
 }
 
@@ -94,10 +96,7 @@ public function updatePpbj(Request $r) {
 
     $edit2 = barang::find($r->input('id_barang'));
 
-        // $bppj = \App\pbbj::find($r->input('id'));
-        // $total = $r->input('hargabarang') + $r->input('jumlahbarang');
-        // $bppj->hargatotal_brg = $total;
-        // $bppj->save();
+      //Ini gimana? :v
 
     return redirect()->route('allPpbj');
     }

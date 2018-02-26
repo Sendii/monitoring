@@ -17,20 +17,22 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+*/
 
     use AuthenticatesUsers;
 
     protected function authenticated()
     {
-        if ( Auth::user()->roleid==1 ) {// do your margic here
+        if ( Auth::user()->akses=='Kasubag' ) {// do your margic here
             return redirect('receivePpbj');
-        }elseif (Auth::user()->roleid==2) {
-            return redirect('admin');
-        }elseif (Auth::user()->roleid==3) {
+        }elseif (Auth::user()->akses=='Kadiv') {
             return redirect('monitoring');
-        }else {
+        }elseif (Auth::user()->akses=='Admin') {
+            return redirect('admin');
+        }elseif (Auth::user()->akses=='User') {
             return redirect('/userpeople');            
+        }else {
+            return redirect('pagenotfound');
         }
     }
 

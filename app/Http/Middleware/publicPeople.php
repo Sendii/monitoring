@@ -16,9 +16,9 @@ class publicPeople
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->roleid == 4) {
+        if (Auth::user() &&  Auth::user()->akses == 'User') {
             return $next($request);
         }
-        return redirect('/hayy');
+        return redirect('/people');
     }
 }

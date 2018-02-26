@@ -19,7 +19,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <meta property="og:sitename" content="demo.adminlte.acacha.org" />
     <meta property="og:url" content="http://demo.adminlte.acacha.org" />
 
-    <title>Inventory SMKN 10 Jakarta</title>
+    <title>Monitoring Divisi Umum</title>
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('/css/all-landing.css') }}" rel="stylesheet">

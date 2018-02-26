@@ -255,10 +255,10 @@
         <!-- Menu Footer-->
         <li class="user-footer">
           <div class="pull-left">
-            <a href="#" class="btn btn-default btn-flat">Profil</a>
+            <a href="#" class="btn btn-primary btn-flat" style="border-radius: 3px">Profil</a>
           </div>
           <div class="pull-right">
-            <a href=" {{route('logout')}} " class="btn btn-default btn-flat">Keluar</a>
+            <a href=" {{route('logout')}} " class="btn btn-primary btn-flat" style="border-radius: 3px">Keluar</a>
           </div>
         </li>
       </ul>

@@ -18,10 +18,10 @@ class User
 
     //1=Kasubag, 2=ADMIN, 3=Kadiv 
     {
-        if (Auth::user() &&  Auth::user()->roleid == 1) {
+        if (Auth::user() &&  Auth::user()->akses == 'Kasubag') {
             return $next($request);
      }
 
-    return redirect('/admin');
+    return redirect('/');
     }
 }

@@ -23,28 +23,29 @@
 									<td>{{$key->name}}</td>
 									<td>{{$key->email}}</td>
 									<td class="center">
-										@if($key->roleid == "1")
+										@if($key->akses == "Kasubag")
 										<i>Kasubag</i>
-										@elseif($key->roleid == "2")
+										@elseif($key->akses == "Admin")
 										<i>Admin</i>
-										@elseif($key->roleid=="3")
+										@elseif($key->akses=="Kadiv")
 										<i>Kepala Divisi</i>
 										@else
 										<div class="row">
 											<div class="center">
-												&nbsp; &nbsp; User Biasa
+												<i>&nbsp; &nbsp; User Biasa</i>
 											</div>
 										</div>
 										@endif
 									</td>
 									<td>
-										<a href="{{route('edituser', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Aksess</a>
+										<a href="{{url('edituser', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Aksess</a>
 									</td>
 								</tr>
 							</tbody>
 							@endforeach
 						</table>
 					</div>
+		{!!$user->render()!!}
 				</div>
 			</div>
 		</div>	

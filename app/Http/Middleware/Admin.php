@@ -36,7 +36,7 @@ class Admin
     {
         //1=Kasubag, 2=ADMIN, 3=Kadiv 
         $this->authenticate($guards);
-        if (Auth::user() &&  Auth::user()->roleid == 2) {
+        if (Auth::user() &&  Auth::user()->akses == 'Admin') {
             return $next($request);
         }
         return redirect('/');

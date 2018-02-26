@@ -2,10 +2,8 @@
 <html>
 <head>
 </head>
-<body style="margin: 0 auto;" class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini" background="github.png">
   <!-- Content Wrapper. Contains page content -->
-  <section class="content" style="background-color: #ecf0f5;">
-    <div class="row">
       <div class="content-wrapper">
         <div class="container-fluid spark-screen">
           <div class="row"><br>
@@ -22,11 +20,11 @@
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Kode PJ</label>
                     <div class="col-sm-3">
-                      <input type="text" name="kodePj" value=" {{$ppbjadd->kodePj or ''}} " class="form-control" placeholder="Kode PJ">
+                      <input type="text" name="kodePj" value=" {{$ppbjadd->kodePj or ''}} " class="form-control" placeholder="Kode PJ" required>
                     </div>
                     <label class="col-sm-2 control-label">No. Registrasi Umum</label>
                     <div class="col-sm-3">
-                      <input type="text" name="noregisumum" value=" {{$ppbjadd->no_regis_umum or ''}} " class="form-control" id="inputPassword3" placeholder="No. Regis Umum">
+                      <input type="text" name="noregisumum" value=" {{$ppbjadd->no_regis_umum or ''}} " class="form-control" id="inputPassword3" placeholder="No. Regis Umum" required>
                     </div>
                   </div>
                   
@@ -37,7 +35,7 @@
                     </div>
                     <label class="col-sm-2 control-label">No. Ppbj</label>
                     <div class="col-sm-3">
-                      <input type="text" name="noppbj" value=" {{$ppbjadd->no_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="No. Ppbj">
+                      <input type="text" name="noppbj" value=" {{$ppbjadd->no_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="No. Ppbj" required>
                     </div>
                   </div>
                   <div class="form-group">
@@ -76,7 +74,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
                     <div class="col-sm-3">
-                      <input type="text" name="row" class="form-control" placeholder="Masukan angka...">
+                      <input type="text" name="row" class="form-control" placeholder="Masukan angka..." required>
                     </div>
                     <table class="table table-bordered table-striped">
                       <thead>
@@ -159,10 +157,6 @@
           </div>
           <!-- Control Sidebar -->
         </div>
-      </div>
-    </section>
     <script type="text/javascript" src="{{asset('js/forms.min.js')}}"></script>
   </body>
   </html>
-
-
