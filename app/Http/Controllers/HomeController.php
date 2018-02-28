@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use \App\User;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -27,6 +28,32 @@ class HomeController extends Controller
         return view('user.userpeople');
     }
 
+    // public function search(Request $request)
+    // {
+    //     if($request->ajax())
+    //     {
+    //         $output = "";
+    //         $ppbjs = DB::table('pbbjs')->where('kodePj', 'LIKE', '%'.$request->search.'%')
+    //         ->orWhere('no_regis_umum', 'LIKE', '%'.$request->search.'%')->get();
+    //         if($ppbjs)
+    //         {
+    //             foreach ($ppbjs as $key => $ppbj) {
+    //                 $output.='<tr>'.
+    //                 '<td>'.$ppbj->kodePj.'</td>'.
+    //                 '<td>'.$ppbj->no_regis_umum.'</td>'.
+    //                 '<td>'.$ppbj->tgl_regis_umum.'</td>'.
+    //                 '<td>'.$ppbj->no_ppbj.'</td>'.
+    //                 '<td>'.$ppbj->tgl_permintaan_ppbj.'</td>'.
+    //                 '<td>'.$ppbj->tgl_dibutuhkan_ppbj.'</td>'.
+    //                 '<td>'.$ppbj->id_pengadaan.'</td>'.
+    //                 '<td>'.$ppbj->id_unit.'</td>'.
+    //                 '</tr>';
+    //             }
+    //             return Response($output);
+    //         }
+    //     }
+    // }
+
     public function index()
     {
         return view('home');
@@ -36,7 +63,7 @@ class HomeController extends Controller
     {
         $this->validate($r, [
             'g-recaptcha-response' => 'required|captcha'
-            ]);
+        ]);
         
         $data['contact'] = \App\contact::where('id_contact');
 
@@ -66,6 +93,7 @@ class HomeController extends Controller
 
     public function edituser($id) {
         $data['edituser'] = user::find($id);
+        $data['user'] = user::get();
 
         return view('user.edit')->with($data);
     }
@@ -75,7 +103,6 @@ class HomeController extends Controller
 
         $edit->name = $r->input('nama');
         $edit->email = $r->input('email');
-        $edit->password = $r->input('password');
         $edit->akses = $r->input('hakakses');
 
         $edit->save();

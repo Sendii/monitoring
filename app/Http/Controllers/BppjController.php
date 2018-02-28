@@ -73,6 +73,7 @@ class BppjController extends Controller
    public function editPpbj($id) {
     $data['ppbjedit'] = pbbj::find($id);
     $data['editbarang'] = pbbj::with('Barang')->orderBy('id', 'desc')->find($id);
+    $data['barang'] = barang::get();
     $data['unitkerja'] = unitkerja::get();
     $data['pengadaan'] = pengadaan::get();
 
@@ -87,6 +88,7 @@ public function updatePpbj(Request $r) {
     $edit->kodePj = $r->input('kodePj');
     $edit->no_regis_umum = $r->input('noregisumum');
     $edit->id_unit = $r->input('id_unit');
+    $edit->id_pengadaan = $r->input('jenispengadaan');  
     $edit->tgl_regis_umum = $r->input('tglregisumum');
     $edit->no_ppbj = $r->input('noppbj');
     $edit->tgl_permintaan_ppbj = $r->input('tglpermintaanppbj');

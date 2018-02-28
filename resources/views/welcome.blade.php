@@ -83,13 +83,13 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
                         </div>
                         <div class="col-lg-8">
-                            <center><img style="width: 330px; border-radius: 10px; height: 330px; " class="img-responsive" src="{{ asset('/img/sucofindo.jpg') }}" alt=""></center>
+                            <center><img style="width: 330px; border-radius: 10px; height: 300px; " class="img-responsive" src="{{ asset('/img/sucofindo.jpg') }}" alt=""></center>
                         </div>
                         <div class="col-lg-2">
-                            <br>
+                            
                         </div>
-                    </div><br>
-                    <center><a href="http://sucofindo.co.id">Sucofindo</a></center><br>
+                    </div>
+                    <center><h2><a href="http://sucofindo.co.id">Sucofindo-</a></h2></center><br>
                 </div> <!--/ .container -->
             </div><!--/ #headerwrap -->
         </section>

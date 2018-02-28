@@ -15,6 +15,8 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
+Route::get('/search', 'HomeController@search');
+
 Route::middleware(['admin'])->group(function () {
 	Route::get('/inputPpbj', 'BppjController@addPpbj')->name('addPpbj');
 	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');

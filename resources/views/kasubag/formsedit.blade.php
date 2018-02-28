@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 </head>
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">

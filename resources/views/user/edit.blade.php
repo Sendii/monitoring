@@ -24,7 +24,12 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Hak Akses</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="hakakses" value="{{$edituser->akses}}" placeholder="Hak Akses">
+									<select class="form-control" name="hakakses">
+										@foreach($user as $users)
+										<option value="{{$users->akses}}">{{$users->akses}}</option>
+										@endforeach
+									</select>
+									<!-- <input type="text" class="form-control" name="hakakses" value="{{$edituser->akses}}" placeholder="Hak Akses"> -->
 								</div>
 							</div><br>
 							<div>

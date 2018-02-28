@@ -3,10 +3,12 @@
 <head>
    @include('layouts.adminlte')
 </head>
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
    @include('sidebar')
    <!-- Content Wrapper. Contains page content -->
    <div class="content-wrapper">
+
       <div class="container-fluid spark-screen">
          <div class="row"><br>
            <div class="col-xs-12">
@@ -18,7 +20,7 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                 <table id="example1" class="table table-bordered table-striped">
+                 <table id="example1" class="table table-bordered table-hover">
                    <thead>
                       <tr>
                        <th style="width: 2px;">No. </th>
@@ -128,20 +130,22 @@
 <!-- /.content-wrapper -->
 <!-- Control Sidebar -->
 </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
 <script>
-  $(function () {
-   $('#example1').DataTable()
-   $('#example2').DataTable({
-    'paging'      : true,
-    'lengthChange': false,
-    'searching'   : true,
-    'ordering'    : true,
-    'info'        : true,
-    'autoWidth'   : false
- })
-})
+    $(function () {
+      $('#example1').DataTable()
+      $('#example2').DataTable({
+        'paging'      : true,
+        'lengthChange': false,
+        'searching'   : false,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+      })
+    })
+  </script>
 </script>
 </body>
 </html>
