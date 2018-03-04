@@ -36,7 +36,7 @@ class BppjController extends Controller
         //     'kodePj' => 'min:3|max:4',
         //     'no_regis_umum' => 'numeric|min:9|max:10',
         //     'no_ppbj' => 'numeric|min:4|max4'
-        //     ]);
+        //     ]);//
 
 
         $data['ppbjadd'] = pbbj::where('id');
@@ -46,10 +46,10 @@ class BppjController extends Controller
         $new->kodePj = $r->input('kodePj');
         $new->no_regis_umum = $r->input('noregisumum');
         $new->id_unit = $r->input('id_unit');
-        $new->tgl_regis_umum = $r->input('tglregisumum');
+        $new->tgl_regis_umum = date($r->input('tglregisumum'));
         $new->no_ppbj = $r->input('noppbj');
-        $new->tgl_permintaan_ppbj = $r->input('tglpermintaanPpbj');
-        $new->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanPpbj');
+        $new->tgl_permintaan_ppbj = date($r->input('tglpermintaanPpbj'));
+        $new->tgl_dibutuhkan_ppbj = date($r->input('tgldibutuhkanPpbj'));
         $new->id_pengadaan = $r->input('jenispengadaan'); 
 
         $new->save();
