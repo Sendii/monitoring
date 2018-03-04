@@ -42,7 +42,10 @@ class Admin
         elseif(Auth::user() &&  Auth::user()->akses == 'Kasubag') {
             return redirect('receivePpbj');
         }
-        return redirect('/');
+        elseif(Auth::user() &&  Auth::user()->akses == 'Kadiv') {
+            return redirect('monitoring');
+        } 
+        return redirect('/userspeople');
     }
     /**
      * Determine if the user is logged in to any of the given guards.

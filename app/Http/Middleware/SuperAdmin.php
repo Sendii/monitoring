@@ -19,8 +19,12 @@ class SuperAdmin
     {
         if (Auth::user() &&  Auth::user()->akses == 'Kadiv') {
             return $next($request);
+        }elseif(Auth::user() &&  Auth::user()->akses == 'Admin') {
+            return redirect('admin');
+        }elseif(Auth::user() &&  Auth::user()->akses == 'Kasubag') {
+            return redirect('receivePpbj');
         }
 
-        return redirect('/');
+        return redirect('/userspeople');
     }
 }

@@ -35,7 +35,7 @@ class LoginController extends Controller
             return redirect('admin');
         }elseif (Auth::user()->akses=='User') {
             Alert::success('Silakan tunggu konfirmasi dari Admin setelah pendaftaran anda.', 'Login Success!')->autoclose(1300);
-            return redirect('/userpeople');            
+            return redirect('/userspeople');            
         }else {
             Alert::error('Halaman Salah.', 'Error!')->autoclose(1300);
             return redirect('pagenotfound');

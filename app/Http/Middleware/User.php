@@ -20,8 +20,12 @@ class User
     {
         if (Auth::user() &&  Auth::user()->akses == 'Kasubag') {
             return $next($request);
+     }elseif(Auth::user() &&  Auth::user()->akses == 'Admin') {
+        return redirect('admin');
+     }elseif(Auth::user() &&  Auth::user()->akses == 'Kadiv') {
+        return redirect('monitoring');
      }
 
-    return redirect('/');
+    return redirect('/userspeople');
     }
 }

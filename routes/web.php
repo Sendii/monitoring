@@ -50,7 +50,7 @@ Route::middleware(['kadiv'])->group(function () {
 });
 
 Route::middleware(['publicpeople'])->group(function () {
-	Route::get('userpeople', 'HomeController@userpeople')->name('userpeople');
+	Route::get('userspeople', 'HomeController@userpeople')->name('userpeople');
 });
 // Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
 Route::post('/', 'HomeController@contactme')->name('contactme');
