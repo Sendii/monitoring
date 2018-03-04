@@ -89,16 +89,16 @@
                   @foreach($barangnya as $barang)
                   <tr>
                     <td>
-                      <input type="text" name="nama[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang->nama_barang }}">
+                      <input type="text" name="nama[{{ $barang->id_barang }}]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang->nama_barang }}">
                     </td>
                     <td>
-                      <input type="text" id="qty{{$barang->id_barang}}" name="qty[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" oninput="calculate();" value="{{ $barang->jumlah_brg }}">
+                      <input type="number" min="1" id="qty{{$barang->id_barang}}" name="qty[{{ $barang->id_barang }}]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" oninput="calculate();" value="{{ $barang->jumlah_brg }}">
                     </td>
                     <td>
-                      <input type="text" id="harga{{$barang->id_barang}}" name="harga[]" placeholder="Harga Satuan" id="amount" oninput="calculate();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang->harga_brg }}">
+                      <input type="number" min="1" id="harga{{$barang->id_barang}}" name="harga[{{ $barang->id_barang }}]" placeholder="Harga Satuan" id="amount" oninput="calculate();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang->harga_brg }}">
                     </td>
                     <td>
-                      <input type="text" id="total{{$barang->id_barang}}" name="total[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total'+i+'" value="{{ $barang->total_brg }}" readonly>
+                      <input type="text" id="total{{$barang->id_barang}}" name="total[{{ $barang->id_barang }}]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total'+i+'" value="{{ $barang->total_brg }}" readonly>
                     </td>
                   </tr>
                   @endforeach
@@ -155,7 +155,7 @@
             var sum = 0;
             $(".total").each(function(){
               sum += +$(this).val();
-            });
+            });            
             $(".subtotal").val(sum);        
           }
         </script>

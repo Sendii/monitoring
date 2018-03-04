@@ -3,7 +3,8 @@
 <head>
  @extends('layouts.adminlte')
 </head>
-<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
  @include('sidebar')
@@ -22,7 +23,7 @@
         <!-- /.box-header -->
         <div class="box-body">
           <div class="table-responsive">
-           <table id="example1" class="table table-bordered table-hover">
+           <table id="example" class="table table-condensed table-hover">
              <thead>
               <tr>
                <th style="width: 2px;">No. </th>
@@ -42,12 +43,12 @@
                <th style="width: 2px">Hapus</th>
              </tr>
            </thead>
+           <tbody>
            @foreach($ppbjall as $key)
            <?php
            $unitkerja = \App\unitkerja::where('id_unit', '=', $key->id_unit)->value('aa');
            $Pengadaan = \App\pengadaan::where('id_pengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
            ?>
-           <tbody>
              <tr>
               <td class="sorting_1">{{$key->id}}</td>
               <td class="center">{{$key->kodePj}}</td>
@@ -111,8 +112,8 @@
    <td><a href="{{route('editPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah</a></td>
    <td><button class="btn btn-danger delete-btn" data-noppbj='{{$key->no_ppbj}}'  data-id='{{$key->id}}' href="{{route('delete_ppbj', [$key->id])}}">Delete</td>
    </tr>
- </tbody>
  @endforeach
+</tbody>
 </table>
 </div>
 </div>
@@ -160,6 +161,11 @@ reserved.
 <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 @include('sweet::alert')
 
 </body>

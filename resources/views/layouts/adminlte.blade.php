@@ -34,4 +34,6 @@
   <script type="text/javascript" href=" {{asset('js/jquery-3.2.1.min.js')}} " ></script>
   <script type="text/javascript" href="{{asset('js/jquery.dataTables.min.js')}}" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <!-- <script type="text/javascript" src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script> -->
   @include('sweet::alert')

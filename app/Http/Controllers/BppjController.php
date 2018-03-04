@@ -87,7 +87,7 @@ class BppjController extends Controller
       return view('ppbj.edit')->with($data);
 }
 
-    public function updatePpbj(Request $r) {
+    public function updatePpbj(Request $r) {      
       $edit = pbbj::find($r->input('id'));
 
       $edit->kodePj = $r->input('kodePj');
@@ -101,33 +101,19 @@ class BppjController extends Controller
 
       $edit->save();
 
-      $edit2 = barang::where($r->input('id_barang'));
-      $barangnya = barang::where('id', '=', $r->input('id'))->get();
-      foreach ($barangnya as $barang) {
-           $edit2->id = $edit2->id;
-           $edit2->banyak_brg = $r->input('row');
-           $edit2->nama_barang= $r['nama'][$i];
-           $edit2->jumlah_brg= $r['qty'][$i]; 
-           $edit2->harga_brg= $r['harga'][$i]; 
-           $edit2->total_brg= $r['total'][$i];  
-           $edit2->hargatotal_brg= $r->input('subtotal'); 
-           Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
-           $edit2->save();
-      }
       // for ($i=0; $i < $r['row']; $i++)
-      //   {           
-      //      $edit2->id = $edit2->id;
-      //      $edit2->banyak_brg = $r->input('row');
-      //      $edit2->nama_barang= $r['nama'][$i];
-      //      $edit2->jumlah_brg= $r['qty'][$i]; 
-      //      $edit2->harga_brg= $r['harga'][$i]; 
-      //      $edit2->total_brg= $r['total'][$i];  
-      //      $edit2->hargatotal_brg= $r->input('subtotal'); 
-      //      Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
-      //      $edit2->save();
-      //  }
+      //   {          
+      //      $new2 = barang::find($r['id_barang']);
+      //      $new2->banyak_brg = $r->input('row');
+      //      $new2->nama_barang= $r['nama'][$i];
+      //      $new2->jumlah_brg= $r['qty'][$i]; 
+      //      $new2->harga_brg= $r['harga'][$i]; 
+      //      $new2->total_brg= $r['total'][$i];  
+      //      $new2->hargatotal_brg= $r->input('subtotal');            
+      //      $new2->save();
+      //  }  
 
-      // Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose(1300);
+      Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose(1300);
       return redirect()->route('allPpbj');
       }
 
