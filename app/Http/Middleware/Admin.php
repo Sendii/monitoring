@@ -39,6 +39,9 @@ class Admin
         if (Auth::user() &&  Auth::user()->akses == 'Admin') {
             return $next($request);
         }
+        elseif(Auth::user() &&  Auth::user()->akses == 'Kasubag') {
+            return redirect('receivePpbj');
+        }
         return redirect('/');
     }
     /**

@@ -1,8 +1,7 @@
 @extends('layouts.adminlte')
 @include('sidebar')
 <form class="form-horizontal" method="POST" action=" {{route('updatePpbj')}} " >
-	<input type="hidden" name="id" value="{{$editbarang->id}}">
-	<input type="hidden" name="id_barang" value="{{$editbarang->id}}">
+<input type="hidden" name="id" value="{{$id}}">	
 	@include('ppbj.formsedit')
 </form>
 
