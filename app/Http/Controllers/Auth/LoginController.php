@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Alert;
 
 class LoginController extends Controller
 {
@@ -24,14 +25,19 @@ class LoginController extends Controller
     protected function authenticated()
     {
         if ( Auth::user()->akses=='Kasubag' ) {// do your margic here
+            Alert::success('Selamat Datang Kasubag.', 'Login Success!')->autoclose(1300);
             return redirect('receivePpbj');
         }elseif (Auth::user()->akses=='Kadiv') {
+            Alert::success('Selamat Datang Kadiv.', 'Login Success!')->autoclose(1300);
             return redirect('monitoring');
         }elseif (Auth::user()->akses=='Admin') {
+            Alert::success('Selamat Datang Admin.', 'Login Success!')->autoclose(1300);
             return redirect('admin');
         }elseif (Auth::user()->akses=='User') {
+            Alert::success('Silakan tunggu konfirmasi dari Admin setelah pendaftaran anda.', 'Login Success!')->autoclose(1300);
             return redirect('/userpeople');            
         }else {
+            Alert::error('Halaman Salah.', 'Error!')->autoclose(1300);
             return redirect('pagenotfound');
         }
     }

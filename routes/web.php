@@ -19,6 +19,12 @@ Route::get('/search', 'HomeController@search');
 
 Route::middleware(['admin'])->group(function () {
 	Route::get('/inputPpbj', 'BppjController@addPpbj')->name('addPpbj');
+	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
+	Route::post('/savePpbj/', 'BppjController@savePpbj')->name('savePpbj');
+	Route::get('/editPpbj/{id}','BppjController@editPpbj')->name('editPpbj');
+	Route::post('/editPpbj/', 'BppjController@updatePpbj')->name('updatePpbj');
+	Route::get('/allPpbj/delete/{id}','BppjController@delete_ppbj')->name('delete_ppbj');
+
 	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
 	Route::get('/inputUnit', 'UnitKerjaController@addUnit')->name('addUnit');
 	Route::post('/saveUnit/', 'UnitKerjaController@saveUnit')->name('saveUnit');
@@ -56,8 +62,3 @@ Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
-Route::post('/savePpbj/', 'BppjController@savePpbj')->name('savePpbj');
-Route::get('/editPpbj/{id}','BppjController@editPpbj')->name('editPpbj');
-ROute::post('/editPpbj/', 'BppjController@updatePpbj')->name('updatePpbj');

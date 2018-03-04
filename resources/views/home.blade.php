@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-@include('layouts.adminlte')
+@extends('layouts.adminlte')
 </head>
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
  {!! csrf_field() !!}
@@ -44,13 +44,6 @@
     reserved.
   </footer>  <!-- Control Sidebar -->
 @include('settings')
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-
 </body>
 </html>

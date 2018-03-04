@@ -7,6 +7,7 @@ use \App\unitkerja;
 use \App\jabatan;
 use \App\pengadaan;
 use \App\prosespengadaan;
+use Alert;
 
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class PegawaiController extends Controller
     	$new->notelp = $r->input('nomortelepon');
 
     	$new->save();
-
+        Alert::success('Data Pegawai telah ditambahkan', 'Berhasil!')->autoclose(1300);
     	return redirect()->route('allPegawai');
     }
 }

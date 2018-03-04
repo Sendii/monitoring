@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  @include('layouts.adminlte')
+  @extends('layouts.adminlte')
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

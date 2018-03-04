@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-   @include('layouts.adminlte')
+   @extends('layouts.adminlte')
 </head>
 <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
    @include('sidebar')
    <!-- Content Wrapper. Contains page content -->
@@ -36,7 +37,8 @@
                        <th style="width: 2px;">Harga Barang</th>
                        <th style="width: 2px;">Jumlah Barang</th>
                        <th style="width: 2px;">Harga Total</th>
-                       <th style="width: 2px;">Edit</th>
+                       <th style="width: 2px;">Ubah</th>
+                       <th style="width: 2px">Hapus</th>
                     </tr>
                  </thead>
                  @foreach($ppbjall as $key)
@@ -106,6 +108,7 @@
                            Total: <i>{{ $total }}</i>
                         </td>
                         <td><a href="{{route('editPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah</a></td>
+                        <td><button class="btn btn-danger delete-btn" data-noppbj='{{$key->no_ppbj}}'  data-id='{{$key->id}}' href="{{route('delete_ppbj', [$key->id])}}">Delete</td>
                         </tr>
    </tbody>
    @endforeach
@@ -130,22 +133,32 @@
 <!-- /.content-wrapper -->
 <!-- Control Sidebar -->
 </div>
+<script type="text/javascript">
+  $('.delete-btn').on('click', function(e) {
+    e.preventDefault();
+    var self = $(this);
+    var no = $(this).attr("data-noppbj");
+    var formid = $(this).attr("data-id");
+    swal({
+      title : "Hapus",
+      text : "Hapus data Ppbj dengan no Ppbj "+no+" ?",
+      type : "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#D9534f",
+      confirmButtonText: "Yes, delete!",
+      closeOnConfirm: true
+    },
+    function(){
+      $("#"+formid).submit();
+    });
+  });
+</script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
-<script>
-    $(function () {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
-      })
-    })
-  </script>
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+@include('sweet::alert')
+
 </body>
 </html>

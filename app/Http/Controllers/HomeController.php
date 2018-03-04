@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use \App\User;
 use DB;
+use Alert;
 
 use Illuminate\Http\Request;
 
@@ -88,6 +89,7 @@ class HomeController extends Controller
     public function alluser(){
         $data['user'] = User::paginate('4');
 
+        Alert::success('Data User website baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
         return view('user.all')->with($data);
     }
 
@@ -106,6 +108,7 @@ class HomeController extends Controller
         $edit->akses = $r->input('hakakses');
 
         $edit->save();
+        Alert::success('Data User website telah diEdit', 'Berhasil!')->autoclose(1300);
         return redirect()->route('alluser');
     }
 }

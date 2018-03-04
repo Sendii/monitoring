@@ -22,7 +22,8 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Kode PJ</label>
                     <div class="col-sm-2">
                       <input type="text" name="kodePj" value=" {{$ppbjassignmentEdit->kodePj or ''}} " class="form-control" placeholder="Kode PJ" readonly>
-                      <input type="hidden" name="id">
+                      <input type="hidden" name="id" value="{{$ppbjassignmentEdit->id}}">
+                      
                     </div>
                     <label class="col-sm-2 control-label">No. Registrasi Umum</label>
                     <div class="col-sm-2">

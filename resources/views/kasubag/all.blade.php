@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  @include('layouts.adminlte')
+  @extends('layouts.adminlte')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
   @include('sidebar')
@@ -46,6 +46,7 @@
                     $jenis_pengadaan = \App\pengadaan::where('id_pengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
                     ?>                  
                     <td class="sorting_1">{{$key->id}}</td>
+                    <!-- {{ $loop->iteration }} -->
                     <td class="center">{{$key->kodePj}}</td>
                     
                     <td class="center">

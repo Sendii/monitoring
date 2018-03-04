@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  @include('layouts.adminlte')
+  @extends('layouts.adminlte')
 </head>
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
   @include('sidebar')

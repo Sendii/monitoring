@@ -6,6 +6,7 @@ use \App\unitkerja;
 use \App\pegawai;
 use \App\pengadaan;
 use \App\prosespengadaan;
+use Alert;
 
 use Illuminate\Http\Request;
 
@@ -34,48 +35,98 @@ class PenugasanController extends Controller
         $data['prosespengadaan'] = prosespengadaan::where('id');
 
         $new = new prosespengadaan;
+        if($new->id_pegawai == "") {
+            //DATA KOSONG
+            $new->id_pegawai = $r->input('id_pegawai');
 
-        $new->id_pegawai = $r->input('id_pegawai');
+            if($r->input('p_tglspph') == "" && ($r->input('p_nospph') == "")) {
+                $new->tgl_spph = "Kosong..";
+                $new->no_spph = "Kosong...";
+            }else{
+                $new->tgl_spph = $r->input('p_tglspph');
+                $new->no_spph = $r->input('p_nospph');
+                $new->selesaispph = date('Y-m-d H:i:s');
+            }
 
-        if($r->input('p_tglspph') == "" && ($r->input('p_nospph') == "")) {
-            $new->tgl_spph = "Kosong..";
-            $new->no_spph = "Kosong...";
-        }else{
-            $new->tgl_spph = $r->input('p_tglspph');
-            $new->no_spph = $r->input('p_nospph');
-            $new->selesaispph = date('Y-m-d H:i:s');
+            if($r->input('p_tgletp') == "" ) {
+                $new->tgl_etp = "2000-01-01";
+            }else{
+                $new->tgl_etp = $r->input('p_tgletp');
+                $new->selesaietp = date('Y-m-d H:i:s');
+            }
+
+            if($r->input('p_tglpmn') == "" && ($r->input('p_nopmn') == "")) {
+                $new->tgl_pmn = "2000-01-01";
+                $new->no_pmn = "Kosong...";
+            }else{
+
+                $new->tgl_pmn = $r->input('p_tglpmn');
+                $new->no_pmn = $r->input('p_nopmn');
+                $new->selesaipmn = date('Y-m-d H:i:s');
+            }
+
+            if($r->input('p_tglkon') == "" && ($r->input('p_nokon') == "")) {
+                $new->tgl_kon = "2000-01-01";
+                $new->no_kon = "Kosong...";
+            }else{
+                $new->tgl_kon = $r->input('p_tglkon');
+                $new->no_kon = $r->input('p_nokon');
+                $new->selesaikon = date('Y-m-d H:i:s');
+            }
+
+            $new->save();
+
+            $edit2 = pbbj::find($r->input('id'));
+            $edit2->id_pegawai = $new->id_pegawai;
+            $edit2->save();
+
+        Alert::success('Data Ppbj telah ditugaskan1', 'Berhasil!')->autoclose(1300);
+        }else {
+            $editproses = prosespengadaan::find($r->input('id'));
+            $editproses->id_pegawai = $r->input('id_pegawai');
+
+            if($r->input('p_tglspph') == "" && ($r->input('p_nospph') == "")) {
+                $editproses->tgl_spph = "Kosong..";
+                $editproses->no_spph = "Kosong...";
+            }else{
+                $editproses->tgl_spph = $r->input('p_tglspph');
+                $editproses->no_spph = $r->input('p_nospph');
+                $editproses->selesaispph = date('Y-m-d H:i:s');
+            }
+
+            if($r->input('p_tgletp') == "" ) {
+                $editproses->tgl_etp = "2000-01-01";
+            }else{
+                $editproses->tgl_etp = $r->input('p_tgletp');
+                $editproses->selesaietp = date('Y-m-d H:i:s');
+            }
+
+            if($r->input('p_tglpmn') == "" && ($r->input('p_nopmn') == "")) {
+                $editproses->tgl_pmn = "2000-01-01";
+                $new->no_pmn = "Kosong...";
+            }else{
+
+                $editproses->tgl_pmn = $r->input('p_tglpmn');
+                $editproses->no_pmn = $r->input('p_nopmn');
+                $editproses->selesaipmn = date('Y-m-d H:i:s');
+            }
+
+            if($r->input('p_tglkon') == "" && ($r->input('p_nokon') == "")) {
+                $editproses->tgl_kon = "2000-01-01";
+                $editproses->no_kon = "Kosong...";
+            }else{
+                $editproses->tgl_kon = $r->input('p_tglkon');
+                $editproses->no_kon = $r->input('p_nokon');
+                $editproses->selesaikon = date('Y-m-d H:i:s');
+            }
+
+            $newproses->save();
+
+            $newproses = pbbj::find($r->input('id'));
+            $newproses->id_pegawai = $editproses->id_pegawai;
+            $newproses->save();
+        Alert::success('Data Ppbj telah ditugaskan22', 'Berhasil!')->autoclose(1300);
         }
-
-        if($r->input('p_tgletp') == "" ) {
-            $new->tgl_etp = "2000-01-01";
-        }else{
-            $new->tgl_etp = $r->input('p_tgletp');
-            $new->selesaietp = date('Y-m-d H:i:s');
-        }
-
-        if($r->input('p_tglpmn') == "" && ($r->input('p_nopmn') == "")) {
-            $new->tgl_pmn = "2000-01-01";
-            $new->no_pmn = "Kosong...";
-        }else{
-
-            $new->tgl_pmn = $r->input('p_tglpmn');
-            $new->no_pmn = $r->input('p_nopmn');
-            $new->selesaipmn = date('Y-m-d H:i:s');
-        }
-
-        if($r->input('p_tglkon') == "" && ($r->input('p_nokon') == "")) {
-            $new->tgl_kon = "2000-01-01";
-            $new->no_kon = "Kosong...";
-        }else{
-            $new->tgl_kon = $r->input('p_tglkon');
-            $new->no_kon = $r->input('p_nokon');
-            $new->selesaikon = date('Y-m-d H:i:s');
-        }
-
-        $new->save();
-
-        
-
         return redirect()->route('receivePpbj');
     }
 }

@@ -74,7 +74,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
                     <div class="col-sm-3">
-                      <input type="text" name="row" class="form-control" placeholder="Masukan angka..." required>
+                      <input type="text" name="row" class="form-control" placeholder="Masukan angka..." value="" required>
                     </div>
                     <table class="table table-bordered table-striped">
                       <thead>
