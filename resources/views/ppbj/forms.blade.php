@@ -24,24 +24,24 @@
                     </div>
                     <label class="col-sm-2 control-label">No. Registrasi Umum</label>
                     <div class="col-sm-3">
-                      <input type="text" name="noregisumum" value=" {{$ppbjadd->no_regis_umum or ''}} " class="form-control" id="inputPassword3" placeholder="No. Regis Umum" required>
+                      <input type="text" name="noregisumum" value=" {{$ppbjadd->no_regis_umum or ''}} " class="form-control" id="noregisumum" placeholder="No. Regis Umum" required>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Tgl. Registrasi Umum</label>
                     <div class="col-sm-3">
-                      <input type="date" name="tglregisumum" value=" {{$ppbjadd->tgl_regis_umum or ''}} " class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum">
+                      <input type="date" name="tglregisumum" value="{{$ppbjadd->tgl_regis_umum or ''}}" class="form-control" id="tglregisumum" placeholder="Tgl. Regis Umum">
                     </div>
                     <label class="col-sm-2 control-label">No. Ppbj</label>
                     <div class="col-sm-3">
-                      <input type="text" name="noppbj" value=" {{$ppbjadd->no_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="No. Ppbj" required>
+                      <input type="text" name="noppbj" value="{{$ppbjadd->no_ppbj or ''}}" class="form-control" id="inputPassword3" placeholder="No. Ppbj" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Tgl. Permintaan Ppbj</label>
                     <div class="col-sm-3">
-                      <input type="date" name="tglpermintaanPpbj" value=" {{$ppbjadd->tgl_permintaan_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="Tgl Permintaan Ppbj">
+                      <input type="date" name="tglpermintaanPpbj" value="{{$ppbjadd->tgl_permintaan_ppbj or ''}}" class="form-control" id="tglpermintaanPpbj" placeholder="Tgl Permintaan Ppbj">
 
                     </div>
                     <label class="col-sm-2 control-label">Tgl. Dibutuhkan Ppbj</label>
