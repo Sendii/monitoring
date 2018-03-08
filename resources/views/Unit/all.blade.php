@@ -1,19 +1,1 @@
-
-<table>
-	<thead>
-		<tr>
-			<td>No.</td>
-			<td>Cabang</td>
-			<td>Unit Kerja</td>
-		</tr>
-	</thead>
-@foreach($UnitAll as $key)	
-	<tbody>
-		<tr>
-			<td>{{$key->id_unit}}</td>
-			<td>{{$key->aa}}</td>
-			<td>{{$key->unit_kerja}}</td>
-		</tr>
-	</tbody>
-@endforeach
-</table>
+ @extends('layouts.adminlte') @include('sidebar') <div class="content-wrapper"> 	<div class="container-fluid spark-screen"> 		<div class="table-responsive"> 			<div class="box-header"> 				<div class="content"> 					<div class="box-body"> 						<div class="row"> 							<div class="col-sm-12"> 								<table id="example1" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data> 									<thead> 										<tr> 											<td style="text-align: center;">No.</td> 											<td style="text-align: center;">Cabang</td> 											<td style="text-align: center;">Unit Kerja</td> 										</tr> 									</thead> 									@foreach($UnitAll as $key)	 									<tbody> 										<tr> 											<td style="text-align: center;">{{$key->id_unit}}</td> 											<td style="text-align: center;">{{$key->aa}}</td> 											<td style="text-align: center;">{{$key->unit_kerja}}</td> 										</tr> 									</tbody> 									@endforeach 								</table> 							</div> 						</div> 					</div> 				</div> 			</div> 		</div> 		{!!$UnitAll->render()!!} 	</div> </div>

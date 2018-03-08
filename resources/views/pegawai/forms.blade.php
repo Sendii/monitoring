@@ -24,8 +24,9 @@
 
                     <label>Jabatan: </label>
                    <select name="id_jabatan" class="form-control select2 select2-hidden-accessibles" style="width:100%;" tabindex="-1" aria-hidden="true">
+                    <option value="">Pilih Jabatan</option>
                     @foreach($jabatan as $key)
-                    <option selected value="{{$key->id_jabatan}}">
+                    <option value="{{$key->id_jabatan}}">
                       {{$key->jabatan}}
                     </option>
                     @endforeach

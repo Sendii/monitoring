@@ -13,9 +13,8 @@ class CreateTanggalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('waktu', function (Blueprint $table) {
-            $table->increments('id_waktu');
-            
+        Schema::create('tanggal', function (Blueprint $table) {
+            $table->increments('id_tanggal');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateTanggalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('waktu');
+        Schema::dropIfExists('tanggal');
     }
 }

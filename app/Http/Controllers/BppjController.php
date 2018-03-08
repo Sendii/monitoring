@@ -21,7 +21,7 @@ class BppjController extends Controller
     }
     
     public function allPpbj() {
-    	$data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(3);
+      $data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(3);
         $data['barangall'] = barang::get();
 
         // return $data;
@@ -44,10 +44,10 @@ class BppjController extends Controller
 
         $new = new pbbj;
         $new->kodePj = $r->input('kodePj');
-        $new->no_regis_umum = $r->input('noregisumum');
-        $new->id_unit = $r->input('id_unit');
+        $new->no_regis_umum = $r->input('noregisumum'); //Cuma nomor
+        $new->id_unit = $r->input('id_unit'); 
         $new->tgl_regis_umum = date($r->input('tglregisumum'));
-        $new->no_ppbj = $r->input('noppbj');
+        $new->no_ppbj = $r->input('noppbj'); //text, 20 nomor
         $new->tgl_permintaan_ppbj = date($r->input('tglpermintaanPpbj'));
         $new->tgl_dibutuhkan_ppbj = date($r->input('tgldibutuhkanPpbj'));
         $new->id_pengadaan = $r->input('jenispengadaan'); 
@@ -73,7 +73,8 @@ class BppjController extends Controller
        return redirect()->route('allPpbj');
    }
 
-   public function editPpbj($id) {
+   public function editPpbj($id) 
+   {
       $data['ppbjedit'] = pbbj::find($id);
       // $data['editbarang'] = pbbj::with('Barang')->orderBy('id', 'desc')->find($id);
       $data['barang'] = barang::find($id);
@@ -94,24 +95,25 @@ class BppjController extends Controller
       $edit->no_regis_umum = $r->input('noregisumum');
       $edit->id_unit = $r->input('id_unit');
       $edit->id_pengadaan = $r->input('jenispengadaan');  
-      $edit->tgl_regis_umum = $r->input('tglregisumum');
+      $edit->tgl_regis_umum = date($r->input('tglregisumum'));
       $edit->no_ppbj = $r->input('noppbj');
-      $edit->tgl_permintaan_ppbj = $r->input('tglpermintaanppbj');
-      $edit->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanppbj');
+      $edit->tgl_permintaan_ppbj = date($r->input('tglpermintaanppbj'));
+      $edit->tgl_dibutuhkan_ppbj = date($r->input('tgldibutuhkanppbj'));
+      $edit->id_pengadaan = $r->input('jenispengadaan'); 
 
       $edit->save();
 
-      // for ($i=0; $i < $r['row']; $i++)
-      //   {          
-      //      $new2 = barang::find($r['id_barang']);
-      //      $new2->banyak_brg = $r->input('row');
-      //      $new2->nama_barang= $r['nama'][$i];
-      //      $new2->jumlah_brg= $r['qty'][$i]; 
-      //      $new2->harga_brg= $r['harga'][$i]; 
-      //      $new2->total_brg= $r['total'][$i];  
-      //      $new2->hargatotal_brg= $r->input('subtotal');            
-      //      $new2->save();
-      //  }  
+      $new2 = barang::find($r['id_barang']);
+      for ($i=0; $i < $new2['id']; $i++)
+        {          
+           $new2->banyak_brg = $r->input('row');
+           $new2->nama_barang= $r['nama'][$i];
+           $new2->jumlah_brg= $r['qty'][$i]; 
+           $new2->harga_brg= $r['harga'][$i]; 
+           $new2->total_brg= $r['total'][$i];  
+           $new2->hargatotal_brg= $r->input('subtotal');            
+           $new2->save();
+       }  
 
       Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose(1300);
       return redirect()->route('allPpbj');

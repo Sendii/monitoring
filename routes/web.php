@@ -37,6 +37,9 @@ Route::middleware(['admin'])->group(function () {
 	Route::get('/edituser/{id}','HomeController@edituser');
 	ROute::post('/edituser/', 'HomeController@updateuser');
 
+	Route::get('/admin', 'HomeController@index')->name('home');
+	Route::get('/home', 'HomeController@index')->name('home');
+
 });
 
 Route::middleware(['kasubag'])->group(function () {
@@ -59,6 +62,3 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/test', 'DefaultController@test')->name('test');
 Route::get('/allfile', 'FileController@allFile')->name('allFile');
 Auth::routes();
-
-Route::get('/admin', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');

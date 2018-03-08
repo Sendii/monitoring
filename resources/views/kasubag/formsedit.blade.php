@@ -3,8 +3,6 @@
 <head>
 </head>
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
-  <section class="content" style="background-color: #ecf0f5;">
-    <div class="row">
       <div class="content-wrapper">
         <div class="container-fluid spark-screen">
           <div class="row"><br>
@@ -37,15 +35,15 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Tgl. Registrasi Umum</label>
                     <div class="col-sm-2">
-                      <input type="date" name="tglregisumum" value=" {{$ppbjassignmentEdit->tgl_regis_umum }} " class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum">
+                      <input type="date" name="tglregisumum" value="{{ date($ppbjassignmentEdit->tgl_regis_umum) }}" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum">
                     </div>
                     <label class="col-sm-2 control-label">Tgl. Permintaan Ppbj</label>
                     <div class="col-sm-2">
-                      <input type="date" name="tglpermintaanppbj" value=" {{$ppbjassignmentEdit->tgl_permintaan_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="Tgl Permintaan Ppbj">
+                      <input type="date" name="tglpermintaanppbj" value="{{ date($ppbjassignmentEdit->tgl_permintaan_ppbj) }}" class="form-control" id="inputPassword3" placeholder="Tgl Permintaan Ppbj">
                     </div>
                     <label class="col-sm-1 control-label">Tgl. Dibutuhkan</label>
                     <div class="col-sm-2">
-                      <input type="date" name="tgldibutuhkanppbj" value=" {{$ppbjassignmentEdit->tgl_dibutuhkan_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="Tgl Dibutuhkan center">
+                      <input type="date" name="tgldibutuhkanppbj" value="{{ date($ppbjassignmentEdit->tgl_dibutuhkan_ppbj) }}" class="form-control" id="inputPassword3" placeholder="Tgl Dibutuhkan center">
                     </div>
                   </div>
                   <div class="form-group">
@@ -152,7 +150,5 @@
       </div>
     </div>
   </div>
-</div>
-</section>
 </body>
 </html>

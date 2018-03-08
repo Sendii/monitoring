@@ -19,6 +19,6 @@ class publicPeople
         if (Auth::user() &&  Auth::user()->akses == 'User') {
             return $next($request);
         }
-        return redirect('/people');
+        return redirect('/userspeople');
     }
 }

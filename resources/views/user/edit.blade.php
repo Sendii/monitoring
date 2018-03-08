@@ -6,6 +6,7 @@
 				<form method="POST" action=" {{url('edituser')}} ">
 					<div class="box-header">
 						<div class="box-body">
+							<center><h4>Perubahan Hak Akses Untuk Login Website.</h4></center><br>
 							{{ csrf_field() }}
 							<input type="hidden" name="id" value="{{$edituser->id}}">
 							<input type="hidden" name="password" value=" {{$edituser->password}} ">
@@ -22,14 +23,15 @@
 								</div><br><br>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Hak Akses</label>
+								<label class="col-sm-2 control-label">Hak Akses: </label>
 								<div class="col-sm-6">
-									<select class="form-control" name="hakakses">
-										@foreach($user as $users)
-										<option value="{{$users->akses}}">{{$users->akses}}</option>
-										@endforeach
+									<select name="hakakses" class="form-control">
+										<option value="">{{$edituser->akses}}</option>
+										<option value="Admin">Administrator</option>
+										<option value="Kadiv">Kepala Divisi</option>
+										<option value="Kasubag">Kepala Sub Bagian</option>
+										<option value="User">User Biasa</option>
 									</select>
-									<!-- <input type="text" class="form-control" name="hakakses" value="{{$edituser->akses}}" placeholder="Hak Akses"> -->
 								</div>
 							</div><br>
 							<div>
