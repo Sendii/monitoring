@@ -39,7 +39,7 @@ class PenugasanController extends Controller
         $data['prosespengadaan'] = prosespengadaan::where('id');
 
         
-        if (prosespengadaan::where('id_prosespengadaan', '=', $id_prosespengadaan)->Exists()) {
+        if (prosespengadaan::where('id', '=', $id_prosespengadaan)->Exists()) {
             //DATA ADA
             $editproses = prosespengadaan::find($r->input('id'));
 
@@ -81,58 +81,74 @@ class PenugasanController extends Controller
 
             $newproses->save();
 
-            $newproses = pbbj::find($r->input('id'));
-            $newproses->id_pegawai = $editproses->id_pegawai;
-            $newproses->save();
-            Alert::success('Data Ppbj telah ditugaskan22', 'Berhasil!')->autoclose(1300);
+            $data = $r->except(['_token']); 
+      // return dd($data);
+
+            $row = count($data['id_barang']);
+            for ($i=0; $i < $row; $i++) {
+
+                DB::table('barangs')->where(
+                  'id',$data['id_barang'][$i]
+              )->update(['banyak_brg' => $r->input('row'),
+              'nama_barang' => $data['nama'][$data['id_barang'][$i]],
+              'jumlah_brg' => $data['qty'][$data['id_barang'][$i]],
+              'harga_brg' => $data['harga'][$data['id_barang'][$i]],
+              'total_brg' => $data['total'][$data['id_barang'][$i]],
+              'hargatotal_brg' => $r->input('subtotal')]);
+          }
+
+          $newproses = pbbj::find($r->input('id'));
+          $newproses->id_pegawai = $editproses->id_pegawai;
+          $newproses->save();
+          Alert::success('Data Ppbj telah ditugaskan22', 'Berhasil!')->autoclose(1300);
+      }else{
+        $new = new prosespengadaan;
+        $new->id_pegawai = $r->input('id_pegawai');
+
+        if(date($r->input('p_tglspph')) == "" && (date($r->input('p_nospph')) == "")) {
+            $new->tgl_spph = "Kosong..";
+            $new->no_spph = "Kosong...";
         }else{
-            $new = new prosespengadaan;
-            $new->id_pegawai = $r->input('id_pegawai');
-
-            if(date($r->input('p_tglspph')) == "" && (date($r->input('p_nospph')) == "")) {
-                $new->tgl_spph = "Kosong..";
-                $new->no_spph = "Kosong...";
-            }else{
-                $new->tgl_spph = date($r->input('p_tglspph'));
-                $new->no_spph = $r->input('p_nospph');
-                $new->selesaispph = date('Y-m-d H:i:s');
-            }
-
-            if(date($r->input('p_tgletp')) == "" ) {
-                $new->tgl_etp = "2000-01-01";
-            }else{
-                $new->tgl_etp = $r->input('p_tgletp');
-                $new->selesaietp = date('Y-m-d H:i:s');
-            }
-
-            if(date($r->input('p_tglpmn')) == "" && ($r->input('p_nopmn') == "")) {
-                $new->tgl_pmn = "2000-01-01";
-                $new->no_pmn = "Kosong...";
-            }else{
-
-                $new->tgl_pmn = date($r->input('p_tglpmn'));
-                $new->no_pmn = $r->input('p_nopmn');
-                $new->selesaipmn = date('Y-m-d H:i:s');
-            }
-
-            if(date($r->input('p_tglkon')) == "" && ($r->input('p_nokon') == "")) {
-                $new->tgl_kon = "2000-01-01";
-                $new->no_kon = "Kosong...";
-            }else{
-                $new->tgl_kon = date($r->input('p_tglkon'));
-                $new->no_kon = $r->input('p_nokon');
-                $new->selesaikon = date('Y-m-d H:i:s');
-            }
-
-            $new->save();
-
-            $edit2 = pbbj::find($r->input('id'));
-            $edit2->id_pegawai = $new->id_pegawai;
-            $edit2->save();
-
-            Alert::success('Data Ppbj telah ditugaskan1', 'Berhasil!')->autoclose(1300);
+            $new->tgl_spph = date($r->input('p_tglspph'));
+            $new->no_spph = $r->input('p_nospph');
+            $new->selesaispph = date('Y-m-d H:i:s');
         }
-        return redirect()->route('receivePpbj');
-        
+
+        if(date($r->input('p_tgletp')) == "" ) {
+            $new->tgl_etp = "2000-01-01";
+        }else{
+            $new->tgl_etp = $r->input('p_tgletp');
+            $new->selesaietp = date('Y-m-d H:i:s');
+        }
+
+        if(date($r->input('p_tglpmn')) == "" && ($r->input('p_nopmn') == "")) {
+            $new->tgl_pmn = "2000-01-01";
+            $new->no_pmn = "Kosong...";
+        }else{
+
+            $new->tgl_pmn = date($r->input('p_tglpmn'));
+            $new->no_pmn = $r->input('p_nopmn');
+            $new->selesaipmn = date('Y-m-d H:i:s');
+        }
+
+        if(date($r->input('p_tglkon')) == "" && ($r->input('p_nokon') == "")) {
+            $new->tgl_kon = "2000-01-01";
+            $new->no_kon = "Kosong...";
+        }else{
+            $new->tgl_kon = date($r->input('p_tglkon'));
+            $new->no_kon = $r->input('p_nokon');
+            $new->selesaikon = date('Y-m-d H:i:s');
+        }
+
+        $new->save();
+
+        $edit2 = pbbj::find($r->input('id'));
+        $edit2->id_pegawai = $new->id_pegawai;
+        $edit2->save();
+
+        Alert::success('Data Ppbj telah ditugaskan1', 'Berhasil!')->autoclose(1300);
     }
+    return redirect()->route('receivePpbj');
+
+}
 }
