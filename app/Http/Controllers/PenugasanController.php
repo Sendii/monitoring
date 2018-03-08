@@ -7,6 +7,7 @@ use \App\pegawai;
 use \App\pengadaan;
 use \App\prosespengadaan;
 use Alert;
+use \App\barang;
 
 use Illuminate\Http\Request;
 
@@ -25,6 +26,9 @@ class PenugasanController extends Controller
         $data['pegawai'] = pegawai::get();
         $data['pengadaan'] = pengadaan::get();
         $data['prosespengadaan'] = prosespengadaan::all();
+        $data['jumlah'] = barang::where('id', '=', $id)->count();
+        $data['barangnya'] = barang::where('id', '=', $id)->get();
+        $data['id'] = $id;
         // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
         return view('kasubag.edit')->with($data);
     }
@@ -80,7 +84,7 @@ class PenugasanController extends Controller
             $newproses = pbbj::find($r->input('id'));
             $newproses->id_pegawai = $editproses->id_pegawai;
             $newproses->save();
-        Alert::success('Data Ppbj telah ditugaskan22', 'Berhasil!')->autoclose(1300);
+            Alert::success('Data Ppbj telah ditugaskan22', 'Berhasil!')->autoclose(1300);
         }else{
             $new = new prosespengadaan;
             $new->id_pegawai = $r->input('id_pegawai');
@@ -126,7 +130,7 @@ class PenugasanController extends Controller
             $edit2->id_pegawai = $new->id_pegawai;
             $edit2->save();
 
-        Alert::success('Data Ppbj telah ditugaskan1', 'Berhasil!')->autoclose(1300);
+            Alert::success('Data Ppbj telah ditugaskan1', 'Berhasil!')->autoclose(1300);
         }
         return redirect()->route('receivePpbj');
         

@@ -68,6 +68,7 @@
               </select>
             </div>
           </div>
+
           <div class="form-group">
             <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
             <div class="col-sm-3">
@@ -85,7 +86,7 @@
                     <th>Total</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                   @foreach($barangnya as $barang)
                   <tr>
                     <td>

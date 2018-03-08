@@ -7,6 +7,7 @@ use \App\pengadaan;
 use \App\barang;
 use Session;
 use Alert;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -84,13 +85,12 @@ class BppjController extends Controller
       $data['barangnya'] = barang::where('id', '=', $id)->get();
       $data['id'] = $id;
 
-      // return $data['editbarang'];    
+        
       return view('ppbj.edit')->with($data);
     }
 
     public function updatePpbj(Request $r) {      
       $edit = pbbj::find($r->input('id'));
-
       $edit->kodePj = $r->input('kodePj');
       $edit->no_regis_umum = $r->input('noregisumum');
       $edit->id_unit = $r->input('id_unit');
@@ -103,20 +103,22 @@ class BppjController extends Controller
 
       $edit->save();
 
-      $data = $r->except(['_token']);
+      $data = $r->except(['_token']); 
+      // return dd($data);
+      
+     $row = count($data['id_barang']);
+      for ($i=0; $i < $row; $i++) {
 
-      for($i = 0; $i <= count($data); $i++) {
-        $input = [
-         'banyak_brg' => $r->input('row'),
-         'nama_barang' => $data['nama'][$i],
-         'jumlah_brg' => $data['qty'][$i],
-         'harga_brg' => $data['harga'][$i], 
-         'total_brg' => $data['total'][$i],  
-         'hargatotal_brg' => $data->input('subtotal'),     
-       ];
-       DB::table('barang')->update($input);
-     }  
-     Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose(1300);
+        DB::table('barangs')->where(
+          'id',$data['id_barang'][$i]
+          )->update(['banyak_brg' => $r->input('row'),
+                     'nama_barang' => $data['nama'][$data['id_barang'][$i]],
+                     'jumlah_brg' => $data['qty'][$data['id_barang'][$i]],
+                     'harga_brg' => $data['harga'][$data['id_barang'][$i]],
+                     'total_brg' => $data['total'][$data['id_barang'][$i]],
+                     'hargatotal_brg' => $r->input('subtotal')]);
+      }
+     Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose('1300');
      return redirect()->route('allPpbj');
    }
 
