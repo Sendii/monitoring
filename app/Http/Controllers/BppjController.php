@@ -13,25 +13,25 @@ use Illuminate\Http\Request;
 class BppjController extends Controller
 {
 
-    public function addPpbj() {
-        $data['ppbjadd']     = pbbj::all();
-        $data['unitkerja'] = unitkerja::get();
-        $data['pengadaan'] = pengadaan::get();
-        return view('ppbj.add')->with($data);
-    }
-    
-    public function allPpbj() {
-      $data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(3);
-        $data['barangall'] = barang::get();
+  public function addPpbj() {
+    $data['ppbjadd']     = pbbj::all();
+    $data['unitkerja'] = unitkerja::get();
+    $data['pengadaan'] = pengadaan::get();
+    return view('ppbj.add')->with($data);
+  }
+
+  public function allPpbj() {
+    $data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(3);
+    $data['barangall'] = barang::get();
 
         // return $data;
 
 
-        return view('ppbj.all')->with($data);
-    }
+    return view('ppbj.all')->with($data);
+  }
 
-    public function savePpbj(Request $r) 
-    {        
+  public function savePpbj(Request $r) 
+  {        
         // $this->validate($r, [
         //     'kodePj' => 'min:3|max:4',
         //     'no_regis_umum' => 'numeric|min:9|max:10',
@@ -39,11 +39,11 @@ class BppjController extends Controller
         //     ]);//
 
 
-        $data['ppbjadd'] = pbbj::where('id');
-        $data['barang'] = barang::where('id_barang');
+    $data['ppbjadd'] = pbbj::where('id');
+    $data['barang'] = barang::where('id_barang');
 
-        $new = new pbbj;
-        $new->kodePj = $r->input('kodePj');
+    $new = new pbbj;
+    $new->kodePj = $r->input('kodePj');
         $new->no_regis_umum = $r->input('noregisumum'); //Cuma nomor
         $new->id_unit = $r->input('id_unit'); 
         $new->tgl_regis_umum = date($r->input('tglregisumum'));
@@ -56,25 +56,25 @@ class BppjController extends Controller
 
         for ($i=0; $i < $r['row']; $i++)
         {
-           $new2 = new barang;
-           $new2->id = $new->id;
-           $new2->banyak_brg = $r->input('row');
-           $new2->nama_barang= $r['nama'][$i];
-           $new2->jumlah_brg= $r['qty'][$i]; 
-           $new2->harga_brg= $r['harga'][$i]; 
-           $new2->total_brg= $r['total'][$i];  
-           $new2->hargatotal_brg= $r->input('subtotal'); 
-           Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
-           $new2->save();
+         $new2 = new barang;
+         $new2->id = $new->id;
+         $new2->banyak_brg = $r->input('row');
+         $new2->nama_barang= $r['nama'][$i];
+         $new2->jumlah_brg= $r['qty'][$i]; 
+         $new2->harga_brg= $r['harga'][$i]; 
+         $new2->total_brg= $r['total'][$i];  
+         $new2->hargatotal_brg= $r->input('subtotal'); 
+         Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
+         $new2->save();
        }  
 
        
        // Session::flash('successaddPpbj', 'Anda telah berhasil menambahkan Data.');
        return redirect()->route('allPpbj');
-   }
+     }
 
-   public function editPpbj($id) 
-   {
+     public function editPpbj($id) 
+     {
       $data['ppbjedit'] = pbbj::find($id);
       // $data['editbarang'] = pbbj::with('Barang')->orderBy('id', 'desc')->find($id);
       $data['barang'] = barang::find($id);
@@ -86,7 +86,7 @@ class BppjController extends Controller
 
       // return $data['editbarang'];    
       return view('ppbj.edit')->with($data);
-}
+    }
 
     public function updatePpbj(Request $r) {      
       $edit = pbbj::find($r->input('id'));
@@ -103,27 +103,28 @@ class BppjController extends Controller
 
       $edit->save();
 
-      $new2 = barang::find($r['id_barang']);
-      for ($i=0; $i < $new2['id']; $i++)
-        {          
-           $new2->banyak_brg = $r->input('row');
-           $new2->nama_barang= $r['nama'][$i];
-           $new2->jumlah_brg= $r['qty'][$i]; 
-           $new2->harga_brg= $r['harga'][$i]; 
-           $new2->total_brg= $r['total'][$i];  
-           $new2->hargatotal_brg= $r->input('subtotal');            
-           $new2->save();
-       }  
+      $data = $r->except(['_token']);
 
-      Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose(1300);
-      return redirect()->route('allPpbj');
-      }
+      for($i = 0; $i <= count($data); $i++) {
+        $input = [
+         'banyak_brg' => $r->input('row'),
+         'nama_barang' => $data['nama'][$i],
+         'jumlah_brg' => $data['qty'][$i],
+         'harga_brg' => $data['harga'][$i], 
+         'total_brg' => $data['total'][$i],  
+         'hargatotal_brg' => $data->input('subtotal'),     
+       ];
+       DB::table('barang')->update($input);
+     }  
+     Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose(1300);
+     return redirect()->route('allPpbj');
+   }
 
-      public function delete_ppbj($id)
-    {
-        pbbj::find($id)->delete();
+   public function delete_ppbj($id)
+   {
+    pbbj::find($id)->delete();
 
-        Alert::success('Data Ppbj telah dihapus', 'Berhasil!')->autoclose(1300);
-        return redirect()->route('allPpbj');
-    }
+    Alert::success('Data Ppbj telah dihapus', 'Berhasil!')->autoclose(1300);
+    return redirect()->route('allPpbj');
+  }
 }
