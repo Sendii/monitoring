@@ -72,7 +72,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
             <div class="col-sm-3">
-              <input type="number" name="row" value="{{$jumlah}}" class="form-control" placeholder="Masukan angka...">
+              <input type="number" name="row" value="{{$jumlah}}" class="form-control" placeholder="Masukan angka..." readonly>
             </div>
           </div>
           <div class="row">
@@ -162,7 +162,7 @@
         </script>
       </div> 
       <div class="box-footer">
-        <button type="submit" name="simpan" class="btn btn-primary pull-right">&nbsp;Tambahkan</button>
+        <button type="submit" name="simpan" class="btn btn-primary pull-right">&nbsp;Simpan</button>
       </div>
     </div>
   </div>
