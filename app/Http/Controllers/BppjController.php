@@ -106,16 +106,14 @@ class BppjController extends Controller
       // return dd($data);
       
      $row = count($data['id_barang']);
-      for ($i=0; $i < $row; $i++) {
-
-        DB::table('barangs')->where(
-          'id',$data['id_barang'][$i]
-          )->update(['banyak_brg' => $r->input('row'),
-                     'nama_barang' => $data['nama'][$data['id_barang'][$i]],
-                     'jumlah_brg' => $data['qty'][$data['id_barang'][$i]],
-                     'harga_brg' => $data['harga'][$data['id_barang'][$i]],
-                     'total_brg' => $data['total'][$data['id_barang'][$i]],
-                     'hargatotal_brg' => $r->input('subtotal')]);
+      for ($i=0; $i < $row; $i++) {        
+        DB::table('barangs')->where('id_barang', '=', $data['id_barang'][$i])->update([
+          'banyak_brg' => $r->input('row'),
+          'nama_barang' => $data['nama'][$data['id_barang'][$i]],
+          'jumlah_brg' => $data['qty'][$data['id_barang'][$i]],
+          'harga_brg' => $data['harga'][$data['id_barang'][$i]],
+          'total_brg' => $data['total'][$data['id_barang'][$i]],
+          'hargatotal_brg' => $r->input('subtotal')]);
       }
      Alert::success('Data Ppbj telah diEdit', 'Berhasil!')->autoclose('1300');
      return redirect()->route('allPpbj');
