@@ -52,7 +52,6 @@ class BppjController extends Controller
         $new->tgl_permintaan_ppbj = date($r->input('tglpermintaanPpbj'));
         $new->tgl_dibutuhkan_ppbj = date($r->input('tgldibutuhkanPpbj'));
         $new->id_pengadaan = $r->input('jenispengadaan'); 
-
         $new->save();
 
         for ($i=0; $i < $r['row']; $i++)

@@ -35,7 +35,7 @@ Route::middleware(['admin'])->group(function () {
 
 	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
 	Route::get('/edituser/{id}','HomeController@edituser');
-	ROute::post('/edituser/', 'HomeController@updateuser');
+	Route::post('/edituser/', 'HomeController@updateuser');
 
 	Route::get('/admin', 'HomeController@index')->name('home');
 	Route::get('/home', 'HomeController@index')->name('home');
