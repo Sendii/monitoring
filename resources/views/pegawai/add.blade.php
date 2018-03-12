@@ -2,6 +2,7 @@
 @include('sidebar')
 
 <form class="form-horizontal" method="POST" action=" {{route('savePegawai')}} " >
+	
   @include('pegawai.forms')
 </form>
 

@@ -22,7 +22,7 @@ class BppjController extends Controller
   }
 
   public function allPpbj() {
-    $data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(3);
+    $data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(20);
     $data['barangall'] = barang::get();
 
         // return $data;
@@ -37,7 +37,7 @@ class BppjController extends Controller
         //     'kodePj' => 'min:3|max:4',
         //     'no_regis_umum' => 'numeric|min:9|max:10',
         //     'no_ppbj' => 'numeric|min:4|max4'
-        //     ]);//
+        //     ]);
 
 
     $data['ppbjadd'] = pbbj::where('id');
@@ -47,10 +47,10 @@ class BppjController extends Controller
     $new->kodePj = $r->input('kodePj');
         $new->no_regis_umum = $r->input('noregisumum'); //Cuma nomor
         $new->id_unit = $r->input('id_unit'); 
-        $new->tgl_regis_umum = date($r->input('tglregisumum'));
+        $new->tgl_regis_umum = $r->input('tglregisumum');
         $new->no_ppbj = $r->input('noppbj'); //text, 20 nomor
-        $new->tgl_permintaan_ppbj = date($r->input('tglpermintaanPpbj'));
-        $new->tgl_dibutuhkan_ppbj = date($r->input('tgldibutuhkanPpbj'));
+        $new->tgl_permintaan_ppbj = $r->input('tglpermintaanPpbj');
+        $new->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanPpbj');
         $new->id_pengadaan = $r->input('jenispengadaan'); 
         $new->save();
 
@@ -69,7 +69,7 @@ class BppjController extends Controller
        }  
 
        
-       // Session::flash('successaddPpbj', 'Anda telah berhasil menambahkan Data.');
+       Session::flash('successaddPpbj', 'Anda telah berhasil menambahkan Data.');
        return redirect()->route('allPpbj');
      }
 
@@ -94,10 +94,10 @@ class BppjController extends Controller
       $edit->no_regis_umum = $r->input('noregisumum');
       $edit->id_unit = $r->input('id_unit');
       $edit->id_pengadaan = $r->input('jenispengadaan');  
-      $edit->tgl_regis_umum = date($r->input('tglregisumum'));
+      $edit->tgl_regis_umum = $r->input('tglregisumum');
       $edit->no_ppbj = $r->input('noppbj');
-      $edit->tgl_permintaan_ppbj = date($r->input('tglpermintaanppbj'));
-      $edit->tgl_dibutuhkan_ppbj = date($r->input('tgldibutuhkanppbj'));
+      $edit->tgl_permintaan_ppbj = $r->input('tglpermintaanppbj');
+      $edit->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanppbj');
       $edit->id_pengadaan = $r->input('jenispengadaan'); 
 
       $edit->save();

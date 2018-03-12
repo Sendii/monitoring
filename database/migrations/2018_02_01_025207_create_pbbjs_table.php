@@ -17,13 +17,12 @@ class CreatePbbjsTable extends Migration
             $table->increments('id');
             $table->integer('id_pegawai')->nullable(); //Mengambil data dari tabel pegawai dengan id_pegawai
             $table->integer('id_unit'); //Mengambil data dari tabel unit dengan id_unit
-            $table->integer('id_proses')->nullable(); //Mengambil data dari tabel prosespengadaan dengan id_proses
             $table->text('kodePj');
             $table->integer('no_regis_umum');
             $table->text('tgl_regis_umum')->nullable();
             $table->text('no_ppbj');
-            $table->date('tgl_permintaan_ppbj')->nullable();
-            $table->date('tgl_dibutuhkan_ppbj')->nullable();
+            $table->text('tgl_permintaan_ppbj')->nullable();
+            $table->text('tgl_dibutuhkan_ppbj')->nullable();
             $table->text('id_pengadaan');
             $table->timestamps();
         });

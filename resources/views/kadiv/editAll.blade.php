@@ -5,5 +5,11 @@
 @foreach($barangnya as $barang)
 <input type="hidden" name="id_barang[]" value="{{ $barang->id_barang }}">
 @endforeach
-	@include('ppbj.formsedit')
+	@include('kadiv.formsSeeall')
 </form>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('select').material_select();
+		});
+	</script>

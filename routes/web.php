@@ -32,6 +32,8 @@ Route::middleware(['admin'])->group(function () {
 	Route::get('/inputPegawai', 'PegawaiController@addPegawai')->name('addPegawai');
 	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
 	Route::post('/savePegawai/', 'PegawaiController@savePegawai')->name('savePegawai');
+	Route::get('/editPegawai/{id_pegawai}', 'PegawaiController@editPegawai')->name('editPegawai');
+	Route::post('/editpegawai', 'PegawaiController@updatePegawai')->name('updatePegawai');
 
 	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
 	Route::get('/edituser/{id}','HomeController@edituser');
@@ -50,6 +52,7 @@ Route::middleware(['kasubag'])->group(function () {
 
 Route::middleware(['kadiv'])->group(function () {
 	Route::get('/monitoring', 'MonitoringController@allMonitoring')->name('allMonitoring');
+	Route::get('/viewAlldata/{id_prosespengadaan}', 'MonitoringController@viewAlldata')->name('viewAlldata');
 });
 
 Route::middleware(['publicpeople'])->group(function () {

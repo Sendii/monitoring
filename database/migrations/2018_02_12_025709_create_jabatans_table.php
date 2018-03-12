@@ -21,27 +21,27 @@ class CreateJabatansTable extends Migration
 
         DB::table('jabatans')->insert(
             array(                
+                'jabatan' => 'Kepala Divisi',
+            )
+        );
+        DB::table('jabatans')->insert(
+            array(                
+                'jabatan' => 'Administrator Officier',
+            )
+        );
+        DB::table('jabatans')->insert(
+            array(                
                 'jabatan' => 'Kepala Sub Bagian',
             )
         );
         DB::table('jabatans')->insert(
             array(                
-                'jabatan' => 'Admin',
+                'jabatan' => 'Staff',
             )
         );
         DB::table('jabatans')->insert(
             array(                
-                'jabatan' => 'Kepala Divisi',
-            )
-        );
-        DB::table('jabatans')->insert(
-            array(                
-                'jabatan' => 'User',
-            )
-        );
-        DB::table('jabatans')->insert(
-            array(                
-                'jabatan' => 'Kepala Divisi',
+                'jabatan' => 'Dan lainnya...',
             )
         );
     }

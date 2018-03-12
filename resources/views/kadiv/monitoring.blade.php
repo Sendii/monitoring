@@ -1,9 +1,10 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   @extends('layouts.adminlte')
 </head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
   @include('sidebar')
   <!-- Content Wrapper. Contains page content -->
@@ -14,12 +15,12 @@
           <center><h3>Data Ppbj</h3></center>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
-          <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="Search..." aria-controls="example1"></label></div></div></div><div class="row"><div class="col-sm-12">
-            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-              <thead>
+       <div class="box-body">
+          <div class="table-responsive">
+           <table id="example" class="table table-condensed table-hover">
+             <thead>
                 <tr role="row">
-                  <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 2px;">No. </th>
+                  <th style="width: 2px;">No. </th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 2px;">Tgl Mulai</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 2px;">Pemekerja&nbsp;</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 2px;">Tgl. Spph</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 5px;">No. Spph</th>
@@ -31,12 +32,11 @@
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Lihat Selengkapnya</th>
                 </tr>
               </thead>
+              <tbody>        
               @foreach($allMonitor as $key)
-
               <?php
               $pegawai = \App\pegawai::where('id_pegawai', '=', $key->id_pegawai)->value('namapegawai');
               ?>
-              <tbody>                
                 <tr role="row" class="odd">
                   <td class="sorting_1">{{$key->id_prosespengadaan}}</td>
                   <td class="center"> <br>
@@ -114,8 +114,8 @@
                   </td>
                   <td><a href="{{route('viewAlldata', [$key->id_prosespengadaan])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Lihat</a></td>
                 </tr>
-              </tbody>
               @endforeach
+              </tbody>
             </table></div></div></div>
           </div>
           {!!$allMonitor->render()!!}
@@ -131,10 +131,16 @@
       reserved.
     </footer>
   </div>
-  <!-- /.content-wrapper -->
-
-
-  <!-- Control Sidebar -->
 </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+  } );
+</script>
 </body>
 </html>

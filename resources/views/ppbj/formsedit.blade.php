@@ -2,12 +2,21 @@
 <html>
 <head>
 </head>
+<link rel="stylesheet" href="{{asset('css/select2.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-datepicker.min.css')}}">
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
   <div class="content-wrapper">
     <div class="container-fluid spark-screen"><br>
       <div class="col-md-10 col-md-offset-1">
         <!-- Horizontal Form -->
         <div class="box box-info">
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <div class="btn-group">
+              </div>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
           <center><h2>Ubah Data Ppbj</h2> </center>
           <div class="box-header with-border">
           </div>
@@ -18,48 +27,87 @@
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-2 control-label">Kode PJ</label>
               <div class="col-sm-3">
+                <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-apple"></i>
+                    </div>
                 <input type="text" name="kodePj" value=" {{$ppbjedit->kodePj or ''}} " class="form-control" placeholder="Kode PJ">
+              </div>
               </div>
               <label class="col-sm-2 control-label">No. Registrasi Umum</label>
               <div class="col-sm-3">
+                <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-apple"></i>
+                    </div>
                 <input type="text" name="noregisumum" value=" {{$ppbjedit->no_regis_umum or ''}} " class="form-control" id="inputPassword3" placeholder="No. Regis Umum">
+              </div>
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Tgl. Registrasi Umum</label>
-              <div class="col-sm-3">                
-                <input type="date" name="tglregisumum" value="{{ date($ppbjedit->tgl_regis_umum) }}" class="form-control" id="tglregisumum" placeholder="Tgl. Regis Umum">
+              <div class="col-sm-3"> 
+              <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>               
+                <input type="text" name="tglregisumum" value="{{ date($ppbjedit->tgl_regis_umum) }}" class="form-control" id="tglregistrasi" placeholder="Tgl. Registrasi">
+              </div>
               </div>
               <label class="col-sm-2 control-label">No. Ppbj</label>
               <div class="col-sm-3">
+                <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-apple"></i>
+                    </div>
                 <input type="text" name="noppbj" value=" {{$ppbjedit->no_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="No. Ppbj">
+              </div>
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2 control-label">Tgl. Permintaan Ppbj</label>
               <div class="col-sm-3">
-                <input type="date" name="tglpermintaanppbj" value="{{ date($ppbjedit->tgl_permintaan_ppbj) }}" class="form-control" id="tglpermintaanppbj" placeholder="Tgl Permintaan Ppbj">
+                <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div> 
+                <input type="text" name="tglpermintaanppbj" value="{{ date($ppbjedit->tgl_permintaan_ppbj) }}" class="form-control" id="tglpermintaan" placeholder="Tgl Permintaan">
+              </div>
               </div>
               <label class="col-sm-2 control-label">Tgl. Dibutuhkan Ppbj</label>
-              <div class="col-sm-3">                
-                <input type="date" name="tgldibutuhkanppbj" value="{{ date($ppbjedit->tgl_dibutuhkan_ppbj) }}" class="form-control" id="tgldibutuhkanppbj" placeholder="Tgl Dibutuhkan center">
+              <div class="col-sm-3"> 
+              <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>                
+                <input type="text" name="tgldibutuhkanppbj" value="{{ date($ppbjedit->tgl_dibutuhkan_ppbj) }}" class="form-control" id="tgldibutuhkan" placeholder="Tgl Dibutuhkan">
+              </div>
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Jenis Pengadaan</label>
               <div class="col-sm-3">
-                <select name="jenispengadaan" class="form-control select2 select2-hidden-accessibles" style="width:100%;" tabindex="-1" aria-hidden="true">
+                <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-bank"></i>
+                    </div>
+                <select name="jenispengadaan" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true">
                   @foreach($pengadaan as $key)
                   <option {{ $ppbjedit->id_pengadaan == $key->id_pengadaan ? 'selected' : '' }} value="{{$key->id_pengadaan}}">
                     {{$key->namapengadaan}}
                   </option>
                   @endforeach
-                </select>                      
+                </select>   
+                </div>                   
               </div>
               <label class="col-sm-2 control-label">Unit Kerja</label>
               <div class="col-sm-3">
-               <select name="id_unit" class="form-control select2 select2-hidden-accessibles" style="width:100%;" tabindex="-1" aria-hidden="true">
+                <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-plane"></i>
+                    </div>
+               <select name="id_unit" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true">
                 @foreach($unitkerja as $key)                      
                 <option {{ $ppbjedit->id_unit == $key->id_unit ? 'selected' : '' }} value="{{$key->id_unit}}">
                   {{$key->aa}}
@@ -67,12 +115,18 @@
                 @endforeach
               </select>
             </div>
+            </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
             <div class="col-sm-3">
+              <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-apple"></i>
+                    </div>
               <input type="number" name="row" value="{{$jumlah}}" class="form-control" placeholder="Masukan angka..." readonly>
+            </div>
             </div>
           </div>
           <div class="row">
@@ -162,10 +216,24 @@
         </script>
       </div> 
       <div class="box-footer">
-        <button type="submit" name="simpan" class="btn btn-primary pull-right">&nbsp;Simpan</button>
+        <button type="submit" name="simpan" class="btn btn-primary pull-right">&nbsp;<i class="fa fa-save"></i>Simpan</button>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript" src="{{asset('js/select2.full.min.js')}}" ></script>
+<script type="text/javascript" src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
+    <script type="text/javascript">
+      $('.select2').select2();
+       $('#tglregistrasi').datepicker({
+            autoclose: true
+          });
+        $('#tglpermintaan').datepicker({
+            autoclose: true
+          });
+         $('#tgldibutuhkan').datepicker({
+            autoclose: true
+          });
+    </script>
 </body>
 </html>

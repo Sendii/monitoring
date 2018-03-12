@@ -10,7 +10,6 @@
  @include('sidebar')
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
-
   <div class="container-fluid spark-screen">
    <div class="row"><br>
      <div class="col-xs-12">
@@ -19,6 +18,9 @@
           <center>
             <h3 style="font-size: 25px" class="box-title">Data Ppbj</h3>
           </center>
+          <div class="container">
+            @include('errors.message')
+          </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -44,13 +46,13 @@
              </tr>
            </thead>
            <tbody>
-           @foreach($ppbjall as $key)
-           <?php
-           $unitkerja = \App\unitkerja::where('id_unit', '=', $key->id_unit)->value('aa');
-           $Pengadaan = \App\pengadaan::where('id_pengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
-           ?>
+             @foreach($ppbjall as $key)
+             <?php
+             $unitkerja = \App\unitkerja::where('id_unit', '=', $key->id_unit)->value('aa');
+             $Pengadaan = \App\pengadaan::where('id_pengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
+             ?>
              <tr>
-              <td class="sorting_1">{{$key->id}}</td>
+              <td class="center">{{$key->id}}</td>
               <td class="center">{{$key->kodePj}}</td>
               <td class="center">{{$key->no_regis_umum}}</td>
               <td class="center">
@@ -112,8 +114,8 @@
    <td><a href="{{route('editPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah</a></td>
    <td><button class="btn btn-danger delete-btn" data-noppbj='{{$key->no_ppbj}}'  data-id='{{$key->id}}' href="{{route('delete_ppbj', [$key->id])}}">Delete</td>
    </tr>
- @endforeach
-</tbody>
+   @endforeach
+ </tbody>
 </table>
 </div>
 </div>
@@ -164,7 +166,7 @@ reserved.
 <script type="text/javascript">
   $(document).ready(function() {
     $('#example').DataTable();
-} );
+  } );
 </script>
 @include('sweet::alert')
 

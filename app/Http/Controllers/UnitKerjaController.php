@@ -8,7 +8,7 @@ use App\unitkerja;
 class UnitKerjaController extends Controller
 {
 	public function allUnit() {
-		$data['UnitAll'] = unitkerja::paginate(15);
+		$data['UnitAll'] = unitkerja::paginate(54);
 		return view('Unit.all')->with($data);
 	}
 

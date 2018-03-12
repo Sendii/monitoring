@@ -16,14 +16,13 @@ class CreateProsespengadaansTable extends Migration
         Schema::create('prosespengadaans', function (Blueprint $table) {
             $table->increments('id_prosespengadaan');
             $table->integer('id_pegawai')->nullable();
-            $table->integer('id_waktu')->nullable();
             $table->text('id')->nullable(); //id ppbj
             $table->text('tgl_spph')->nullable(); //Tanggal Spph
             $table->text('no_spph')->nullable();
-            $table->date('tgl_etp')->nullable();
-            $table->date('tgl_pmn')->nullable(); //Tanggal Pengumuman
+            $table->text('tgl_etp')->nullable();
+            $table->text('tgl_pmn')->nullable(); //Tanggal Pengumuman
             $table->text('no_pmn')->nullable();
-            $table->date('tgl_kon')->nullable(); //Tanggal Kontrak
+            $table->text('tgl_kon')->nullable(); //Tanggal Kontrak
             $table->text('no_kon')->nullable();
             $table->datetime('selesaispph')->nullable();
             $table->datetime('selesaietp')->nullable();
