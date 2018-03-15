@@ -46,8 +46,8 @@ Route::middleware(['kasubag'])->group(function () {
 	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
 	Route::get('addAsignment/{id}', 'PenugasanController@addAsignment')->name('addAsignment');
 	Route::post('saveAssignment', 'PenugasanController@saveAssignment')->name('saveAsignment');
-	Route::get('/assignmentPpbj/{id_prosespengadaan}', 'PenugasanController@editassignmentPpbj')->name('editassignmentPpbj');
-	Route::post('/assignmentPpbj/', 'PenugasanController@updateassignmentPpbj')->name('updateassignmentPpbj');
+	Route::get('editassignmentPpbj/{id}', 'PenugasanController@editassignmentPpbj');
+	Route::post('updateassignmentPpbj/{id}', 'PenugasanController@updateassignmentPpbj');
 });
 
 Route::middleware(['kadiv'])->group(function () {

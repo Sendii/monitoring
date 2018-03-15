@@ -112,7 +112,7 @@
            </ul></td>
            <td>
             <div class="row">
-              <div class="center"> <a class="btn waves-effect waves-light yellow darken-2" href="{{route('editassignmentPpbj', [$key->id ])}}"><i class="fa fa-edit" aria-hidden="true"> </i>Penugasan</a>
+              <div class="center"> <a class="btn waves-effect waves-light yellow darken-2" href="{{ url('editassignmentPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i>Penugasan</a>
               </div>
             </div>
           </td>

@@ -14,9 +14,9 @@ class CreateProsespengadaansTable extends Migration
     public function up()
     {
         Schema::create('prosespengadaans', function (Blueprint $table) {
-            $table->increments('id_prosespengadaan');
+            $table->increments('id');
             $table->integer('id_pegawai')->nullable();
-            $table->text('id')->nullable(); //id ppbj
+            $table->integer('id_ppbj')->nullable(); //id ppbj
             $table->text('tgl_spph')->nullable(); //Tanggal Spph
             $table->text('no_spph')->nullable();
             $table->text('tgl_etp')->nullable();

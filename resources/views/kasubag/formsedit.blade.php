@@ -11,7 +11,7 @@
         <div class="col-md-12">
           <!-- Horizontal Form -->
           <div class="box box-info">
-            <center><h2>Penugasan Data Ppbj</h2> </center>
+            <center><h2>Penugasan Data Ppbj</h2> </center>            
             <div class="box-header with-border">
             </div>
             <!-- /.box-header -->
@@ -171,10 +171,10 @@
                     </div>
              <select name="id_pegawai" class="form-control select2">
               @foreach($pegawai as $key)
-                    <option selected value="{{$key->id_pegawai}}">
+                    <option value="{{$key->id_pegawai}}" {{$prosespengadaan->id_pegawai == $key->id_pegawai ? 'selected' : null}}>
                       {{$key->namapegawai}}
                     </option>
-                    @endforeach
+              @endforeach
             </select>
           </div>
           </div>
@@ -186,7 +186,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-            <input type="text" name="p_tglspph" class="form-control" placeholder="Tgl. Spph" id="tglspph">
+            <input type="text" name="p_tglspph" class="form-control" placeholder="Tgl. Spph" id="tglspph" value="{{$prosespengadaan->tgl_spph}}">
           </div>
           </div>
           <label class="col-sm-2 control-label">No. Spph</label>
@@ -207,7 +207,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-          <input type="text" name="p_tgletp" class="form-control" placeholder="Tgl. Etp"  id="tgletp">
+          <input type="text" name="p_tgletp" class="form-control" placeholder="Tgl. Etp"  id="tgletp" value="{{$prosespengadaan->tgl_etp}}">
         </div>
         </div>
       </div>
@@ -218,7 +218,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-          <input type="text" name="p_tglpmn" class="form-control" placeholder="Tgl. Pengumuman" id="tglpmn">
+          <input type="text" name="p_tglpmn" class="form-control" placeholder="Tgl. Pengumuman" id="tglpmn" value="{{$prosespengadaan->tgl_pmn}}">
         </div>
         </div>
         <label class="col-sm-2 control-label">No. Pengumuman</label>
@@ -227,7 +227,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-apple"></i>
                     </div>
-          <input type="text" name="p_nopmn" class="form-control" id="inputPassword3" placeholder="No. Ppbj">
+          <input type="text" name="p_nopmn" class="form-control" id="inputPassword3" placeholder="No. Ppbj" value="{{$prosespengadaan->no_pmn}}">
         </div>
         </div>
       </div>
@@ -238,7 +238,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-          <input type="text" name="p_tglkon" class="form-control" placeholder="Tgl. Kontrak" id="tglkon">
+          <input type="text" name="p_tglkon" class="form-control" placeholder="Tgl. Kontrak" id="tglkon" value="{{$prosespengadaan->tgl_kon}}">
         </div>
         </div>
         <label class="col-sm-2 control-label">No. Kontrak</label>
@@ -247,14 +247,14 @@
                     <div class="input-group-addon">
                       <i class="fa fa-apple"></i>
                     </div>
-          <input type="text" name="p_nokon" class="form-control" id="inputPassword3" placeholder="No. Ppbj">
+          <input type="text" name="p_nokon" class="form-control" id="inputPassword3" placeholder="No. Ppbj" value="{{$prosespengadaan->no_kon}}">
         </div>
         </div>
       </div>
     </div>
   </div>
   <div class="box-footer">
-    <button type="submit" name="simpan" class="btn btn-primary pull-right">>&nbsp;Tambahkan</button>
+    <button type="submit" name="simpan" class="btn btn-primary pull-right">&nbsp;Tambahkan</button>
   </div>
 </div>
 </div>
