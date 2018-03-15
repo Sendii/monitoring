@@ -181,7 +181,7 @@
         <!-- Menu Footer-->
         <li class="user-footer">
           <div class="pull-left">
-            <a href="#" class="btn btn-primary btn-flat" style="border-radius: 3px">Profil</a>
+            <a href="{{url('profile')}}" class="btn btn-primary btn-flat" style="border-radius: 3px">Profil</a>
           </div>
           <div class="pull-right">
             <a href=" {{route('logout')}} " class="btn btn-primary btn-flat" style="border-radius: 3px">Keluar</a>
@@ -236,7 +236,7 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-th"></i>
+            <i class="fa fa-list"></i>
             <span>Ppbj</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i> 

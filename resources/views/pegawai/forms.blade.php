@@ -26,7 +26,7 @@
               <label>Nama Pegawai: </label>
               <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-apple"></i>
+                      <i class="fa fa-user"></i>
                     </div>
               <input type="hidden" name="id_pegawai" value="{{$newPegawai->id_pegawai or ''}}">
               <input type="text" name="namapegawai" value="{{$newPegawai->namapegawai or ''}}" class="form-control col s6" placeholder="Nama Pegawai" required></label><br>
@@ -35,7 +35,7 @@
             <label>Nomor Telepon: </label>
             <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-apple"></i>
+                      <i class="fa fa-phone"></i>
                     </div>
             <input type="text" name="nomortelepon" placeholder="Nomor Telepon" value="{{$newPegawai->notelp or ''}}" class="form-control col s6" required></label><br>
           </div>
@@ -43,7 +43,7 @@
             <label>Jabatan: </label>
             <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-apple"></i>
+                      <i class="fa fa-black-tie"></i>
                     </div>
             <select name="id_jabatan" class="form-control select2" style="width:100%;" required>
               <option value="">Pilih Jabatan</option>
@@ -65,13 +65,7 @@
 </div>
 </div>
 </div>
-</div><footer class="main-footer">
-  <div class="pull-right hidden-xs">
-    <b>Version</b> 1.0.3
-  </div>
-  <strong>Copyright &copy; 2018 <a href="#">PklTeam-</a>.</strong> All rights
-  reserved.
-</footer> 
+</div>
 <script type="text/javascript" src="{{asset('js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
   $('.select2').select2();

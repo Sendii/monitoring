@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<!--
-Landing page based on Pratt: http://blacktie.co/demo/pratt/
+    @extends('layouts.adminlte')
+    <!DOCTYPE html>
+    <!--
+    Landing page based on Pratt: http://blacktie.co/demo/pratt/
 -->
 <html lang="en">
 <head>
-   
+
 
     <title>Monitoring Divisi Umum</title>
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('/css/all-landing.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href=" {{asset('bower_components/font-awesome/css/font-awesome.min.css')}} ">
 
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
@@ -29,7 +31,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                         <span class="icon-bar"></span>
                     </button>
                     <ul class="nav navbar-nav">
-                        <li style="font-size: 21px;" class="active"><a href="#home" class="smoothScroll"><b>Inventory'10</b></a></li>
+                        <li class="active"><a href="#home" class="smoothScroll"><b>Inventory'10</b></a></li>
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse">
@@ -37,16 +39,26 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                         <li class="active"><a href="#home" class="smoothScroll">Beranda</a></li>
                         <li><a href="#desc" class="smoothScroll">Depskripsi</a></li>
                         <li><a href="#contact" class="smoothScroll">Kontak Kami</a></li>
+                        @if(Auth::user() &&Auth::user()->akses == 'Admin' )
+                        <li><a href="{{url('admin')}}">Halaman Admin</a></li>
+                        @elseif(Auth::user() &&Auth::user()->akses == 'Kadiv' )
+                        <li><a href="{{url('monitoring')}}">Halaman Kadiv</a></li>
+                        @elseif(Auth::user() &&Auth::user()->akses == 'Kasubag' )
+                        <li><a href="{{url('receivePpbj')}}">Halaman Kasubag</a></li>
+                        @elseif(Auth::user()&& Auth::user()->akses == 'User')
+                        <li><a href="{{url('userspeople')}}">Menunggu Verifikasi...</a></li>
+                        @endif
+
                         @if(Auth::guest())
                         <li style="margin-left: 610px;" ><a href=" {{ url('/login')}}">Masuk</a></li>
                         @else
-                        <li style="margin-left: 498px;" class="dropdown right">
+                        <li style="margin-left: 410px;" class="dropdown right">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" style="width: 10px; height: 150px;">
-                            <li><a href=" {{url('/profiles')}}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
-                            <li><a href=" {{url('/logout')}}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            <li><a href=" {{url('/profiles')}}"><i class="fa fa-user"></i>Profile</a></li>
+                            <li><a href=" {{url('/logout')}}"><i class="fa fa-sign-out"></i>Logout</a></li>
                         </ul>
                     </li>
                     @endif 
@@ -55,31 +67,27 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             <!--/.nav-collapse -->
         </div>
     </div>
-    
-    <section id="home" name="home">
-        <div id="headerwrap">
-            <div class="container">
-                <div class="row centered">
+
+    <div id="headerwrap">
+        <div class="container">
+            <center>
+                <div class="row">
                     <div class="col-lg-12">
-                        <h1>Monitoring <b> <a href="http://sucofindo.co.id/">Divisi Umum</a></b></h1><br>
+                        <h1>Monitoring <b> <a href="http://sucofindo.com/">Divisi Umum</a></b></h1>
                         <h3> Jakarta Selatan, <a href="http://sucofindo.co.id/">PT Sucofindo(Persero)<br></a>
                             Mudah, Cepat, dan Simple:)
-                            <h3><a style="margin-right: 55px;" href="{{ url('/login') }}" class="btn btn-lg btn-success">Kuy Gabung !</a></h3>
+                            <h3><a href="{{ url('/login') }}" class="btn btn-lg btn-success">Kuy Gabung !</a></h3>
                         </div>
-                        <div class="col-lg-2">
-
-                        </div>
-                        <div class="col-lg-8">
-                            <center><img style="width: 330px; border-radius: 10px; height: 300px; " class="img-responsive" src="{{ asset('/img/sucofindo.jpg') }}" alt=""></center>
-                        </div>
-                        <div class="col-lg-2">
-                            
-                        </div>
+                    </center>
+                    <div class="col-lg-2">
                     </div>
-                    <center><h2><a href="http://sucofindo.co.id">Sucofindo-</a></h2></center><br>
-                </div> <!--/ .container -->
-            </div><!--/ #headerwrap -->
-        </section>
+                    <div class="col-lg-8">
+                        <center><img style="width: 315px; border-radius: 10px; height: 305px; " class="img-responsive" src="{{ asset('/img/sucofindo.jpg') }}"> </center>
+                    </div>
+                </div>
+                <center><h2><a href="http://sucofindo.co.id">Sucofindo-</a></h2></center><br>
+            </div> <!--/ .container -->
+        </div><!--/ #headerwrap -->
 
         <section id="desc" name="desc">
             <!-- INTRO WRAP -->
@@ -147,31 +155,28 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 <label>Message</label>
                 <textarea class="form-control" placeholder="Message" name="message" rows="3" required></textarea>
             </div>
-            <div class="form-group">
-                {!! app('captcha')->display() !!}
-
-                @if ($errors->has('g-recaptcha-response'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-              </span>
-              @endif
-      </div>
-      <button style="padding-right:30px; font-size:15px;" type="submit" class="btn btn-large btn-success">Kirim</button>
-  </form>
-</div>
+            <button style="padding-right:30px; font-size:15px;" type="submit" class="btn btn-large btn-success pull-right">Kirim</button>
+        </form>
+    </div>
 </div>
 </div>
 </section>
 </div>
-
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ url (asset('/js/app-landing.js')) }}"></script>
-    <script>
-        $('.carousel').carousel({
-            interval: 3500
-        })
-    </script>
-</body>
-</html>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.3
+  </div>
+  <strong>Powered &copy; 2018 <a href="#">PklTeam</a>.</strong> All rights
+  reserved.
+</footer>
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ url (asset('/js/app-landing.js')) }}"></script>
+        <script>
+            $('.carousel').carousel({
+                interval: 3500
+            })
+        </script>
+    </body>
+    </html>

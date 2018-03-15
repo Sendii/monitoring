@@ -15,14 +15,15 @@ use Illuminate\Http\Request;
 class PenugasanController extends Controller
 {
     public function receivePpbj() {
-        $data['receiveallPpbj'] = pbbj::paginate(3);
+        $data['receiveallPpbj'] = pbbj::paginate(10);
+        $data['prosespengadaan'] = prosespengadaan::get();
         $data['unitkerja'] = unitkerja::get();
         return view('kasubag.all')->with($data);
     }
 
-    public function editassignmentPpbj($id) 
-    {
-    	$data['ppbjassignmentEdit'] = pbbj::find($id);
+    //kalau data di prosespengadaan belum ada pemekerja, akan menjalankan method ini dan melanjutkan ke method saveAssignment
+    public function addAsignment($id) {
+       $data['ppbjassignmentEdit'] = pbbj::find($id);
         $data['unitkerja'] = unitkerja::get();
         $data['pegawai'] = pegawai::get();
         $data['pengadaan'] = pengadaan::get();
@@ -32,29 +33,53 @@ class PenugasanController extends Controller
         $data['barangnya'] = barang::where('id', '=', $id)->get();
         $data['id'] = $id;
         // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
+        return view('kasubag.add')->with($data);
+    }
+    //lanjutan function dari addAsignment
+    public function saveAssignment(Request $r) {
+        $prosespengadaan = new prosespengadaan;
+         $newproses = pbbj::find($r->input('id'));
+         $prosespengadaan->id_pegawai = $r->input('id_pegawai');
+        if($r->input('p_tglspph') == ""){
+            $prosespengadaan->tgl_spph = "Belum Terselesaikan";
+        }else{
+            $prosespengadaan->tgl_spph = $r->input('p_tglspph');
+        }
+        if($r->input('p_nospph') == "") {
+            $prosespengadaan->no_spph = "Belum Terselesaikan";
+        }else{
+            $prosespengadaan->no_spph = $r->input('p_nospph');
+            $prosespengadaan->selesaispph = date('Y-m-d H:i:s');
+        }
+        $prosespengadaan->id = $newproses->id;
+        $prosespengadaan->save();
+        $newproses->id_pegawai = $prosespengadaan->id_pegawai;
+        $newproses->save();
+        Alert::success('Data Ppbj telah ditugaskan.', 'Berhasil!')->autoclose(1300);
+        return redirect()->route('receivePpbj');
+    }
+
+    //kalau data di prosespengadaan sudah ada pemekerja, akan menjalankan method ini dan melanjutkan ke method updateassignmentPpbj
+    public function editassignmentPpbj($id, ...$id_prosespengadaan) 
+    {
+    	$data['ppbjassignmentEdit'] = pbbj::find($id);
+        $data['unitkerja'] = unitkerja::get();
+        $data['pegawai'] = pegawai::get();
+        $data['pengadaan'] = pengadaan::get();
+        $data['prosespengadaan'] = prosespengadaan::find($id_prosespengadaan);
+        $data['jumlah'] = barang::where('id', '=', $id)->count();
+        $data['barang'] = barang::find($id);
+        $data['barangnya'] = barang::where('id', '=', $id)->get();
+        $data['id'] = $id;
+        // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
         return view('kasubag.edit')->with($data);
     }
 
-    public function updateassignmentPpbj(Request $r)
+    public function updateassignmentPpbj(Request $r, ...$id)
     {
-        // $editprosespengadaan = prosespengadaan::where('id_prosespengadaan')->get();
-        // if($editprosespengadaan->count() > 0) 
-        //     //JIKA data sudah ada, akan edit data
-        // {
-        //     $editproses = prosespengadaan::find($r->input('id'));
-
-        //     $editproses->id_pegawai = $r->input('id_pegawai');
-        //     $editproses->tgl_spph = $r->input('p_tglspph');
-        //     $editproses->no_spph = $r->input('p_nospph');
-        //     $editproses->tgl_etp = $r->input('p_tgletp');
-        //     $editproses->tgl_pmn = $r->input('p_tglpmn');
-        //     $editproses->no_pmn = $r->input('p_nopmn');
-        //     $editproses->tgl_kon = $r->input('p_tglkon');
-        //     $editproses->no_kon = $r->input('p_nokon');
-        //     $editproses->save();
-        // }else
-        //kalau data bellum ada akan nambah data baru
         $newprosespengadaan = new prosespengadaan;
+        // $editprosespengadaan = prosespengadaan::find($r->input('id_pemroses'));
+
         $newproses = pbbj::find($r->input('id'));
         $newprosespengadaan->id_pegawai = $r->input('id_pegawai');
         if($r->input('p_tglspph') == ""){

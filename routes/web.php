@@ -15,8 +15,6 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::get('/search', 'HomeController@search');
-
 Route::middleware(['admin'])->group(function () {
 	Route::get('/inputPpbj', 'BppjController@addPpbj')->name('addPpbj');
 	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
@@ -46,7 +44,9 @@ Route::middleware(['admin'])->group(function () {
 
 Route::middleware(['kasubag'])->group(function () {
 	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
-	Route::get('/assignmentPpbj/{id}', 'PenugasanController@editassignmentPpbj')->name('editassignmentPpbj');
+	Route::get('addAsignment/{id}', 'PenugasanController@addAsignment')->name('addAsignment');
+	Route::post('saveAssignment', 'PenugasanController@saveAssignment')->name('saveAsignment');
+	Route::get('/assignmentPpbj/{id_prosespengadaan}', 'PenugasanController@editassignmentPpbj')->name('editassignmentPpbj');
 	Route::post('/assignmentPpbj/', 'PenugasanController@updateassignmentPpbj')->name('updateassignmentPpbj');
 });
 
@@ -62,6 +62,5 @@ Route::middleware(['publicpeople'])->group(function () {
 Route::post('/', 'HomeController@contactme')->name('contactme');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/test', 'DefaultController@test')->name('test');
-Route::get('/allfile', 'FileController@allFile')->name('allFile');
+Route::get('profile/', 'HomeController@profile');
 Auth::routes();

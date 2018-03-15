@@ -19,19 +19,19 @@ class HomeController extends Controller
     public function __construct(Request $r)
     {
         // $this->middleware('admin');
-        date_default_timezone_set("Asia/Jakarta");
-        //$this->middleware('auth');
-        //echo "<pre>".print_r($_SERVER,1)."</pre>";
-        $log = new logdata();
-        $log->idpengguna = (Auth::check())?Auth::user()->id:0;
-        $log->url = $r->url();;
-        $log->user_agent = $_SERVER['HTTP_USER_AGENT'];
-        $log->ip = $_SERVER['REMOTE_ADDR'];
-        $log->ip_port = isset($_SERVER['REMOTE_PORT'])?$_SERVER['REMOTE_PORT']:"";
-        $log->http_host = isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:"";
-        $log->http_referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"";
-        $log->pathinfo = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:"";
-        $log->save();
+        // date_default_timezone_set("Asia/Jakarta");
+        // //$this->middleware('auth');
+        // //echo "<pre>".print_r($_SERVER,1)."</pre>";
+        // $log = new logdata();
+        // $log->idpengguna = (Auth::check())?Auth::user()->id:0;
+        // $log->url = $r->url();;
+        // $log->user_agent = $_SERVER['HTTP_USER_AGENT'];
+        // $log->ip = $_SERVER['REMOTE_ADDR'];
+        // $log->ip_port = isset($_SERVER['REMOTE_PORT'])?$_SERVER['REMOTE_PORT']:"";
+        // $log->http_host = isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:"";
+        // $log->http_referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"";
+        // $log->pathinfo = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:"";
+        // $log->save();
     }
 
     /**
@@ -77,10 +77,6 @@ class HomeController extends Controller
 
     public function contactme(Request $r)
     {
-        $this->validate($r, [
-            'g-recaptcha-response' => 'required|captcha'
-        ]);
-        
         $data['contact'] = \App\contact::where('id_contact');
 
 
@@ -102,9 +98,8 @@ class HomeController extends Controller
     // }
 
     public function alluser(){
-        $data['user'] = User::paginate('4');
+        $data['user'] = User::paginate('10');
 
-        Alert::success('Data User website baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
         return view('user.all')->with($data);
     }
 
@@ -125,5 +120,11 @@ class HomeController extends Controller
         $edit->save();
         Alert::success('Data User website telah diEdit', 'Berhasil!')->autoclose(1300);
         return redirect()->route('alluser');
+    }
+
+    public function profile() {
+        $data['user'] = user::get();
+
+        return view('profile.profile');
     }
 }

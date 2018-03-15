@@ -18,22 +18,6 @@ class CreatePengadaansTable extends Migration
             $table->text('namapengadaan');
             $table->timestamps();
         });
-
-        DB::table('pengadaans')->insert(
-            array(                
-                'namapengadaan' => 'Pengadaan Pusat',
-            )
-        );
-        DB::table('pengadaans')->insert(
-            array(                
-                'namapengadaan' => 'Pengadaan Cabang',
-            )
-        );
-        DB::table('pengadaans')->insert(
-            array(                
-                'namapengadaan' => 'Pengadaan QA&QC',
-            )
-        );
     }
 
     /**

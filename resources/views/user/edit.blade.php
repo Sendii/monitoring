@@ -45,7 +45,7 @@
 								<div class="col-sm-9">
 									<div class="input-group text">
 										<div class="input-group-addon">
-											<i class="fa fa-linux"></i>
+											<i class="fa fa-black-tie"></i>
 										</div>
 										<select name="hakakses" class="form-control select2">
 											<option value="">{{$edituser->akses}}</option>

@@ -41,7 +41,7 @@
                     <td class="center">{{$key->namapegawai}}</td>
                     <td class="center">{{ $jabatan }}</td>
                     <td class="center">{{$key->notelp}}</td>  
-                     <td><a href="{{route('editPegawai', [$key->id_pegawai])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Data</a></td>                   
+                    <td><a href="{{route('editPegawai', [$key->id_pegawai])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Data</a></td>                   
                   </tr>
                   @endforeach
                 </tbody>
@@ -56,9 +56,10 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0.3
         </div>
-        <strong>Copyright &copy; 2018 <a href="#">PklTeam-</a>.</strong> All rights
+        <strong>Powered &copy; 2018 <a href="#">PklTeam</a>.</strong> All rights
         reserved.
       </footer>
+
     </div>
   </div>
 </div>

@@ -4,7 +4,9 @@
 <head>
   @extends('layouts.adminlte')
 </head>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <body class="hold-transition skin-blue sidebar-mini">
+
   @include('sidebar')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -15,9 +17,11 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="Search..." aria-controls="example1"></label></div></div></div><div class="row"><div class="col-sm-12">
-            <div class="">
-              <table id="example1" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data>
+          <div id="example1_wrapper" >
+            <div class="row">
+              <div class="col-sm-12">
+            <div class="content">
+              <table id="example" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data>
                 <thead>
                   <tr role="row">
                     <th>No. </th>
@@ -37,8 +41,8 @@
                     <th>Penugasan</th>
                   </tr>
                 </thead>
-                @foreach($receiveallPpbj as $key)
                 <tbody>                
+                @foreach($receiveallPpbj as $key)
                   <tr role="row" class="odd">
                     <?php
                     $unitkerja = \App\unitkerja::where('id_unit', '=', $key->id_unit)->value('aa');
@@ -106,13 +110,19 @@
              @endforeach
              Total = <i>{{ $total }}</i>
            </ul></td>
-           <td><a class="btn waves-effect waves-light yellow darken-2" href="{{route('editassignmentPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Penugasan</a></td>
-         </tr>
-       </tbody>
-       @endforeach
-     </table>
-   </div>
- </div>
+           <td>
+            <div class="row">
+              <div class="center"> <a class="btn waves-effect waves-light yellow darken-2" href="{{route('editassignmentPpbj', [$key->id ])}}"><i class="fa fa-edit" aria-hidden="true"> </i>Penugasan</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      @endforeach
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>
 </div>
 </div>
@@ -122,17 +132,20 @@
 </div>
 </div>
 <footer class="main-footer">
-  <div class="pull-right hidden-xs">
-    <b>Version</b> 1.0.3
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.3
   </div>
-  <strong>Copyright &copy; 2018 <a href="#">-</a>.</strong> All rights
+  <strong>Powered &copy; 2018 <a href="#">PklTeam</a>.</strong> All rights
   reserved.
 </footer>
 </div>
-<!-- /.content-wrapper -->
-
-
-<!-- Control Sidebar -->
 </div>
+<script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
+</script>
 </body>
 </html>

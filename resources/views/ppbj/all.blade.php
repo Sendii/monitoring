@@ -49,7 +49,6 @@
              @foreach($ppbjall as $key)
              <?php
              $unitkerja = \App\unitkerja::where('id_unit', '=', $key->id_unit)->value('aa');
-             $Pengadaan = \App\pengadaan::where('id_pengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
              ?>
              <tr>
               <td class="center">{{$key->id}}</td>
@@ -69,7 +68,7 @@
             <td class="center">{{$key->no_ppbj}}</td>
             <td class="center">{{$key->tgl_permintaan_ppbj}}</td>
             <td class="center">{{$key->tgl_dibutuhkan_ppbj}}</td>
-            <td class="center">{{ $Pengadaan }}</td>
+            <td class="center">{{ $key->id_pengadaan }}</td>
             <td class="center">{{ $unitkerja }}</td>
 
             <td class="center">
@@ -128,11 +127,11 @@
 </div>
 </div>
 <footer class="main-footer">
- <div class="pull-right hidden-xs">
-  <b>Version</b> 1.0.3
-</div>
-<strong>Copyright &copy; 2018 <a href="#">PklTeam-</a>.</strong> All rights
-reserved.
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.3
+  </div>
+  <strong>Powered &copy; 2018 <a href="#">PklTeam</a>.</strong> All rights
+  reserved.
 </footer>
 </div>
 <!-- /.content-wrapper -->

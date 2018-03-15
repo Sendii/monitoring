@@ -30,7 +30,7 @@
                 <div class="col-sm-3">
                   <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-apple"></i>
+<i class="fa fa-codepen"></i>
                     </div>
                     <input type="text" name="kodePj" value="{{$ppbjadd->kodePj or ''}}" class="form-control" placeholder="Kode PJ" required autofocus>
                   </div>
@@ -39,7 +39,7 @@
                 <div class="col-sm-3">
                   <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-apple"></i>
+                      <i class="fa fa-deviantart"></i>
                     </div>
                     <input type="text" name="noregisumum" value="{{$ppbjadd->no_regis_umum or ''}}" class="form-control" id="noregisumum" placeholder="No. Regis Umum" required autofocus>
                   </div>
@@ -59,7 +59,7 @@
                 <div class="col-sm-3">
                   <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-apple"></i>
+                      <i class="fa fa-deviantart"></i>
                     </div>
                     <input type="text" name="noppbj" value="{{$ppbjadd->no_ppbj or ''}}" class="form-control" id="inputPassword3" placeholder="No. Ppbj" required autofocus>
                   </div>
@@ -85,27 +85,33 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Jenis Pengadaan</label>
-                <div class="col-sm-3">
-                  <select name="jenispengadaan" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true">
-                    @foreach($pengadaan as $key)
-                    <option selected value="{{$key->id_pengadaan}}">
-                      {{$key->namapengadaan}}
-                    </option>
-                    @endforeach
-                  </select>                      
-                </div>
+              <div class="form-group">           
                 <label class="col-sm-2 control-label">Unit Kerja</label>
                 <div class="col-sm-3">
-                  <select name="id_unit" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true">
-                    @foreach($unitkerja as $key)
-                    <option selected value="{{$key->id_unit}}">
-                      {{$key->aa}}
-                    </option>
-                    @endforeach
-                  </select>                      
+                  <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-bank"></i>
+                    </div>
+                    <select name="id_unit" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true">
+                      @foreach($unitkerja as $key)
+                      <option selected value="{{$key->id_unit}}">
+                        {{$key->aa}}
+                      </option>
+                      @endforeach
+                    </select>
+                  </div>                 
                 </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Jenis Pengadaan</label>
+                <div class="col-sm-8">
+                  <div class="input-group text">
+                    <div class="input-group-addon">
+                      <i class="fa fa-shirtsinbulk"></i>
+                    </div>
+                    <input type="text" name="jenispengadaan" class="form-control" placeholder="Jenis Pengadaan" value="" required autofocus>
+                  </div>
+                </div>   
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
@@ -114,7 +120,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-apple"></i>
                     </div>
-                    <input type="text" name="row" class="form-control" placeholder="Masukan angka..." value="" required autofocus>
+                    <input type="number" name="row" class="form-control" placeholder="Masukan angka..." value="" required autofocus min="2" max="10">
                   </div>
                 </div>
                 <div class="row">
@@ -206,6 +212,9 @@
         <script type="text/javascript" src="{{asset('js/select2.full.min.js')}}" ></script>
         <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
         <script type="text/javascript">
+          var nowDate = new Date();
+          var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
           $('.select2').select2();
           $('#datepicker1').datepicker({
             autoclose: true
@@ -214,6 +223,8 @@
             autoclose: true
           });
           $('#datepicker3').datepicker({
+            startDate: today,
+            useCurrent: false,
             autoclose: true
           });
         </script>

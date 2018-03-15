@@ -55,12 +55,18 @@
 							</tbody>
 						</table>
 					</div>
-					{!!$user->render()!!}
 				</div>
 			</div>
 		</div>	
 	</div>
 </div>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.3
+  </div>
+  <strong>Powered &copy; 2018 <a href="#">PklTeam</a>.</strong> All rights
+  reserved.
+</footer>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>

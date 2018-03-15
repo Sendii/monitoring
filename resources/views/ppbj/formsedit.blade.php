@@ -85,22 +85,18 @@
               </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Jenis Pengadaan</label>
-              <div class="col-sm-3">
-                <div class="input-group text">
+             <div class="form-group">
+                <label class="col-sm-2 control-label">Jenis Pengadaan</label>
+                <div class="col-sm-8">
+                  <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-bank"></i>
+                      <i class="fa fa-apple"></i>
                     </div>
-                <select name="jenispengadaan" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true">
-                  @foreach($pengadaan as $key)
-                  <option {{ $ppbjedit->id_pengadaan == $key->id_pengadaan ? 'selected' : '' }} value="{{$key->id_pengadaan}}">
-                    {{$key->namapengadaan}}
-                  </option>
-                  @endforeach
-                </select>   
-                </div>                   
+                    <input type="text" name="jenispengadaan" class="form-control" placeholder="Jenis Pengadaan" value=" {{$ppbjedit->id_pengadaan or ''}} " required autofocus>
+                  </div>
+                </div>   
               </div>
+              <div class="form-group">
               <label class="col-sm-2 control-label">Unit Kerja</label>
               <div class="col-sm-3">
                 <div class="input-group text">
@@ -224,6 +220,9 @@
 <script type="text/javascript" src="{{asset('js/select2.full.min.js')}}" ></script>
 <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
     <script type="text/javascript">
+       var nowDate = new Date();
+          var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+          
       $('.select2').select2();
        $('#tglregistrasi').datepicker({
             autoclose: true
@@ -232,6 +231,8 @@
             autoclose: true
           });
          $('#tgldibutuhkan').datepicker({
+           startDate: today,
+            useCurrent: false,
             autoclose: true
           });
     </script>

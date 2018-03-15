@@ -13,10 +13,11 @@ class CreateTanggalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tanggal', function (Blueprint $table) {
-            $table->increments('id_tanggal');
-            $table->timestamps();
-        });
+        // Schema::create('tanggal', function (Blueprint $table) {
+        //     $table->increments('id_tanggal');
+        //     $table->timestamps();
+        // });
+        Schema::dropIfExists('tanggal');
     }
 
     /**

@@ -55,7 +55,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                  <input type="text" name="tglregisumum" value="{{date($ppbjassignmentEdit->tgl_regis_umum)}}" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum" disabled="disabled">
+                   <input type="text" name="tglregisumum" value="{{date($ppbjassignmentEdit->tgl_regis_umum)}}" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum" disabled="disabled">
                 </div>
                 </div>
                 <label class="col-sm-2 control-label">Tgl. Permintaan Ppbj</label>
@@ -64,7 +64,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                  <input type="date" name="tglpermintaanppbj" value="{{ date($ppbjassignmentEdit->tgl_permintaan_ppbj) }}" class="form-control" id="inputPassword3" placeholder="Tgl Permintaan Ppbj" disabled="disabled">
+                  <input type="text" name="tglregisumum" value="{{date($ppbjassignmentEdit->tgl_permintaan_ppbj)}}" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum" disabled="disabled">
                 </div>
                 </div>
                 <label class="col-sm-1 control-label">Tgl. Dibutuhkan</label>
@@ -73,26 +73,22 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                  <input type="date" name="tgldibutuhkanppbj" value="{{ date($ppbjassignmentEdit->tgl_dibutuhkan_ppbj) }}" class="form-control" id="inputPassword3" placeholder="Tgl Dibutuhkan center" disabled="disabled">
+                  <input type="text" name="tgldibutuhkanppbj" value="{{date($ppbjassignmentEdit->tgl_dibutuhkan_ppbj)}}" class="form-control" id="inputPassword3" placeholder="Tgl Dibutuhkan center" disabled="disabled">
                 </div>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Jenis Pengadaan</label>
-                <div class="col-sm-3">
+                <div class="col-sm-8">
                   <div class="input-group text">
                     <div class="input-group-addon">
-                      <i class="fa fa-bank"></i>
+                      <i class="fa fa-apple"></i>
                     </div>
-                  <select name="jenispengadaan" class="form-control select2" disabled="disabled" style="width:100%;" tabindex="-1" aria-hidden="true">
-                    @foreach($pengadaan as $key)
-                    <option selected value="{{$key->id_pengadaan}}">
-                      {{$key->namapengadaan}}
-                    </option>
-                    @endforeach
-                  </select>
-                  </div>                   
-                </div>
+                    <input type="text" name="jenispengadaan" class="form-control" placeholder="Jenis Pengadaan" value="{{$ppbjassignmentEdit->id_pengadaan or ''}}" required autofocus disabled="disabled">
+                  </div>
+                </div>   
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label">Unit Kerja</label>
                 <div class="col-sm-3">
                   <div class="input-group text">
@@ -169,12 +165,12 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-             <select name="id_pegawai" class="form-control select2">
-              @foreach($pegawai as $key)
-                    <option selected value="{{$key->id_pegawai}}">
-                      {{$key->namapegawai}}
-                    </option>
-                    @endforeach
+             <select name="id_pegawai" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true" value="{{$ppbjassignmentEdit->id_pegawai}}" >
+              @foreach($pegawai as $key)                      
+              <option {{ $ppbjassignmentEdit->id_pegawai == $key->id_pegawai ? 'selected' : '' }} value="{{$key->id_pegawai}}">
+                {{$key->namapegawai}}
+              </option>
+              @endforeach
             </select>
           </div>
           </div>
