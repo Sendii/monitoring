@@ -28,7 +28,11 @@
                     <th>Nama Pegawai</th>
                     <th>Jabatan</th>
                     <th>No. Telepon</th>
-                    <th>Ubah Data</th>
+                    @if(Auth::user() && Auth::user()->akses == 'Admin')
+                      <th>Ubah Data</th>
+                    @else
+                    <!-- Ini kosong jika bukan admin -->
+                    @endif
                   </tr>
                 </thead>
                 <tbody>                
@@ -41,7 +45,11 @@
                     <td class="center">{{$key->namapegawai}}</td>
                     <td class="center">{{ $jabatan }}</td>
                     <td class="center">{{$key->notelp}}</td>  
-                    <td><a href="{{route('editPegawai', [$key->id_pegawai])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Data</a></td>                   
+                    @if(Auth::user() && Auth::user()->akses == 'Admin')
+                      <td><a href="{{route('editPegawai', [$key->id_pegawai])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Data</a></td>   
+                    @else
+                      <th></th>
+                    @endif                
                   </tr>
                   @endforeach
                 </tbody>

@@ -14,52 +14,81 @@
 				<div class="box box-info">
 					<div class="box box-info">
 						<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-							</button>
 							<div class="btn-group">
 							</div>
 							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 						</div>
-						<center><h2>Profile </h2> </center>
-						<div class="box-header with-border">
+						 <h2>&nbsp;Profile </h2> 
+						<div class="content" id="timeline">
+							<!-- The timeline -->
+							<div class="row">
+								<div class="tab-pane" id="settings">
+								<div class="col-md-4" id="settings">
+									<div class="box box-primary">
+										<div class="box-body box-profile">
+											<img class="profile-user-img img-responsive img-circle" src="{{asset('/uploads/avatar/defaults.jpg')}}" alt="User profile picture">
+
+											<h3 class="profile-username text-center">Nama: {{Auth::user()->name}}</h3>
+											<p class="text-muted text-center">Akses: {{Auth::user()->akses}}</p>
+
+											<ul class="list-group list-group-unbordered">
+												<li class="list-group-item">
+													<b>Followers</b> <a class="pull-right">1,322</a>
+												</li>
+												<li class="list-group-item">
+													<b>Following</b> <a class="pull-right">543</a>
+												</li>
+												<li class="list-group-item">
+													<b>Friends</b> <a class="pull-right">13,287</a>
+												</li>
+											</ul>
+
+											<a href="#settings" data-toggle="tab" class="btn btn-primary btn-block"><b>Edit Profil</b></a>
+										</div>
+										<!-- /.box-body -->
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Nama: </label>
+									<div class="col-sm-8">
+										<div class="input-group text">
+											<div class="input-group-addon">
+												<i class="fa fa-user"></i>
+											</div>
+											<input type="text" name="name" value="{{Auth::user()->name}}" class="form-control col s4" placeholder="Unit Kerja" required>
+										</div>
+									</div>
+								</div><br>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">E-Mail</label>
+									<div class="col-sm-8">
+										<div class="input-group text">
+											<div class="input-group-addon">
+												<i class="fa fa-envelope"></i>
+											</div>
+											<input type="text" class="form-control" name="email" placeholder="Password" value="{{Auth::user()->email}}">
+										</div>
+									</div>
+								</div><br>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Password</label>
+									<div class="col-sm-8">
+										<div class="input-group text">
+											<div class="input-group-addon">
+												<i class="fa fa-envelope"></i>
+											</div>
+											<input type="text" class="form-control" name="password" placeholder="Password" value="{{bcrypt(Auth::user()->password)}}">
+										</div><br>
+									</div>
+								</div>
+								<div class="content">
+									<div class="main-footer">
+										<button type="submit" name="submit" class="btn btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;Tambahkan</button>
+									</div>
+								</div>
+							</div>
+							<!-- END TIMELINE -->
 						</div>
-						<div class="box-body">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Nama: </label>
-								<div class="col-sm-8">
-									<div class="input-group text">
-										<div class="input-group-addon">
-											<i class="fa fa-user"></i>
-										</div>
-										<input type="text" name="name" value="{{Auth::user()->name}}" class="form-control col s4" placeholder="Unit Kerja" required>
-									</div>
-								</div>
-							</div><br>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">E-Mail</label>
-								<div class="col-sm-8">
-									<div class="input-group text">
-										<div class="input-group-addon">
-											<i class="fa fa-envelope"></i>
-										</div>
-										<input type="text" class="form-control" name="email" placeholder="Password" value="{{Auth::user()->email}}">
-									</div>
-								</div>
-							</div><br>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">E-Mail</label>
-								<div class="col-sm-8">
-									<div class="input-group text">
-										<div class="input-group-addon">
-											<i class="fa fa-envelope"></i>
-										</div>
-										<input type="text" class="form-control" name="password" placeholder="Password" value="{{bcrypt(Auth::user()->password)}}">
-									</div>
-								</div>
-							</div>
-							<div class="main-footer">
-								<button type="submit" name="submit" class="btn btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;Tambahkan</button>
-							</div>
 						</div>
 					</div>
 				</div>

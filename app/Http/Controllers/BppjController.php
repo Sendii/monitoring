@@ -65,7 +65,6 @@ class BppjController extends Controller
          $new2->harga_brg= $r['harga'][$i]; 
          $new2->total_brg= $r['total'][$i];  
          $new2->hargatotal_brg= $r->input('subtotal'); 
-         Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
          $new2->save();
        }
 
@@ -76,51 +75,20 @@ class BppjController extends Controller
         $newproses = pbbj::find($id_ppbj->id);
         $newprosespengadaan->id_pegawai = $r->input('id_pegawai');
         if($r->input('p_tglspph') == ""){
-            $newprosespengadaan->tgl_spph = "Belum Terselesaikan";
+            $newprosespengadaan->tgl_spph = "";
         }else{
             $newprosespengadaan->tgl_spph = $r->input('p_tglspph');
         }
         if($r->input('p_nospph') == "") {
-            $newprosespengadaan->no_spph = "Belum Terselesaikan";
+            $newprosespengadaan->no_spph = "";
         }else{
             $newprosespengadaan->no_spph = $r->input('p_nospph');
             $newprosespengadaan->selesaispph = date('Y-m-d H:i:s');
         }
-
-        if($r->input('p_tgletp') == "" ) {
-            $newprosespengadaan->tgl_etp = "Belum Terselesaikan";
-        }else{
-            $newprosespengadaan->tgl_etp = $r->input('p_tgletp');
-            $newprosespengadaan->selesaietp = date('Y-m-d H:i:s');
-        }
-
-        if($r->input('p_tglpmn') == "" ) {
-            $newprosespengadaan->tgl_pmn = "Belum Terselesaikan";
-        }else{
-            $newprosespengadaan->tgl_pmn = date($r->input('p_tglpmn'));
-        }if($r->input('p_nopmn') == "") {
-            $newprosespengadaan->no_pmn = "Belum Terselesaikan";
-        }
-        else{
-            $newprosespengadaan->no_pmn = $r->input('p_nopmn');
-            $newprosespengadaan->selesaipmn = date('Y-m-d H:i:s');
-        }
-
-        if($r->input('p_tglkon') == "") {
-            $newprosespengadaan->tgl_kon = "Belum Terselesaikan";
-        }else{
-            $newprosespengadaan->tgl_kon = date($r->input('p_tglkon'));
-        }if($r->input('p_nokon') == "") {
-            $newprosespengadaan->no_kon = "Belum Terselesaikan";
-        }else{
-            $newprosespengadaan->no_kon = $r->input('p_nokon');
-            $newprosespengadaan->selesaikon = date('Y-m-d H:i:s');
-        }
         $newprosespengadaan->id_ppbj = $newproses->id; //id prosespengadaan == id ppbj 
+        Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
         $newprosespengadaan->save();
 
-       
-       Session::flash('successaddPpbj', 'Anda telah berhasil menambahkan Data.');
        return redirect()->route('allPpbj');
      }
 

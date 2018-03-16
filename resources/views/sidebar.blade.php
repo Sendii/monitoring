@@ -160,71 +160,71 @@
                 <li class="footer"><a href="#">View all</a></li>
               </ul>
             </li>
-    <!-- User Account: style can be found in dropdown.less -->
-    <li class="dropdown user user-menu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <img style="width:25px; height:20px; margin-:" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
-        <span class="hidden-xs">{{ Auth::user()->name }}</span>
-      </a>
-      <ul class="dropdown-menu">
-        <!-- User image -->
-        <li class="user-header">
-          <img style="width:75px; height:75px; background-color: #00a7d0" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img style="width:25px; height:20px; margin-:" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
+                <span class="hidden-xs">{{ Auth::user()->name }}</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img style="width:75px; height:75px; background-color: #00a7d0" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
 
-          <p>
-            {{ Auth::user()->name }}
-            <small>{{Auth::user()->akses}} sejak {{ Auth::user()->created_at }}</small>
-          </p>
-        </li>
-        <!-- Menu Body -->
+                  <p>
+                    {{ Auth::user()->name }}
+                    <small>{{Auth::user()->akses}} sejak {{ Auth::user()->created_at }}</small>
+                  </p>
+                </li>
+                <!-- Menu Body -->
 
-        <!-- Menu Footer-->
-        <li class="user-footer">
-          <div class="pull-left">
-            <a href="{{url('profile')}}" class="btn btn-primary btn-flat" style="border-radius: 3px">Profil</a>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="{{url('profile')}}" class="btn btn-primary btn-flat" style="border-radius: 3px">Profil</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href=" {{route('logout')}} " class="btn btn-primary btn-flat" style="border-radius: 3px">Keluar</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+            <li>
+              <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img style="width:38px; height:38px;" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
           </div>
-          <div class="pull-right">
-            <a href=" {{route('logout')}} " class="btn btn-primary btn-flat" style="border-radius: 3px">Keluar</a>
+          <div class="pull-left info">
+            <p>{{ Auth::user()->name }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
-        </li>
-      </ul>
-    </li>
-    <!-- Control Sidebar Toggle Button -->
-    <li>
-      <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-    </li>
-  </ul>
-</div>
-
-</nav>
-</header>
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-  <!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
-    <!-- Sidebar user panel -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img style="width:38px; height:38px;" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
-      </div>
-      <div class="pull-left info">
-        <p>{{ Auth::user()->name }}</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
-    </div>
-    <!-- search form -->
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="hidden" name="q" class="form-control" placeholder="Pencarian...">
-      </div>
-    </form>
-    <!-- /.search form -->
-    <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu" data-widget="tree">
-      <li class="header"><center>MAIN NAVIGATION</center></li><br>
-      <li class="active treeview menu-open">
-        <a href="#">
-          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="hidden" name="q" class="form-control" placeholder="Pencarian...">
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header"><center>MAIN NAVIGATION</center></li><br>
+          <li class="active treeview menu-open">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <!-- <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span> -->
@@ -234,6 +234,7 @@
             <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul> -->
         </li>
+        @if (Auth::user() &&  Auth::user()->akses == 'Admin')
         <li class="treeview">
           <a href="#">
             <i class="fa fa-list"></i>
@@ -287,6 +288,31 @@
           </ul>
         </li>
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+        @elseif (Auth::user() &&  Auth::user()->akses == 'Kasubag')
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-list"></i>
+            <span>Ppbj</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i> 
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href=" {{url('/receivePpbj')}} "><i class="fa fa-desktop"></i> Lihat Data</a></li>
+          </ul>
+        </li>
+        @elseif (Auth::user() && Auth::user()->akses == 'Kadiv')
+        <li>
+          <a href="{{url('allPegawai')}}">
+            <i class="fa fa-user"></i> <span>Pegawai</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('allUnit')}}">
+            <i class="fa fa-bank"></i> <span>Unit Kerja</span>
+          </a>
+        </li> 
+        @endif
         <li class="header">LABELS</li>
       </ul>
     </section>
@@ -300,12 +326,12 @@
   <script src="{{asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
   <!-- AdminLTE App -->
   <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
- 
+
   <script src="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
   <script src="{{asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
   <!-- SlimScroll -->
   <script src="{{asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-  
+
 
 
 </body>

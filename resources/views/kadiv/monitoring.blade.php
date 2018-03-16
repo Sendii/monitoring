@@ -37,8 +37,9 @@
               <?php
               $pegawai = \App\pegawai::where('id_pegawai', '=', $key->id_pegawai)->value('namapegawai');
               ?>
+              @if($pegawai != "")
                 <tr role="row" class="odd">
-                  <td class="sorting_1">{{$key->id_prosespengadaan}}</td>
+                  <td class="sorting_1">{{$key->id}}</td>
                   <td class="center"> <br>
                       {{$key->created_at}}
                   </td>
@@ -77,9 +78,9 @@
                     <i>Belum Selesai</i>
                     @else
                     <div class="row">
-                      <div class="center">
-                       &nbsp;&nbsp;  Terselesaikan
-                      </div>
+                      <center>
+                       <i class="fa fa-check"></i>
+                      </center>
                     </div>
                     @endif
                   </td>
@@ -114,6 +115,9 @@
                   </td>
                   <td><a href="{{route('viewAlldata', [$key->id_prosespengadaan])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Lihat</a></td>
                 </tr>
+                @else
+                <input type="hidden">
+                @endif
               @endforeach
               </tbody>
             </table></div></div></div>

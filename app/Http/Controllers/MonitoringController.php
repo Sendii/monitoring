@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class MonitoringController extends Controller
 {
 	public function allMonitoring() {
-		$data['allMonitor'] = prosespengadaan::orderBy('id_prosespengadaan', 'desc')->paginate(5);
+		$data['allMonitor'] = prosespengadaan::orderBy('id', 'desc')->paginate(5);
 		return view('kadiv.monitoring')->with($data);
 	}
 

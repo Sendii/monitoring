@@ -94,7 +94,7 @@
                     </div>
                     <select name="id_unit" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true">
                       @foreach($unitkerja as $key)
-                      <option selected value="{{$key->id_unit}}">
+                      <option value="{{$key->id_unit}}" >
                         {{$key->aa}}
                       </option>
                       @endforeach

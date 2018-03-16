@@ -39,7 +39,7 @@
               <tbody>                
                 <tr role="row" class="odd">
                   <td class="sorting_1">{{$key->id_prosespengadaan}}</td>
-                  <td class="center"> <br>
+                  <td class="center"> -sa
                       {{$key->created_at}}
                   </td>
                   <td class="center">{{ $pegawai }}</td>

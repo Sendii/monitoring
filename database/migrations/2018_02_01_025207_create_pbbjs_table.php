@@ -16,6 +16,7 @@ class CreatePbbjsTable extends Migration
         Schema::create('pbbjs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_pegawai')->nullable(); //Mengambil data dari tabel pegawai dengan id_pegawai
+            $table->string('sort')->default('sorts');
             $table->integer('id_unit'); //Mengambil data dari tabel unit dengan id_unit
             $table->text('kodePj');
             $table->integer('no_regis_umum');

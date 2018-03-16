@@ -38,8 +38,8 @@ class PegawaiController extends Controller
     	$new->notelp = $r->input('nomortelepon');
         $new->id = $new->id_pegawai;
 
-    	$new->save();
         Alert::success('Data Pegawai telah ditambahkan', 'Berhasil!')->autoclose(1300);
+        $new->save();
     	return redirect()->route('allPegawai');
     }
 

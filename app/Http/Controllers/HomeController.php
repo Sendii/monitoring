@@ -44,35 +44,11 @@ class HomeController extends Controller
         return view('user.userpeople');
     }
 
-    // public function search(Request $request)
-    // {
-    //     if($request->ajax())
-    //     {
-    //         $output = "";
-    //         $ppbjs = DB::table('pbbjs')->where('kodePj', 'LIKE', '%'.$request->search.'%')
-    //         ->orWhere('no_regis_umum', 'LIKE', '%'.$request->search.'%')->get();
-    //         if($ppbjs)
-    //         {
-    //             foreach ($ppbjs as $key => $ppbj) {
-    //                 $output.='<tr>'.
-    //                 '<td>'.$ppbj->kodePj.'</td>'.
-    //                 '<td>'.$ppbj->no_regis_umum.'</td>'.
-    //                 '<td>'.$ppbj->tgl_regis_umum.'</td>'.
-    //                 '<td>'.$ppbj->no_ppbj.'</td>'.
-    //                 '<td>'.$ppbj->tgl_permintaan_ppbj.'</td>'.
-    //                 '<td>'.$ppbj->tgl_dibutuhkan_ppbj.'</td>'.
-    //                 '<td>'.$ppbj->id_pengadaan.'</td>'.
-    //                 '<td>'.$ppbj->id_unit.'</td>'.
-    //                 '</tr>';
-    //             }
-    //             return Response($output);
-    //         }
-    //     }
-    // }
-
     public function index()
     {
-        return view('home');
+        $data['getkontrak'] = \App\prosespengadaan::get();
+        $data['getppbj'] = \App\pbbj::paginate(10);
+        return view('welcome')->with($data);
     }
 
     public function contactme(Request $r)
@@ -117,8 +93,8 @@ class HomeController extends Controller
         $edit->email = $r->input('email');
         $edit->akses = $r->input('hakakses');
 
-        $edit->save();
         Alert::success('Data User website telah diEdit', 'Berhasil!')->autoclose(1300);
+        $edit->save();
         return redirect()->route('alluser');
     }
 

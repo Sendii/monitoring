@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return view('landing-page');
 });
 
 Route::middleware(['admin'])->group(function () {
@@ -38,8 +38,6 @@ Route::middleware(['admin'])->group(function () {
 	Route::post('/edituser/', 'HomeController@updateuser');
 
 	Route::get('/admin', 'HomeController@index')->name('home');
-	Route::get('/home', 'HomeController@index')->name('home');
-
 });
 
 Route::middleware(['kasubag'])->group(function () {
@@ -64,3 +62,4 @@ Route::post('/', 'HomeController@contactme')->name('contactme');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('profile/', 'HomeController@profile');
 Auth::routes();
+Route::get('home', 'HomeController@index')->name('home');

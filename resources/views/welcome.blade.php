@@ -1,182 +1,286 @@
-    @extends('layouts.adminlte')
-    <!DOCTYPE html>
-    <!--
-    Landing page based on Pratt: http://blacktie.co/demo/pratt/
--->
-<html lang="en">
+@extends('layouts.adminlte')
+@include('sidebar')
+<!DOCTYPE html>
+<html>
 <head>
-
-
-    <title>Monitoring Divisi Umum</title>
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('/css/all-landing.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href=" {{asset('bower_components/font-awesome/css/font-awesome.min.css')}} ">
-
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-
+    <title>Homepage</title>
 </head>
+<body>
+    <div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            Dashboard > 
+            @if(Auth::user() && Auth::user()->akses == 'Admin')
+            <a href="{{url('admin')}}">Admin</a>
+            @elseif(Auth::user() && Auth::user()->akses == 'Kasubag')
+            <a href="{{url('receivePpbj')}}">Kasubag</a>
+            @elseif(Auth::user() && Auth::user()->akses == 'Kadiv')
+            <a href="{{url('monitoring')}}">Kadiv</a>
+            @else
+            <a href="{{url('userspeople')}}">User</a>
+            @endif
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard <b><i>{{Auth::user()->akses}}</i></b> </li>
+        </ol>
+    </section>
 
-<body data-spy="scroll" data-target="#navigation" data-offset="50">
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-orange">
+                <div class="inner">
+                  <h3>9</h3>
 
-    <div id="app" v-cloak>
-        <!-- Fixed navbar -->
-        <div id="navigation" class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#home" class="smoothScroll"><b>Inventory'10</b></a></li>
-                    </ul>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#home" class="smoothScroll">Beranda</a></li>
-                        <li><a href="#desc" class="smoothScroll">Depskripsi</a></li>
-                        <li><a href="#contact" class="smoothScroll">Kontak Kami</a></li>
-                        @if(Auth::user() &&Auth::user()->akses == 'Admin' )
-                        <li><a href="{{url('admin')}}">Halaman Admin</a></li>
-                        @elseif(Auth::user() &&Auth::user()->akses == 'Kadiv' )
-                        <li><a href="{{url('monitoring')}}">Halaman Kadiv</a></li>
-                        @elseif(Auth::user() &&Auth::user()->akses == 'Kasubag' )
-                        <li><a href="{{url('receivePpbj')}}">Halaman Kasubag</a></li>
-                        @elseif(Auth::user()&& Auth::user()->akses == 'User')
-                        <li><a href="{{url('userspeople')}}">Menunggu Verifikasi...</a></li>
-                        @endif
+                  <p>Ppbj Baru </p>
+              </div>
+              <div class="icon">
+                  <i class="ion ion-bag"></i>
+              </div>
+              <a href="#ppbj" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+      </div>
+      <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>57<sup style="font-size: 25px;">%</sup> </h3>
 
-                        @if(Auth::guest())
-                        <li style="margin-left: 610px;" ><a href=" {{ url('/login')}}">Masuk</a></li>
-                        @else
-                        <li style="margin-left: 410px;" class="dropdown right">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" style="width: 10px; height: 150px;">
-                            <li><a href=" {{url('/profiles')}}"><i class="fa fa-user"></i>Profile</a></li>
-                            <li><a href=" {{url('/logout')}}"><i class="fa fa-sign-out"></i>Logout</a></li>
-                        </ul>
-                    </li>
-                    @endif 
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </div>
-
-    <div id="headerwrap">
-        <div class="container">
-            <center>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Monitoring <b> <a href="http://sucofindo.com/">Divisi Umum</a></b></h1>
-                        <h3> Jakarta Selatan, <a href="http://sucofindo.co.id/">PT Sucofindo(Persero)<br></a>
-                            Mudah, Cepat, dan Simple:)
-                            <h3><a href="{{ url('/login') }}" class="btn btn-lg btn-success">Kuy Gabung !</a></h3>
-                        </div>
-                    </center>
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-8">
-                        <center><img style="width: 315px; border-radius: 10px; height: 305px; " class="img-responsive" src="{{ asset('/img/sucofindo.jpg') }}"> </center>
-                    </div>
-                </div>
-                <center><h2><a href="http://sucofindo.co.id">Sucofindo-</a></h2></center><br>
-            </div> <!--/ .container -->
-        </div><!--/ #headerwrap -->
-
-        <section id="desc" name="desc">
-            <!-- INTRO WRAP -->
-            <div id="intro">
-                <div class="container">
-                    <div class="row centered">
-                        <hr>
-                        <div class="col-lg-5">
-                            <img src="{{ asset('/img/intro01.png') }}" alt="">
-                            <h3>Pendataan Barang.</h3>
-                            <p>Menambah, Mengedit, dan juga Menghapus data Barang pada Dashboard Admin.</p>
-                        </div>
-                        <div class="col-lg-7">
-                            <img src="{{ asset('/img/intro03.png') }}" alt="">
-                            <h3>Memantau Peminjaman.</h3>
-                            <p>Melihat Statistik Peminjaman perbulannya ataupun pertahunnya.</p>
-                        </div>
-                        <div class="col-lg-5s">
-                            <img src="{{ asset('/img/intro02.png') }}" alt="">
-                            <h3>Lengkap dengan Tanggal&Waktu.</h3>
-                            <p>Pada saat Pengembalian Barang, Waktu Otomatis akan terisi setelah barang diKembalikan</p>                       
-                        </div>
-                    </div>
-                    <hr>
-                </div> 
-            </div>                            
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</section>
-<section id="contact" name="contact">
-    <div id="footerwrap">
-        <div class="container">
-            <div class="col-lg-5">
-                <h3>Alamat</h3>
-                <p>
-                   <b>PT Sucofindo(Persero)</b><br/>
-                   Jl. Raya Pasar Minggu No.44, RT.2/RW.7 <br/>
-                   Duren Tiga, Pancoran  Jakarta Selatan <br/>
-                   Daerah Khusus Ibukota Jakarta 12760,<br/> 
-                   Indonesia.
-               </p>
-           </div>
-
-           <div class="col-lg-7">
-            <h3>Kiriman Masukan/Saran untuk Web ini:)</h3>
-            <br>
-            <form method="POST" action=" {{route('contactme')}} " >
-               {!! csrf_field() !!}
-               <div class="form-group">
-                <label for="name1">Nama</label>
-                <input type="name" name="name" class="form-control" id="name1" placeholder="Nama Lengkap" required>
-            </div>
-            <div class="form-group">
-                <label for="email1">Alamat Email</label>
-                <input type="email" name="email" class="form-control" id="email1" placeholder="E-Mail" required>
-            </div>
-            <div class="form-group">
-                <label>Subject</label>
-                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
-            </div>
-            <div class="form-group">
-                <label>Message</label>
-                <textarea class="form-control" placeholder="Message" name="message" rows="3" required></textarea>
-            </div>
-            <button style="padding-right:30px; font-size:15px;" type="submit" class="btn btn-large btn-success pull-right">Kirim</button>
-        </form>
-    </div>
-</div>
-</div>
-</section>
-</div>
-<footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.3
+              <p>Persentase Penyelesaian</p>
+          </div>
+          <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="#pers" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
   </div>
-  <strong>Powered &copy; 2018 <a href="#">PklTeam</a>.</strong> All rights
-  reserved.
-</footer>
-    <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{{ url (asset('/js/app-landing.js')) }}"></script>
-        <script>
-            $('.carousel').carousel({
-                interval: 3500
-            })
-        </script>
-    </body>
-    </html>
+  <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>15</h3>
+
+          <p>Users Website</p>
+      </div>
+      <div class="icon">
+          <i class="ion ion-person-add"></i>
+      </div>
+      <a href="#users" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+<div class="col-lg-3 col-xs-6">
+  <!-- small box -->
+  <div class="small-box bg-red">
+    <div class="inner">
+      <h3>10</h3>
+
+      <p>Pengunjung Website</p>
+  </div>
+  <div class="icon">
+      <i class="ion ion-bag"></i>
+  </div>
+  <a href="#visitor" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+</div>
+</div>
+</div>
+<!-- data ppbj baru dan user baru -->
+<div class="row">
+    <div class="col-md-8">
+        <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Data Ppbj Baru</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+                  <tr>
+                    <th>No. Ppbj</th>
+                    <th>Jenis Pengadaan</th>
+                    <th>Tgl RegistrasiUmum</th>
+                    <th>Tgl Permintaan</th>
+                    <th>Tgl Dibutuhkan</th>
+                    <th>Proses</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($getppbj as $ppbj)
+                <?php
+                $pegawai = \App\pegawai::where('id_pegawai', '=', $ppbj->id_pegawai)->value('namapegawai');
+                ?>
+                <tr>
+                    <td>{{$ppbj->no_ppbj}}</td>
+                    <td>{{$ppbj->id_pengadaan}}</td>
+                    <td>{{$ppbj->tgl_regis_umum}}</td>
+                    <td>{{$ppbj->tgl_permintaan_ppbj}}</td>
+                    <td>{{$ppbj->tgl_dibutuhkan_ppbj}}</td>
+                    <td>
+                        @if($pegawai != "")
+                        <span class="label label-info">Proses</span>
+                        @else
+                        <span class="label label-danger">Belum Terproses</span>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <!-- /.table-responsive -->
+</div>
+<!-- /.box-body -->
+<div class="box-footer clearfix">
+  <a href="javascript:void(0)" class="btn btn-sm btn-success btn-flat pull-right">View All Ppbj</a>
+</div>
+<!-- /.box-footer -->
+</div>
+</div>
+<div class="col-md-4">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">Latest Members</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+</div>
+<!-- /.box-header -->
+<div class="box-body">
+  <ul class="products-list product-list-in-box">
+    <li class="item">
+      <div class="product-img">
+        <img src="dist/img/default-50x50.gif" alt="Product Image">
+    </div>
+    <div class="product-info">
+        <a href="javascript:void(0)" class="product-title">{{Auth::user()->name}}
+          <span class="label label-warning pull-right">{{Auth::user()->created_at}}</span></a>
+          <span class="product-description">
+              Samsung 32" 1080p 60Hz LED Smart HDTV.
+          </span>
+      </div>
+  </li>
+  <!-- /.item -->
+  <li class="item">
+      <div class="product-img">
+        <img src="dist/img/default-50x50.gif" alt="Product Image">
+    </div>
+    <div class="product-info">
+        <a href="javascript:void(0)" class="product-title">PlayStation 4
+          <span class="label label-success pull-right">$399</span></a>
+          <span class="product-description">
+              PlayStation 4 500GB Console (PS4)
+          </span>
+      </div>
+  </li>
+  <!-- /.item -->
+</ul>
+</div>
+<!-- /.box-body -->
+<div class="box-footer text-center">
+  <a href="javascript:void(0)" class="uppercase">View All Products</a>
+</div>
+<!-- /.box-footer -->
+</div>
+</div>
+</div>
+<div class="row">
+    <!-- Left col -->
+    <div class="col-md-12">
+      <!-- MAP & BOX PANE -->
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">Bagian diDivisi Umum</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body no-padding">
+      <div class="row">
+        <div class="col-md-4 col-sm-8">
+          <div class="pad">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>Administrator</h3>
+
+                  <p>Admin memiliki full akses terhadap website ini. Admin menambah data, lalu selanjutnya akan diteruskan</p>
+              </div>
+              <div class="icon">
+                  <i class="fa fa-user-secret"></i>
+              </div>
+              @if(Auth::user() && Auth::user()->akses == 'Admin')
+              <a href="{{url('#admin')}}" class="small-box-footer">Anda adalah seorang 'Admin' <i class="fa fa-arrow-circle-right"></i></a>
+              @else
+              <a href="#" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+              @endif
+          </div>
+      </div>
+  </div>
+   <div class="col-md-4 col-sm-8">
+          <div class="pad">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>Kasubag</h3>
+
+                  <p>Kasubag memberi tugas kepada pegawai yang lainnya. Pegawai melapor ke Kasubag dan mengentry data, dan data tersebut dapat diterima oleh Kadiv.</p>
+              </div>
+              <div class="icon">
+                  <i class="ion ion-bag"></i>
+              </div>
+              @if(Auth::user() && Auth::user()->akses == 'Kasubag')
+              <a href="{{url('#kasubag')}}" class="small-box-footer">Anda adalah seorang 'Kepala Sub Bagian' <i class="fa fa-arrow-circle-right"></i></a>
+              @else
+              <a href="#" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+              @endif
+          </div>
+      </div>
+  </div>
+   <div class="col-md-4 col-sm-8">
+          <div class="pad">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>Kadiv</h3>
+
+                  <p>Kadiv memonitoring data yg diberikan kasubag kepada pegawai yang lainnya. Sehingga dapat terkontrol</p>
+              </div>
+              <div class="icon">
+                  <i class="ion ion-bag"></i>
+              </div>
+              @if(Auth::user() && Auth::user()->akses == 'Kadiv')
+              <a href="{{url('#kadiv')}}" class="small-box-footer">Anda adalah seorang 'Kepala Divisi' <i class="fa fa-arrow-circle-right"></i></a>
+              @else
+              <a href="#" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+              @endif
+          </div>
+      </div>
+  </div>
+  <!-- /.col -->
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+</div>
+<!-- /.box-body -->
+</div>
+<div class="row">
+    <div class="col-md-12">
+        
+    </div>
+</div>
+</section>
+</div>
+</body>
+</html>
