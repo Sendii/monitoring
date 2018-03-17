@@ -30,9 +30,9 @@
                 <div class="col-sm-3">
                   <div class="input-group text">
                     <div class="input-group-addon">
-<i class="fa fa-codepen"></i>
+<i class="fa fa-code"></i>
                     </div>
-                    <input type="text" name="kodePj" value="{{$ppbjadd->kodePj or ''}}" class="form-control" placeholder="Kode PJ" required autofocus>
+                    <input type="text" name="kodePj" value="{{$ppbjadd->kodePj or ''}}" class="form-control" placeholder="Kode PJ" required autofocus minlength=="2" maxlength="7">
                   </div>
                 </div>
                 <label class="col-sm-2 control-label">No. Registrasi Umum</label>
@@ -52,7 +52,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="datepicker1" name="tglregisumum" value="{{$ppbjadd->tgl_regis_umum or ''}}" placeholder="Tgl. Registrasi">
+                    <input type="text" class="form-control pull-right" id="datepicker1" name="tglregisumum" value="{{$ppbjadd->tgl_regis_umum or ''}}" placeholder="Tgl. Registrasi" min="3" max="4">
                   </div>
                 </div>
                 <label class="col-sm-2 control-label">No. Ppbj</label>
@@ -151,7 +151,7 @@
                         var row = $('input[name="row"]').val();
                         var tag = '';
                         for(i=1;i<=row;i++){
-                          tag += '<tr><td><input type="text" name="nama[]" class="form-control" placeholder="Nama Barang/Jasa"></td><td><input type="text" name="qty[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'"></td><td><input type="text" name="harga[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga'+i+'"></td><td><input type="text" name="total[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total'+i+'" readonly></td></tr>'; 
+                          tag += '<tr><td><input type="text" name="nama[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qty[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" required></td><td><input type="number" name="harga[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga'+i+'" required></td><td><input type="text" name="total[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total'+i+'" readonly></td></tr>'; 
                         }
                         $('tbody').html( tag );
                         subtotal();

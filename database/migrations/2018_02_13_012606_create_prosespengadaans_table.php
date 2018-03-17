@@ -24,10 +24,10 @@ class CreateProsespengadaansTable extends Migration
             $table->text('no_pmn')->nullable();
             $table->text('tgl_kon')->nullable(); //Tanggal Kontrak
             $table->text('no_kon')->nullable();
-            $table->datetime('selesaispph')->nullable();
-            $table->datetime('selesaietp')->nullable();
-            $table->datetime('selesaipmn')->nullable();
-            $table->datetime('selesaikon')->nullable();
+            $table->text('selesaispph')->nullable();
+            $table->text('selesaietp')->nullable();
+            $table->text('selesaipmn')->nullable();
+            $table->text('selesaikon')->nullable();
             $table->timestamps();
         });
     }

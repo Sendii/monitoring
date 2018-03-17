@@ -14,6 +14,9 @@
       font-family: 'PT Sans Caption', sans-serif, 'arial', 'Times New Roman';
     }
     /* Error Page */
+    body {
+      background-color: #e4e4e4;
+    }
     .error .clip .shadow
     {
       height: 180px;  /*Contrall*/
@@ -90,7 +93,7 @@
       z-index: 9999;
       height: 100%;
       width: 10px;
-      background: linear-gradient(90deg, transparent, rgba(173,173,173, 0.8), transparent);
+      background: linear-gradient(90deg, transparent, rgba(113,113,156, 0.8), transparent);
       border-radius: 50%;
     }
     .error .clip:nth-of-type(3) .shadow:after
@@ -198,8 +201,8 @@
 
 
       .overlay { position: relative; z-index: 20; } /*done*/
-      .ground-color { background: white; }  /*done*/
-      .item-bg-color { background: #EAEAEA } /*done*/
+      .ground-color { background: #e4e4e4; }  /*done*/
+      .item-bg-color { background: #d8d8d8 } /*done*/
 
       /* Padding Section*/
       .padding-top { padding-top: 10px; } /*done*/

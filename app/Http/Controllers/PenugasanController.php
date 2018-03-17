@@ -15,116 +15,78 @@ use Illuminate\Http\Request;
 class PenugasanController extends Controller
 {
     public function receivePpbj() {
-        $data['receiveallPpbj'] = pbbj::paginate(10);
+        $data['receiveallPpbj'] = pbbj::orderBy('created_at', 'DESC')->paginate(10);
         $data['prosespengadaan'] = prosespengadaan::get();
         $data['unitkerja'] = unitkerja::get();
         return view('kasubag.all')->with($data);
     }
 
-    //kalau data di prosespengadaan belum ada pemekerja, akan menjalankan method ini dan melanjutkan ke method saveAssignment
-    public function addAsignment($id) {
-     $data['ppbjassignmentEdit'] = pbbj::find($id);
-     $data['unitkerja'] = unitkerja::get();
-     $data['pegawai'] = pegawai::get();
-     $data['pengadaan'] = pengadaan::get();
-     $data['prosespengadaan'] = prosespengadaan::all();
-     $data['jumlah'] = barang::where('id', '=', $id)->count();
-     $data['barang'] = barang::find($id);
-     $data['barangnya'] = barang::where('id', '=', $id)->get();
-     $data['id'] = $id;
+    public function editassignmentPpbj($id) 
+    {
+       $data['ppbjassignmentEdit'] = pbbj::find($id);
+       $data['unitkerja'] = unitkerja::get();
+       $data['cekpegawai'] = pbbj::get();
+       $data['pegawai'] = pegawai::get();
+       $data['pengadaan'] = pengadaan::get();
+       $idproses = prosespengadaan::where('id_ppbj', '=', $id)->value('id');
+       if (!$idproses == null) {
+           $data['prosespengadaan'] = prosespengadaan::find($idproses);
+       }   
+       $data['jumlah'] = barang::where('id', '=', $id)->count();
+       $data['barang'] = barang::find($id);
+       $data['barangnya'] = barang::where('id', '=', $id)->get();
+       $data['id'] = $id;
         // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
-     return view('kasubag.add')->with($data);
- }
-    //lanjutan function dari addAsignment
- public function saveAssignment(Request $r) {
-    $prosespengadaan = new prosespengadaan;
-    $newproses = pbbj::find($r->input('id'));
-    $prosespengadaan->id_pegawai = $r->input('id_pegawai');
-    if($r->input('p_tglspph') == ""){
-        $prosespengadaan->tgl_spph = "Belum Terselesaikan";
-    }else{
-        $prosespengadaan->tgl_spph = $r->input('p_tglspph');
-    }
-    if($r->input('p_nospph') == "") {
-        $prosespengadaan->no_spph = "Belum Terselesaikan";
-    }else{
-        $prosespengadaan->no_spph = $r->input('p_nospph');
-        $prosespengadaan->selesaispph = date('Y-m-d H:i:s');
-    }
-    $prosespengadaan->id = $newproses->id;
-    $prosespengadaan->save();
-    $newproses->id_pegawai = $prosespengadaan->id_pegawai;
-    $newproses->save();
-    Alert::success('Data Ppbj telah ditugaskan.', 'Berhasil!')->autoclose(1300);
-    return redirect()->route('receivePpbj');
-}
+       return view('kasubag.edit')->with($data);
+   }
 
-    //kalau data di prosespengadaan sudah ada pemekerja, akan menjalankan method ini dan melanjutkan ke method updateassignmentPpbj
-public function editassignmentPpbj($id) 
-{
-   $data['ppbjassignmentEdit'] = pbbj::find($id);
-   $data['unitkerja'] = unitkerja::get();
-   $data['pegawai'] = pegawai::get();
-   $data['pengadaan'] = pengadaan::get();
-   $idproses = prosespengadaan::where('id_ppbj', '=', $id)->value('id');
-   if (!$idproses == null) {
-       $data['prosespengadaan'] = prosespengadaan::find($idproses);
-   }   
-   $data['jumlah'] = barang::where('id', '=', $id)->count();
-   $data['barang'] = barang::find($id);
-   $data['barangnya'] = barang::where('id', '=', $id)->get();
-   $data['id'] = $id;
-        // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
-   return view('kasubag.edit')->with($data);
-}
-
-public function updateassignmentPpbj(Request $r, $id)
-{        
+   public function updateassignmentPpbj(Request $r, $id)
+   {        
     if (prosespengadaan::where('id_ppbj', '=', $id)->exists()) {
         $idproses = prosespengadaan::where('id_ppbj', '=', $id)->value('id');
         $newproses = pbbj::find($id);
         $table = prosespengadaan::find($idproses);
         $table->id_pegawai = $r->input('id_pegawai');
         if($r->input('p_tglspph') == ""){
-            $table->tgl_spph = "Belum Terselesaikan";
+            $table->tgl_spph = "";
         }else{
             $table->tgl_spph = $r->input('p_tglspph');
         }
         if($r->input('p_nospph') == "") {
-            $table->no_spph = "Belum Terselesaikan";
+            $table->no_spph = "";
         }else{
             $table->no_spph = $r->input('p_nospph');
-            $table->selesaispph = date('Y-m-d H:i:s');
+            $table->selesaispph = date('d-m-Y');
         }
 
         if($r->input('p_tgletp') == "" ) {
-            $table->tgl_etp = "Belum Terselesaikan";
+            $table->tgl_etp = "";
         }else{
             $table->tgl_etp = $r->input('p_tgletp');
-            $table->selesaietp = date('Y-m-d H:i:s');
+            $table->selesaietp = date('d-m-Y');
         }
 
         if($r->input('p_tglpmn') == "" ) {
-            $table->tgl_pmn = "Belum Terselesaikan";
+            $table->tgl_pmn = "";
         }else{
             $table->tgl_pmn = date($r->input('p_tglpmn'));
         }if($r->input('p_nopmn') == "") {
-            $table->no_pmn = "Belum Terselesaikan";
+            $table->no_pmn = "";
         }
         else{
             $table->no_pmn = $r->input('p_nopmn');
-            $table->selesaipmn = date('Y-m-d H:i:s');
+            $table->selesaipmn = date('d-m-Y');
         }
 
         if($r->input('p_tglkon') == "") {
-            $table->tgl_kon = "Belum Terselesaikan";
+            $table->tgl_kon = "";
         }else{
             $table->tgl_kon = date($r->input('p_tglkon'));
         }if($r->input('p_nokon') == "") {
-            $table->no_kon = "Belum Terselesaikan";
+            $table->no_kon = "";
         }else{
             $table->no_kon = $r->input('p_nokon');
-            $table->selesaikon = date('Y-m-d H:i:s');
+            $table->selesaikon = date('d-m-Y');
         }        
         $table->save();
 

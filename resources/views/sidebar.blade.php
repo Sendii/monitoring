@@ -161,7 +161,7 @@
               </ul>
             </li>
             <!-- User Account: style can be found in dropdown.less -->
-            <li class="dropdown user user-menu">
+            <li class="dropdown user user-menu" style="background-color: #3c8dbc;">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img style="width:25px; height:20px; margin-:" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
@@ -170,7 +170,6 @@
                 <!-- User image -->
                 <li class="user-header">
                   <img style="width:75px; height:75px; background-color: #00a7d0" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
-
                   <p>
                     {{ Auth::user()->name }}
                     <small>{{Auth::user()->akses}} sejak {{ Auth::user()->created_at }}</small>
@@ -222,9 +221,8 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header"><center>MAIN NAVIGATION</center></li><br>
-          <li class="active treeview menu-open">
-            <a href="#">
-              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <li class="active">
+              <a href="{{url('home')}}"><i class="fa fa-dashboard"></i>Dashboard</a>
             <!-- <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span> -->
@@ -270,8 +268,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('addUnit')}}"><i class="fa fa-plus-circle"></i> Tambah Unit Kerja</a></li>
-            <li><a href="{{route('allUnit')}}"><i class="fa fa-tv"></i> Lihat Unit Kerja</a></li>
+            <li><a href="{{url('inputUnit')}}"><i class="fa fa-plus-circle"></i> Tambah Unit Kerja</a></li>
+            <li><a href="{{url('allUnit')}}"><i class="fa fa-tv"></i> Lihat Unit Kerja</a></li>
           </ul>
         </li>
         <li class="treeview">

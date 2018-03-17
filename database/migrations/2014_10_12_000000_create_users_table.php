@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('akses')->default('User'); //4 Is User People
-            $table->string('sort')->default('sorts');
             $table->rememberToken();
             $table->timestamps();
         });  

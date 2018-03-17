@@ -65,6 +65,7 @@ class BppjController extends Controller
          $new2->harga_brg= $r['harga'][$i]; 
          $new2->total_brg= $r['total'][$i];  
          $new2->hargatotal_brg= $r->input('subtotal'); 
+        Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
          $new2->save();
        }
 
@@ -86,7 +87,6 @@ class BppjController extends Controller
             $newprosespengadaan->selesaispph = date('Y-m-d H:i:s');
         }
         $newprosespengadaan->id_ppbj = $newproses->id; //id prosespengadaan == id ppbj 
-        Alert::success('Data Ppbj baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
         $newprosespengadaan->save();
 
        return redirect()->route('allPpbj');

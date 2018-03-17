@@ -5,6 +5,11 @@
 </head>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<style type="text/css">
+  .rapih {
+    width: 1200px;
+  }
+</style>
 <body class="hold-transition skin-blue sidebar-mini" background="github.png">
   @include('sidebar')
   <!-- Content Wrapper. Contains page content -->
@@ -17,19 +22,20 @@
         <!-- /.box-header -->
        <div class="box-body">
           <div class="table-responsive">
-           <table id="example" class="table table-condensed table-hover">
+           <table id="example" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data>
              <thead>
                 <tr role="row">
-                  <th style="width: 2px;">No. </th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 2px;">Tgl Mulai</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 2px;">Pemekerja&nbsp;</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 2px;">Tgl. Spph</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 5px;">No. Spph</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">  Tgl. Etp</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Tgl. Pengumuman</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">No. Pengumuman</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Tgl. Kontrak</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">No. Kontrak</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 2px;">Lihat Selengkapnya</th>
+                  <th class="rapih" style="width: 2px;">No. </th>
+                  <th class="rapih" style="width: 2px;">Tgl Mulai</th>
+                  <th class="rapih" style="width: 2px;">Pemekerja&nbsp;</th>
+                  <th class="rapih" style="width: 5px;">No. Spph</th>
+                  <th class="rapih" style="width: 2px;">  Tgl. Spph</th>
+                  <th class="rapih" style="width: 2px;">  Tgl. ETP</th>
+                  <th class="rapih" style="width: 2px;">No. Pengumuman</th>
+                  <th class="rapih" style="width: 2px;">Tgl. Pengumuman</th>
+                  <th class="rapih" style="width: 2px;">No. Kontrak</th>
+                  <th class="rapih" style="width: 2px;">Tgl. Kontrak</th>
+                  <th class="rapih" style="width: 2px;">Proses</th>
                 </tr>
               </thead>
               <tbody>        
@@ -39,90 +45,149 @@
               ?>
               @if($pegawai != "")
                 <tr role="row" class="odd">
-                  <td class="sorting_1">{{$key->id}}</td>
-                  <td class="center"> <br>
+                  <td class="rapih">{{$key->id}}</td>
+                  <td class="rapih"><center><i class="fa fa-chevron-down"></i></center> <br>
                       {{$key->created_at}}
                   </td>
-                  <td class="center">{{ $pegawai }}</td>
-                  <td class="center">{{$key->tgl_spph}}
-                    @if($key->tgl_spph == "Belum Terselesaikan")
-                    <i>Belum Selesai</i>
-                    @else
-                    <div class="row">
-                      <div class="center">
-                       &nbsp;&nbsp;  Terselesaikan
-                      </div>
-                    </div>
-                    @endif
-                  </td>
-                  <td class="center">{{$key->no_spph}}
-                    @if($key->no_spph == "Belum Terselesaikan")
-                    <i>Belum Selesai</i>
-                    @else
-                      <br><li>
-                       &nbsp;&nbsp;  {{$key->selesaispph}}
-                      </li>
-                    @endif
-                  </td>
-                  <td class="center">{{$key->tgl_etp}}
-                     @if($key->tgl_etp == "Belum Terselesaikan")
-                    <i>Belum Selesai</i>
-                    @else
-                      <br><li>
-                       &nbsp;&nbsp;  {{$key->selesaietp}}
-                      </li>
-                    @endif
-                  </td>
-                  <td class="center">{{$key->tgl_pmn}}
-                    @if($key->tgl_pmn == "Belum Terselesaikan")
-                    <i>Belum Selesai</i>
-                    @else
-                    <div class="row">
+                  <td class="rapih">{{ $pegawai }}</td>
+                  <td class="rapih">
+                    @if ($key->no_spph == "")
                       <center>
+                        <i class="fa fa-close"></i>
+                      </center>
+                    @else
+                       <center>{{$key->no_spph}}</center>
+                    @endif
+
+                    @if($key->no_spph == "")
+                    <i>Belum Selesai</i>
+                    @else
+                    <center>
                        <i class="fa fa-check"></i>
                       </center>
-                    </div>
                     @endif
                   </td>
-                  <td class="center">{{$key->no_pmn}}
-                    @if($key->no_pmn == "Belum Terselesaikan")
-                    <i>Belum Selesai</i>
+                  <td class="rapih">
+                    @if($key->tgl_spph == "")
+                    <center>
+                        <i class="fa fa-close"></i>
+                      </center>
                     @else
-                      <br><li>
-                       &nbsp;&nbsp;  {{$key->selesaipmn}}
-                      </li>
+                      <center>{{$key->tgl_spph}}</center>
                     @endif
-                  </td>
-                  <td class="center">{{$key->tgl_kon}}
-                    @if($key->tgl_kon == "Belum Terselesaikan")
+
+                    @if($key->tgl_spph == "")
                     <i>Belum Selesai</i>
                     @else
-                    <div class="row">
                       <div class="center">
-                       &nbsp;&nbsp;  Terselesaikan
+                        <i class="fa fa-arrow-right"></i>
+                       &nbsp;{{$key->selesaispph}}
                       </div>
+                    @endif
+                  </td>
+                  <td class="rapih">
+                    @if($key->tgl_etp == "") 
+                    <center>
+                        <i class="fa fa-close"></i>
+                      </center>
+                      @else
+                      <center>{{$key->tgl_etp}}</center>
+                      @endif
+
+                     @if($key->tgl_etp == "")
+                    <i>Belum Selesai</i>
+                    @else
+                    <div class="center">
+                      <i class="fa fa-arrow-right"></i>
+                       &nbsp;{{$key->selesaietp}}
+                     </div>
+                    @endif
+                  </td>
+                  <td class="rapih">
+                    @if($key->no_pmn == "")
+                    <center>
+                        <i class="fa fa-close"></i>
+                      </center>
+                      @else
+                      <center>{{$key->no_pmn}}</center>
+                      @endif
+
+                    @if($key->no_pmn == "")
+                    <i>Belum Selesai</i>
+                    @else
+                    <center>
+                       <i class="fa fa-check"></i>
+                       </center>
+                    @endif
+                  </td>
+                  <td class="rapih">
+                    @if ($key->tgl_pmn == "") 
+                    <center>
+                    <i class="fa fa-close"></i>
+                    </center>
+                     @else 
+                     <center>{{$key->tgl_pmn}}</center>
+                     @endif
+
+                    @if($key->tgl_pmn == "")
+                    <i>Belum Selesai</i>
+                    @else
+                    <div class="center">
+                        <i class="fa fa-arrow-right"></i>
+                       &nbsp;{{$key->selesaipmn}}
                     </div>
                     @endif
                   </td>
-                  <td class="center">{{$key->no_kon}}
-                    @if($key->no_kon == "Belum Terselesaikan")
+                  <td class="rapih">
+                    @if($key->no_kon == "") 
+                    <center>
+                    <i class="fa fa-close"></i>
+                    </center>
+                    @else
+                    <center>{{$key->no_kon}}</center>
+                    @endif
+
+                    @if($key->no_kon == "")
                     <i>Belum Selesai</i>
                     @else
-                      <br><li>
-                       &nbsp;&nbsp;  {{$key->selesaikon}}
-                      </li>
+                       <center>
+                         <i class="fa fa-check"></i>
+                       </center>
                     @endif
                   </td>
-                  <td><a href="{{route('viewAlldata', [$key->id_prosespengadaan])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Lihat</a></td>
+                  <td class="rapih">
+                    @if($key->tgl_kon == "")
+                    <center>
+                    <i class="fa fa-close"></i>
+                    </center>
+                    @else
+                    <center>{{$key->tgl_kon}}</center>
+                    @endif
+
+                    @if($key->selesaikon == "")
+                    <i>Belum Selesai</i>
+                    @else
+                      <div class="center">
+                       <i class="fa fa-arrow-right"></i>
+                       &nbsp;{{$key->selesaikon}}
+                      </div>
+                    @endif
+                  </td>
+                  <td><a href="{{route('viewAlldata', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Lihat</a>
+                    @if($key->selesaikon == "")
+                    <span class="label label-info">Dalam Proses</span>
+                    @else
+                    <span class="label label-success">Proses Selesai</span>
+                    @endif
+                  </td>
                 </tr>
                 @else
-                <input type="hidden">
+                <input type="hidden" name="">
                 @endif
               @endforeach
               </tbody>
             </table></div></div></div>
           </div>
-          {!!$allMonitor->render()!!}
           <!-- /.box-body -->
         </div>
       </div>

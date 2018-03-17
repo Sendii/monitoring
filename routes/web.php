@@ -16,22 +16,22 @@ Route::get('/', function () {
 });
 
 Route::middleware(['admin'])->group(function () {
-	Route::get('/inputPpbj', 'BppjController@addPpbj')->name('addPpbj');
 	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
-	Route::post('/savePpbj/', 'BppjController@savePpbj')->name('savePpbj');
+	Route::get('/inputPpbj', 'BppjController@addPpbj');
+	Route::post('/savePpbj/', 'BppjController@savePpbj');
 	Route::get('/editPpbj/{id}','BppjController@editPpbj')->name('editPpbj');
 	Route::post('/editPpbj/', 'BppjController@updatePpbj')->name('updatePpbj');
 	Route::get('/allPpbj/delete/{id}','BppjController@delete_ppbj')->name('delete_ppbj');
 
-	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
-	Route::get('/inputUnit', 'UnitKerjaController@addUnit')->name('addUnit');
-	Route::post('/saveUnit/', 'UnitKerjaController@saveUnit')->name('saveUnit');
-
-	Route::get('/inputPegawai', 'PegawaiController@addPegawai')->name('addPegawai');
+	Route::get('/inputPegawai', 'PegawaiController@addPegawai');
 	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
-	Route::post('/savePegawai/', 'PegawaiController@savePegawai')->name('savePegawai');
+	Route::post('/savePegawai', 'PegawaiController@savePegawai');
 	Route::get('/editPegawai/{id_pegawai}', 'PegawaiController@editPegawai')->name('editPegawai');
 	Route::post('/editpegawai', 'PegawaiController@updatePegawai')->name('updatePegawai');
+
+	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
+	Route::get('/inputUnit', 'UnitKerjaController@addUnit');
+	Route::post('/saveUnit', 'UnitKerjaController@saveUnit');
 
 	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
 	Route::get('/edituser/{id}','HomeController@edituser');
@@ -50,7 +50,7 @@ Route::middleware(['kasubag'])->group(function () {
 
 Route::middleware(['kadiv'])->group(function () {
 	Route::get('/monitoring', 'MonitoringController@allMonitoring')->name('allMonitoring');
-	Route::get('/viewAlldata/{id_prosespengadaan}', 'MonitoringController@viewAlldata')->name('viewAlldata');
+	Route::get('/viewAlldata/{id}', 'MonitoringController@viewAlldata')->name('viewAlldata');
 });
 
 Route::middleware(['publicpeople'])->group(function () {

@@ -47,8 +47,8 @@
                     <?php
                     $unitkerja = \App\unitkerja::where('id_unit', '=', $key->id_unit)->value('aa');
                     $pegawai = \App\pegawai::where('id_pegawai', '=', $key->id_pegawai)->value('namapegawai');
-                    $jenis_pengadaan = \App\pengadaan::where('id_pengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
-                    ?>                  
+                    $cekproses = \App\prosespengadaan::where('id_ppbj', '=', $key->id)->value('selesaikon');
+                    ?>
                     <td class="sorting_1">{{$key->id}}</td>
                     <!-- {{ $loop->iteration }} -->
                     <td class="center">{{$key->kodePj}}</td>
@@ -71,7 +71,7 @@
                   <td class="center">{{$key->no_ppbj}}</td>
                   <td class="center">{{$key->tgl_permintaan_ppbj}}</td>
                   <td class="center">{{$key->tgl_dibutuhkan_ppbj}}</td>
-                  <td class="center">{{$jenis_pengadaan}}</td>
+                  <td class="center">{{$key->id_pengadaan}}</td>
                   <td class="center">{{ $unitkerja }}</td>
                   <td class="center">
                     <ul>
@@ -111,10 +111,14 @@
              Total = <i>{{ $total }}</i>
            </ul></td>
            <td>
-            <div class="row">
-              <div class="center"> <a class="btn waves-effect waves-light yellow darken-2" href="{{ url('editassignmentPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i>Penugasan</a>
-              </div>
-            </div>
+              <a class="btn waves-effect waves-light yellow darken-2" href="{{ url('editassignmentPpbj', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i>Penugasan</a>
+               @if($pegawai != "" && $cekproses != "")
+                    <span class="label label-success">Proses Selesai</span>
+                    @elseif($pegawai == "")
+                    <span class="label label-danger">Belum ada Pemroses</span>
+                    @elseif ($pegawai != "")
+                    <span class="label label-info">Dalam Proses</span>
+                    @endif
           </td>
         </tr>
 

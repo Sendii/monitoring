@@ -47,7 +47,7 @@ class HomeController extends Controller
     public function index()
     {
         $data['getkontrak'] = \App\prosespengadaan::get();
-        $data['getppbj'] = \App\pbbj::paginate(10);
+        $data['getppbj'] = \App\pbbj::orderBy('updated_at', 'DESC')->paginate(10);
         return view('welcome')->with($data);
     }
 
@@ -62,6 +62,7 @@ class HomeController extends Controller
         $new->subject = $r->input('subject');
         $new->message = $r->input('message');
 
+        Alert::success('Terima Kasih atas Saran & Masukannya.', 'Berhasil!')->autoclose(1300);
         $new->save();
 
         return redirect('/');

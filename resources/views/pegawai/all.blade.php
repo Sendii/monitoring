@@ -21,7 +21,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="table-responsive">
-               <table id="example" class="table table-condensed table-hover">
+               <table id="example" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data>
                  <thead>
                   <tr>
                     <th>No. </th>
