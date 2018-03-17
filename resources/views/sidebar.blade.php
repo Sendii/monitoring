@@ -221,7 +221,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header"><center>MAIN NAVIGATION</center></li><br>
-          <li class="active">
+          <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
               <a href="{{url('home')}}"><i class="fa fa-dashboard"></i>Dashboard</a>
             <!-- <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -287,7 +287,7 @@
         </li>
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         @elseif (Auth::user() &&  Auth::user()->akses == 'Kasubag')
-        <li class="treeview">
+        <li class="treeview {{ Request::segment(1) === 'receivePpbj' ? 'active' : null }}">
           <a href="#">
             <i class="fa fa-list"></i>
             <span>Ppbj</span>
@@ -296,7 +296,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=" {{url('/receivePpbj')}} "><i class="fa fa-desktop"></i> Lihat Data</a></li>
+            <li class="{{ Request::segment(1) === 'receivePpbj' ? 'active' : null }}"><a href=" {{url('/receivePpbj')}} "><i class="fa fa-desktop"></i> Lihat Data</a></li>
           </ul>
         </li>
         @elseif (Auth::user() && Auth::user()->akses == 'Kadiv')
