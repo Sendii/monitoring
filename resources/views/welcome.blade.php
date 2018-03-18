@@ -54,7 +54,7 @@
 
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>10<sup style="font-size: 25px;">%</sup> </h3>
+              <h3>{{ $presentase }}<sup style="font-size: 25px;">%</sup> </h3>
               <p>Persentase Penyelesaian</p>
             </div>
             <div class="icon">

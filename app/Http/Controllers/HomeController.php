@@ -6,6 +6,8 @@ use DB;
 use Alert;
 use \App\logdata;
 use Auth;
+use \App\prosespengadaan;
+use \App\pbbj;
 
 use Illuminate\Http\Request;
 
@@ -48,6 +50,9 @@ class HomeController extends Controller
     {
         $data['getkontrak'] = \App\prosespengadaan::get();
         $data['getppbj'] = \App\pbbj::orderBy('updated_at', 'DESC')->paginate(10);
+        $total = pbbj::count();        
+        $selesai = prosespengadaan::whereNotNull('selesaikon')->count();
+        $data['presentase'] = ($selesai / $total) * 100;        
         return view('welcome')->with($data);
     }
 
