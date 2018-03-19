@@ -6,9 +6,14 @@ use DB;
 use Alert;
 use \App\logdata;
 use Auth;
+<<<<<<< HEAD
 use \App\pbbj;
 use \App\prosespengadaan;
 
+=======
+use \App\prosespengadaan;
+use \App\pbbj;
+>>>>>>> d30bd65151651ec9fa115d80c6de02b840d67963
 
 use Illuminate\Http\Request;
 
@@ -49,12 +54,20 @@ class HomeController extends Controller
     
     public function index()
     {
+<<<<<<< HEAD
         $data['getkontrak']    = \App\prosespengadaan::get();
         $data['getppbj']       = \App\pbbj::orderBy('updated_at', 'DESC')->paginate(10);
         $total                 = pbbj::count();
         $selesai               = prosespengadaan::whereNotNull('selesaikon')->count();
         $data['selesaiproses'] = prosespengadaan::whereNotNull('selesaikon')->count();
         // $data['presentase']    = ($selesai / $total) * 100;
+=======
+        $data['getkontrak'] = \App\prosespengadaan::get();
+        $data['getppbj'] = \App\pbbj::orderBy('updated_at', 'DESC')->paginate(10);
+        $total = pbbj::count();        
+        $selesai = prosespengadaan::whereNotNull('selesaikon')->count();
+        $data['presentase'] = ($selesai / $total) * 100;        
+>>>>>>> d30bd65151651ec9fa115d80c6de02b840d67963
         return view('welcome')->with($data);
     }
     

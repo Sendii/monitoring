@@ -197,6 +197,7 @@
                     </ul>
                 </div>
 
+<<<<<<< HEAD
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
@@ -229,6 +230,37 @@
                     <li class="active">
                         <a href="{{url('home')}}"><i class="fa fa-dashboard"></i>Dashboard</a>
                         <!-- <span class="pull-right-container">
+=======
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img style="width:38px; height:38px;" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
+          </div>
+          <div class="pull-left info">
+            <p>{{ Auth::user()->name }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="hidden" name="q" class="form-control" placeholder="Pencarian...">
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header"><center>MAIN NAVIGATION</center></li><br>
+          <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
+              <a href="{{url('home')}}"><i class="fa fa-dashboard"></i>Dashboard</a>
+            <!-- <span class="pull-right-container">
+>>>>>>> d30bd65151651ec9fa115d80c6de02b840d67963
               <i class="fa fa-angle-left pull-right"></i>
             </span> -->
                         </a>
@@ -284,6 +316,7 @@
                             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
+<<<<<<< HEAD
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{url('alluser')}}"><i class="fa fa-tv"></i> Lihat User</a></li>
@@ -326,6 +359,58 @@
             </section>
             <!-- /.sidebar -->
         </aside>
+=======
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url('alluser')}}"><i class="fa fa-tv"></i> Lihat User</a></li>
+            <li><a href="{{url('adduser')}}"><i class="fa fa-user-plus"></i> Tambah User</a></li>
+          </ul>
+        </li>
+        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+        @elseif (Auth::user() &&  Auth::user()->akses == 'Kasubag')
+        <li class="treeview {{ Request::segment(1) === 'receivePpbj' ? 'active' : null }}">
+          <a href="#">
+            <i class="fa fa-list"></i>
+            <span>Ppbj</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i> 
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ Request::segment(1) === 'receivePpbj' ? 'active' : null }}"><a href=" {{url('/receivePpbj')}} "><i class="fa fa-desktop"></i> Lihat Data</a></li>
+          </ul>
+        </li>
+        @elseif (Auth::user() && Auth::user()->akses == 'Kadiv')
+        <li>
+          <a href="{{url('allPegawai')}}">
+            <i class="fa fa-user"></i> <span>Pegawai</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('allUnit')}}">
+            <i class="fa fa-bank"></i> <span>Unit Kerja</span>
+          </a>
+        </li> 
+        @endif
+        <li class="header">LABELS</li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  <!-- FastClick -->
+  <script src="{{asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+
+  <script src="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+  <script src="{{asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+  <!-- SlimScroll -->
+  <script src="{{asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+>>>>>>> d30bd65151651ec9fa115d80c6de02b840d67963
 
         <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
         <!-- Bootstrap 3.3.7 -->

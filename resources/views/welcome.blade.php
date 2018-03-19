@@ -58,7 +58,11 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
+<<<<<<< HEAD
              <h3>10<sup style="font-size: 25px;">%</sup> </h3>
+=======
+              <h3>{{ number_format($presentase, 2) }}<sup style="font-size: 25px;">%</sup> </h3>
+>>>>>>> d30bd65151651ec9fa115d80c6de02b840d67963
               <p>Persentase Penyelesaian</p>
             </div>
             <div class="icon">
