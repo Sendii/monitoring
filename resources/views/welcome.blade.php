@@ -8,11 +8,6 @@
 <link rel="stylesheet" href="{{asset('css/morris.css')}}">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-<style type="text/css">
-  .center {
-    text-align: center;
-  }
-</style>
 <body>
   <div class="content-wrapper">
     <section class="content-header">
@@ -50,19 +45,16 @@
             @if(Auth::user() && Auth::user()->akses == 'Admin')
             <a href="{{url('allPpbj')}}" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
             @else
-             <a href="#ppbj" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
-             @endif
+            <a href="#ppbj" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            @endif
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+
           <div class="small-box bg-green">
             <div class="inner">
-<<<<<<< HEAD
-             <h3>10<sup style="font-size: 25px;">%</sup> </h3>
-=======
               <h3>{{ number_format($presentase, 2) }}<sup style="font-size: 25px;">%</sup> </h3>
->>>>>>> d30bd65151651ec9fa115d80c6de02b840d67963
               <p>Persentase Penyelesaian</p>
             </div>
             <div class="icon">
@@ -85,15 +77,16 @@
             @if(Auth::user() && Auth::user()->akses == 'Admin')
             <a href="{{url('alluser')}}" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
             @else
-             <a href="#users" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
-             @endif
+            <a href="#users" class="small-box-footer">Informasi Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            @endif
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{$selesaiproses}}</h3>
+              <h3>10</h3>
+
               <p>Ppbj Terselesaikan</p>
             </div>
             <div class="icon">
@@ -143,12 +136,12 @@
                 <table id="example" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data>
                   <thead>
                     <tr>
-                      <th class="center">No. Ppbj</th>
-                      <th class="center">Jenis Pengadaan</th>
-                      <th class="center">Tgl RegistrasiUmum</th>
-                      <th class="center">Tgl Permintaan</th>
-                      <th class="center">Tgl Dibutuhkan</th>
-                      <th class="center">Proses</th>
+                      <th>No. Ppbj</th>
+                      <th>Jenis Pengadaan</th>
+                      <th>Tgl RegistrasiUmum</th>
+                      <th>Tgl Permintaan</th>
+                      <th>Tgl Dibutuhkan</th>
+                      <th>Proses</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -159,19 +152,19 @@
 
                     ?>
                     <tr>
-                      <td class="center">{{$ppbj->no_ppbj}}</td>
-                      <td class="center">{{$ppbj->id_pengadaan}}</td>
-                      <td class="center">{{$ppbj->tgl_regis_umum}}</td>
-                      <td class="center">{{$ppbj->tgl_permintaan_ppbj}}</td>
-                      <td class="center">{{$ppbj->tgl_dibutuhkan_ppbj}}</td>
+                      <td>{{$ppbj->no_ppbj}}</td>
+                      <td>{{$ppbj->id_pengadaan}}</td>
+                      <td>{{$ppbj->tgl_regis_umum}}</td>
+                      <td>{{$ppbj->tgl_permintaan_ppbj}}</td>
+                      <td>{{$ppbj->tgl_dibutuhkan_ppbj}}</td>
                       <td>
                         @if($pegawai != "" && $penyelesaian != "")
-                    <center><span class="label label-success">Proses Selesai&nbsp;<i class="fa fa-check"></i></span></center>
-                    @elseif($pegawai == "")
-                    <center><span class="label label-danger">Belum ada Pemroses&nbsp;<i class="fa fa-close"></i></span></center>
-                    @elseif ($pegawai != "")
-                    <center><span class="label label-info">Dalam Proses&nbsp;<i class="fa fa-refresh"></i></span></center>
-                    @endif
+                        <span class="label label-success">Proses Selesai</span>
+                        @elseif($pegawai == "")
+                        <span class="label label-danger">Belum ada Pemroses</span>
+                        @elseif ($pegawai != "")
+                        <span class="label label-info">Dalam Proses</span>
+                        @endif
                       </td>
                     </tr>
                     @endforeach
