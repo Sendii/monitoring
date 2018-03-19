@@ -26,23 +26,23 @@ class CreatePegawaisTable extends Migration
             array(
                 'id' => 1,
                 'namapegawai' => 'Pak Taufiq',
-                'id_jabatan' => '4',
+                'id_jabatan' => '5',
                 'notelp' => '089531292812',
             )
         );
         DB::table('pegawais')->insert(
             array(         
                 'id' => 2,       
-                'namapegawai' => 'Bu Wati',
-                'id_jabatan' => '3',
+                'namapegawai' => 'Mba Widiya',
+                'id_jabatan' => '5',
                 'notelp' => '081291821191',
             )
         );
         DB::table('pegawais')->insert(
             array(     
                 'id' => 3,           
-                'namapegawai' => 'Pak Sugiargo',
-                'id_jabatan' => '3',
+                'namapegawai' => 'Pak Eko',
+                'id_jabatan' => '5',
                 'notelp' => '095761920115',
             )
         );
@@ -50,8 +50,56 @@ class CreatePegawaisTable extends Migration
             array(    
                 'id' => 4,            
                 'namapegawai' => 'Mba Deva',
-                'id_jabatan' => '4',
+                'id_jabatan' => '5',
                 'notelp' => '082201920831',
+            )
+        );
+        DB::table('pegawais')->insert(
+            array(    
+                'id' => 5,            
+                'namapegawai' => 'Pak Iwan',
+                'id_jabatan' => '5',
+                'notelp' => '0857102129',
+            )
+        );
+        DB::table('pegawais')->insert(
+            array(    
+                'id' => 6,            
+                'namapegawai' => 'Pak Makmun',
+                'id_jabatan' => '5',
+                'notelp' => '089538129121',
+            )
+        );
+        DB::table('pegawais')->insert(
+            array(    
+                'id' => 7,            
+                'namapegawai' => 'Bu Sri Adityawati',
+                'id_jabatan' => '4',
+                'notelp' => '089538129121',
+            )
+        );
+        DB::table('pegawais')->insert(
+            array(    
+                'id' => 8,            
+                'namapegawai' => 'Pak Sugiarjo',
+                'id_jabatan' => '4',
+                'notelp' => '089538129121',
+            )
+        );
+        DB::table('pegawais')->insert(
+            array(    
+                'id' => 9,            
+                'namapegawai' => 'Pak Yoni',
+                'id_jabatan' => '3',
+                'notelp' => '089538129121',
+            )
+        );
+        DB::table('pegawais')->insert(
+            array(    
+                'id' => 10,            
+                'namapegawai' => 'Pak Tomi',
+                'id_jabatan' => '1',
+                'notelp' => '089538129121',
             )
         );
     }

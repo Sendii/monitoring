@@ -6,6 +6,9 @@ use DB;
 use Alert;
 use \App\logdata;
 use Auth;
+use \App\pbbj;
+use \App\prosespengadaan;
+
 
 use Illuminate\Http\Request;
 
@@ -33,7 +36,7 @@ class HomeController extends Controller
         // $log->pathinfo = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:"";
         // $log->save();
     }
-
+    
     /**
      * Show the application dashboard.
      *
@@ -43,65 +46,73 @@ class HomeController extends Controller
     {
         return view('user.userpeople');
     }
-
+    
     public function index()
     {
-        $data['getkontrak'] = \App\prosespengadaan::get();
-        $data['getppbj'] = \App\pbbj::orderBy('updated_at', 'DESC')->paginate(10);
+        $data['getkontrak']    = \App\prosespengadaan::get();
+        $data['getppbj']       = \App\pbbj::orderBy('updated_at', 'DESC')->paginate(10);
+        $total                 = pbbj::count();
+        $selesai               = prosespengadaan::whereNotNull('selesaikon')->count();
+        $data['selesaiproses'] = prosespengadaan::whereNotNull('selesaikon')->count();
+        // $data['presentase']    = ($selesai / $total) * 100;
         return view('welcome')->with($data);
     }
-
+    
     public function contactme(Request $r)
     {
         $data['contact'] = \App\contact::where('id_contact');
-
-
-        $new = new \App\contact;
-        $new->name = $r->input('name');
-        $new->email = $r->input('email');
+        
+        
+        $new          = new \App\contact;
+        $new->name    = $r->input('name');
+        $new->email   = $r->input('email');
         $new->subject = $r->input('subject');
         $new->message = $r->input('message');
-
+        
         Alert::success('Terima Kasih atas Saran & Masukannya.', 'Berhasil!')->autoclose(1300);
         $new->save();
-
+        
         return redirect('/');
     }
-
+    
     // ----------------URL REDIRECT TO ERROR404------------
     //  public function pagenotfound()
     //  {
     //      return view('503');
     // }
-
-    public function alluser(){
+    
+    public function alluser()
+    {
         $data['user'] = User::paginate('10');
-
+        
         return view('user.all')->with($data);
     }
-
-    public function edituser($id) {
+    
+    public function edituser($id)
+    {
         $data['edituser'] = user::find($id);
-        $data['user'] = user::get();
-
+        $data['user']     = user::get();
+        
         return view('user.edit')->with($data);
     }
-
-    public function updateuser(Request $r) {
+    
+    public function updateuser(Request $r)
+    {
         $edit = user::find($r->input('id'));
-
-        $edit->name = $r->input('nama');
+        
+        $edit->name  = $r->input('nama');
         $edit->email = $r->input('email');
         $edit->akses = $r->input('hakakses');
-
+        
         Alert::success('Data User website telah diEdit', 'Berhasil!')->autoclose(1300);
         $edit->save();
         return redirect()->route('alluser');
     }
-
-    public function profile() {
+    
+    public function profile()
+    {
         $data['user'] = user::get();
-
+        
         return view('profile.profile');
     }
 }

@@ -31,17 +31,17 @@ class CreateJabatansTable extends Migration
         );
         DB::table('jabatans')->insert(
             array(                
+                'jabatan' => 'Kepala Bagian',
+            )
+        );
+        DB::table('jabatans')->insert(
+            array(                
                 'jabatan' => 'Kepala Sub Bagian',
             )
         );
         DB::table('jabatans')->insert(
             array(                
                 'jabatan' => 'Staff',
-            )
-        );
-        DB::table('jabatans')->insert(
-            array(                
-                'jabatan' => 'Dan lainnya...',
             )
         );
     }

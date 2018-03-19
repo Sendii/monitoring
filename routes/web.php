@@ -14,30 +14,32 @@
 Route::get('/', function () {
 	return view('landing-page');
 });
-
+Route::middleware(['admin']&&['kadiv'])->group(function () {
+	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
+	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
+	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
+});
 Route::middleware(['admin'])->group(function () {
+	Route::get('/admin', 'HomeController@index')->name('home');
 	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
 	Route::get('/inputPpbj', 'BppjController@addPpbj');
 	Route::post('/savePpbj/', 'BppjController@savePpbj');
 	Route::get('/editPpbj/{id}','BppjController@editPpbj')->name('editPpbj');
 	Route::post('/editPpbj/', 'BppjController@updatePpbj')->name('updatePpbj');
 	Route::get('/allPpbj/delete/{id}','BppjController@delete_ppbj')->name('delete_ppbj');
-
 	Route::get('/inputPegawai', 'PegawaiController@addPegawai');
-	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
+	
 	Route::post('/savePegawai', 'PegawaiController@savePegawai');
 	Route::get('/editPegawai/{id_pegawai}', 'PegawaiController@editPegawai')->name('editPegawai');
-	Route::post('/editpegawai', 'PegawaiController@updatePegawai')->name('updatePegawai');
+	Route::post('/editpegawai', 'PegawaiController@updatePegawai');
 
-	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
 	Route::get('/inputUnit', 'UnitKerjaController@addUnit');
 	Route::post('/saveUnit', 'UnitKerjaController@saveUnit');
+	Route::get('/editUnit/{id_unit}','UnitKerjaController@editUnit')->name('editUnit');
+	Route::post('editUnit', 'UnitKerjaController@updateUnit');
 
-	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
 	Route::get('/edituser/{id}','HomeController@edituser');
 	Route::post('/edituser/', 'HomeController@updateuser');
-
-	Route::get('/admin', 'HomeController@index')->name('home');
 });
 
 Route::middleware(['kasubag'])->group(function () {

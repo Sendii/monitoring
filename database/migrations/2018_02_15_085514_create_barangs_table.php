@@ -22,7 +22,7 @@ class CreateBarangsTable extends Migration
             $table->integer('harga_brg');
             $table->integer('total_brg');
             $table->integer('hargatotal_brg')->nullable();
-            $table->timestamps('');
+            $table->timestamps();
         });
     }
 
